@@ -1,0 +1,30 @@
+
+$width-tablet: 780px;
+$width-mobile: 480px;
+$width-desktop: 1040px;
+$width-max: 1040px;
+$width-max-small: 500px;
+
+$color-yellow:#ffae00; 
+$color-blue-dark:#353c48;
+$color-blue-middle:#3c4452;
+$color-blue-light:#4c5667;
+
+$color-whitesmoke: whitesmoke;
+
+$color-border-bright:#bababa;
+$color-text:white;
+
+
+@mixin tablet() {
+    @media screen and (max-width: #{$width-desktop}) and  (min-width: #{$width-mobile}) {
+        @content;
+    }
+}
+
+
+@mixin mobile() {
+    @media screen and (max-width: #{$width-mobile}) {
+        @content;
+    }
+}

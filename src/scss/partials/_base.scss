@@ -1,0 +1,35 @@
+
+html {
+    font-size: 10px;
+}
+
+body {
+    background-color: $color-blue-middle;
+    font-family: 'Hind', sans-serif;
+    color: $color-text;
+}
+
+.container {
+    width: 80%;
+    max-width: $width-max;
+    margin: 0 auto;
+}
+.container-small {
+    width: 70%;
+    max-width: $width-max-small;
+    margin: 0 auto;
+    background: $color-blue-dark;
+    border-radius: 5px;
+}
+a {
+    color: rgba(255,255,255, 0.8);
+    text-decoration: none;
+    &:hover {
+        color: white;
+    }
+}
+
+.center {
+    margin:0 auto;
+    display:block;
+}

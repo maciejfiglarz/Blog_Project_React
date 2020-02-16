@@ -1,0 +1,144 @@
+.header {
+    width: 100%;
+    background: $color-blue-light;
+    margin-bottom: 20px;
+    // padding: 5px 0;
+display:none;
+    .container {
+        display: flex;
+        justify-content: space-between;
+
+    }
+    &__logo {
+        margin-top: 5px;
+        img {}
+    }
+    &__menu {
+        margin-top: 15px;
+        a {
+            padding: 15px;
+            font-size: 1.4rem;
+        }
+    }
+    &__left {
+        display: flex;
+    }
+    &__right {
+        display: flex;
+    }
+
+    &__panel {
+        padding: 10px;
+        font-size: 1.7rem;
+        display: flex;
+        i {
+            padding: 5px;
+            cursor: pointer;
+            color: rgba(255,255,255, 0.8);
+            text-decoration: none;
+            &:hover {
+                color: white;
+            }
+        }
+    }
+    &__panel-paths {
+        margin-top: 3px;
+        margin-right: 10px;
+        position: relative;
+        display: flex;
+    }
+    &__icon {
+        padding: 2px 5px 5px;
+    }
+    &__hover-access-frame:hover {
+        background: $color-blue-dark;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+    &__hover-access-frame:hover .access-frame {
+        display: block;
+    }
+    &__hover-access-frame:hover &__icon i {
+        color: white;
+    }
+    &__user-unlogged {
+        background: $color-blue-dark;
+    }
+
+    &__panel-user {
+        display: flex;
+        position: relative;
+        display: inline-block;
+    }
+    &__panel-user:hover &__dropdown {
+        display: block;
+    }
+    &__panel-user:hover a:hover {
+        background-color: $color-yellow;
+    }
+    &__dropdown {
+        display: none;
+        position: absolute;
+        background-color: $color-blue-dark;
+        min-width: 160px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        z-index: 1;
+        a {
+            color: white;
+            font-size:1.3rem;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+        }
+    }
+    &__avatar {
+        width: 32px;
+        margin-right: 3px;
+    }
+    &__username {
+        padding: 5px;
+        font-weight: 400;
+    }
+}
+
+.access-frame {
+    position: absolute;
+    right: 0;
+    top: 33px;
+    width: 300px;
+    height: auto;
+    background: $color-blue-dark;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 10px;
+    display: none;
+    z-index: 100;
+
+    &__item {
+        display: flex;
+        margin: 10px auto;
+        width: 240px;
+    }
+    &__item:first-of-type {
+        margin-top: 20px;
+    }
+    &__label {
+        padding-right: 15px;
+        padding-top: 5px;
+        min-width: 0;
+        font-size: 1.4rem;
+    }
+    .btn-social-connect--small {
+        margin-top: 10px;
+    }
+    &__link {
+        width: 70px;
+        padding-top: 10px;
+        margin: 0 auto;
+        display: block;
+        font-size: 1.3rem;
+    }
+
+}
