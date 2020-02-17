@@ -7,7 +7,6 @@ import "../../scss/main.scss";
 import Header from "./Header";
 import Index from "./Index";
 import Simulator from "./Simulator";
-import AddPost from "./AddPost";
 import Login from "./Users/login";
 import Register from "./Users/register";
 
@@ -23,7 +22,6 @@ const App = () => {
           <Route exact path="/" component={Index} />
           <Route exact path="/logowanie" component={Login} />
           <Route exact path="/rejestracja" component={Register} />
-          <Route exact path="/dodaj-post" component={AddPost} />
           <Route exact path="/symulator" component={Simulator} />
         </Switch>
       </div>

@@ -1,0 +1,27 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Tymczasowo impez",
+      "author": "typicode",
+      "imageID": 1
+    },
+    {
+      "id": 2,
+      "title": "jsonplaceholder",
+      "author": "also typicode",
+      "imageID": 3
+    }
+  ],
+  "photo": [
+    { "id": 1, "value": "1.jpg" },
+    { "id": 2, "value": "2.jpg" },
+    { "id": 3, "value": "3.jpg" },
+    { "id": 4, "value": "4.jpg" },
+    { "id": 5, "value": "5.jpg" },
+    { "id": 6, "value": "6.jpg" },
+    { "id": 7, "value": "7.jpg" },
+    { "id": 8, "value": "8.jpg" },
+    { "id": 9, "value": "9.jpg" }
+  ]
+}

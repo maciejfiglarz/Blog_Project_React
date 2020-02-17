@@ -75,7 +75,8 @@ module.exports = {
             {
                 from: 'src/data/post',
                 to: 'data/posts'
-            }, {
+            },
+             {
                 from: 'src/images',
                 to: 'images'
             }
