@@ -74,7 +74,7 @@ module.exports = {
         new CopyWebpackPlugin([
             {
                 from: 'src/data/post',
-                to: 'data/posts'
+                to: 'data/post'
             },
              {
                 from: 'src/images',

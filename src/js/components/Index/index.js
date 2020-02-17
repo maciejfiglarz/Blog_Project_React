@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Posts from "./../../containers/posts";
+import Post from "./../Post";
 import { connect } from "react-redux";
 import Creator from "./../Creator";
 import { useFetch } from "./../../hooks/useFetch";
@@ -11,13 +11,11 @@ const Index = props => {
     <div className={"container"}>
       <Creator />
       <div>{loading ? "Ładuję..." : ""}</div>
+      
+
       {data &&
-        data.map((post, i) => {
-          console.log(post);
-          return  <article className={"post"} key={post.id}>
-            <div className={"post__image"}></div>
-            <h1 className={"post__title"}>{post.title}</h1>
-            </article>;
+        data.map((post) => {
+          return  <Post key={post.id} post={post} />;
         })}
     </div>
   );

@@ -1,7 +1,19 @@
-import React from 'react'
+import React from "react";
 
-export const Loader = () => {
-    return (
-        <div className="preloader"><img src="./../../images/preloader.gif"/></div>
-    )
-}
+export const Loader = props=> {
+  let classNames = "loader ";
+  if(props.extraClass){
+    classNames += props.extraClass;
+  }
+    console.log(classNames,props);
+  return (
+    <div className={classNames}>
+      <div className="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  );
+};

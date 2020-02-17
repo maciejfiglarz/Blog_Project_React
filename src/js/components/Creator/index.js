@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Posts from "./../../containers/posts";
+
 import { connect } from "react-redux";
 import Textarea from "./Textarea";
 import { useForm } from "./../../hooks/useForm";
@@ -16,6 +16,8 @@ const Creator = () => {
         className={"creator__textarea"}
         name="content"
       ></textarea>
+
+    
 
     </div>
   );

@@ -1,0 +1,40 @@
+.post {
+  width: 100%;
+  background: $color-blue-dark;
+  margin-bottom: 30px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &__image {
+    width: 100%;
+    min-height: 400px;
+    background-size: cover;
+    @include mobile() {
+      min-height: 250px;
+    }
+    &--hide {
+      visibility: hidden;
+    }
+    &--show {
+      visibility: visible;
+    }
+  }
+  &__loader {
+    width: 100%;
+    min-height: 400px;
+    @include mobile() {
+      min-height: 250px;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__title {
+    text-align: center;
+    font-size: 3rem;
+  }
+  &__description {
+      font-size: 1.4rem;
+      padding:20px;
+  }
+}
