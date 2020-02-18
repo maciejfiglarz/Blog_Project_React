@@ -1,68 +1,72 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom'
 
-class Button extends React.Component {
 
-    state = {
-        redirect: false
-    }
+const RegularButton = (props)=> <button className="button button-regular">Dodaj</button>;
 
-    setRedirect = () => {
-        this.setState({redirect: true})
-    }
-    renderRedirect = () => {
+export {RegularButton};
 
-        if (this.state.redirect) {
-            return <Redirect to={"/" + this.props.path}/>
-        }
-    }
+// class Button extends React.Component {
 
-    render() {
-        const {className, label, align, type} = this.props;
-        let classNames = [className, align,type].join(" ");
+//     state = {
+//         redirect: false
+//     }
 
-        return (
+//     setRedirect = () => {
+//         this.setState({redirect: true})
+//     }
+//     renderRedirect = () => {
 
-            <button className={classNames}>
-                {label
-                    ? label
-                    : ""}
+//         if (this.state.redirect) {
+//             return <Redirect to={"/" + this.props.path}/>
+//         }
+//     }
 
-                {/* {this.props.icon
-                    ? <i className={"fas " + this.props.icon}/>
-                    : ""} */}
-            </button>
-        )
-    }
+//     render() {
+//         const {className, label, align, type} = this.props;
+//         let classNames = [className, align,type].join(" ");
 
-}
+//         return (
 
-class ButtonSocial extends React.Component {
+//             <button className={classNames}>
+//                 {label
+//                     ? label
+//                     : ""}
 
-    render() {
-        const {label, type, size, align} = this.props;
-        let buttonSize = "";
+//                 {/* {this.props.icon
+//                     ? <i className={"fas " + this.props.icon}/>
+//                     : ""} */}
+//             </button>
+//         )
+//     }
 
-        switch (size) {
-            case "normal":
-                buttonSize = "btn-social-connect btn-social-connect--facebook"
-                break;
-            case "small":
-                buttonSize = "btn-social-connect--small btn-social-connect--facebook"
-                break;
-            default:
-                buttonSize = "btn-social-connect btn-social-connect--facebook"
-        }
-        console.log('buttonSize',buttonSize);
-        let classNames = ["btn-social-connect", buttonSize, align].join(" ");
+// }
 
-        return (
+// class ButtonSocial extends React.Component {
 
-            <button className={classNames}>
-                {label}
-            </button>
-        )
-    }
-}
+//     render() {
+//         const {label, type, size, align} = this.props;
+//         let buttonSize = "";
 
-export {Button, ButtonSocial};
+//         switch (size) {
+//             case "normal":
+//                 buttonSize = "btn-social-connect btn-social-connect--facebook"
+//                 break;
+//             case "small":
+//                 buttonSize = "btn-social-connect--small btn-social-connect--facebook"
+//                 break;
+//             default:
+//                 buttonSize = "btn-social-connect btn-social-connect--facebook"
+//         }
+//         console.log('buttonSize',buttonSize);
+//         let classNames = ["btn-social-connect", buttonSize, align].join(" ");
+
+//         return (
+
+//             <button className={classNames}>
+//                 {label}
+//             </button>
+//         )
+//     }
+// }
+

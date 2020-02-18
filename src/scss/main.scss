@@ -2,12 +2,18 @@
 @import './partials/reset';
 @import './partials/base';
 
+@import './partials/header';
+
 @import './partials/index';
-@import './partials/simulator';
+@import './partials/creator';
 @import './partials/header';
 
 @import './partials/post';
 @import './partials/loader';
+
+@import './partials/buttons';
+@import './partials/choicer';
+
 // @import './partials/register';
 // @import './partials/add';
 // @import './partials/form';

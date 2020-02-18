@@ -1,3 +1,42 @@
 .creator {
-    
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  background: $color-basic-dark;
+  padding: 10px;
+  border-radius: 5px;
+
+  &__textarea {
+    width: 100%;
+    background: $color-blue-light;
+    border-radius: 3px;
+    min-height: 70px;
+    border: 0;
+    color: white;
+    font-size: 1.3rem;
+    padding: 5px;
+  }
+
+  &-content {
+    width: calc(100% - 120px);
+  }
+  &__image {
+    width: 100px;
+    height: 100px;
+  }
+  &-submenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__functionality {
+      i {
+        font-size: 2.3rem;
+        opacity: 0.8;
+        cursor: pointer;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
 }

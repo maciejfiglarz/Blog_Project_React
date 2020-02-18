@@ -8,13 +8,12 @@ const Post = props => {
   const photoID = post.photoID;
   const { data, loading } = useFetch(`${domainUrl}photo/${photoID}`);
 
-  console.log(imagePostUrl + data.value);
   const imageUrl = imagePostUrl + data.value;
   const imageStyle = {
-    backgroundImage: `url('${imagePostUrl}/${data.value}')`
+    backgroundImage: `url('${imageUrl}')`,
+    backgroundSize: 'cover'
   };
-  let imageClassName = "post__image ";
-  imageClassName += loading ? "post__image--hide" : "post__image--display";
+
 
   let loader = "";
   if (loading) {
@@ -22,8 +21,8 @@ const Post = props => {
   }
 
   return (
-    <article className={"post"}>
-      <div className={imageClassName} style={imageStyle}>
+    <article className="post">
+      <div className={`post__image ${loading ? "post__image--hide" : "post__image--display"}`} style={imageStyle}>
         {loader}
       </div>
       <h1 className={"post__description"}>{post.description}</h1>

@@ -11,7 +11,6 @@ const Index = props => {
     <div className={"container"}>
       <Creator />
       <div>{loading ? "Ładuję..." : ""}</div>
-      
 
       {data &&
         data.map((post) => {

@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    background-color: $color-blue-middle;
+    background-color: $color-basic-middle;
     font-family: 'Hind', sans-serif;
     color: $color-text;
 }
@@ -18,7 +18,7 @@ body {
     width: 70%;
     max-width: $width-max-small;
     margin: 0 auto;
-    background: $color-blue-dark;
+    background: $color-basic-dark;
     border-radius: 5px;
 }
 a {
@@ -32,4 +32,18 @@ a {
 .center {
     margin:0 auto;
     display:block;
+}
+
+.cover {
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    background-color:rgba(0, 0, 0, 0.5);
+    width:100%;
+    height:100%;
+    z-index:889;
+    &--visable {
+        display:block;
+    }
 }
