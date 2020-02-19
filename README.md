@@ -1,7 +1,6 @@
 # Blog Project - React
 
 ## Table of contents
-- [Blog Project - React](#blog-project---react)
   - [Table of contents](#table-of-contents)
   - [General info](#general-info)
   - [Technologies](#technologies)
