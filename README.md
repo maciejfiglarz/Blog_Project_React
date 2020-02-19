@@ -1,7 +1,7 @@
-# Blog Project
+# Blog Project - React
 
 ## Table of contents
-- [Blog Project](#blog-project)
+- [Blog Project - React](#blog-project---react)
   - [Table of contents](#table-of-contents)
   - [General info](#general-info)
   - [Technologies](#technologies)
@@ -9,7 +9,7 @@
 
 ## General info
 
-This project blog where user add own post. Project is not finished yet.
+this project is a blog application which allow users to publish their own post. 
 	
 ## Technologies
 
