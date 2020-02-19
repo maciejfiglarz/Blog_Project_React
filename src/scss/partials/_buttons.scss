@@ -1,0 +1,9 @@
+.button{
+    padding:5px 10px;
+    color:white;
+    border:0;
+    &-regular {
+        border-radius: 5px;
+        background: $color-primary;
+    }
+}
