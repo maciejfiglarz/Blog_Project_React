@@ -4,37 +4,53 @@ import { connect } from "react-redux";
 import Textarea from "./Textarea";
 import { useForm } from "./../../hooks/useForm";
 import { imagesUrl } from "./../../constants/types";
-import { RegularButton } from "./../../containers/buttons";
+import { RegularSubmitButton } from "./../../containers/buttons";
 import Choicer from "./choicer";
 import { Cover } from "./../../containers/cover";
 import { imagePostUrl } from "./../../constants/types";
+import { validation } from "./validation";
 
 const Creator = () => {
   const [values, handleChange] = useForm("");
   const emptyImageUrl = imagesUrl + `empty-avatar.jpeg`;
-  // const [state, setState] = useState({ isChoicerVisable: false});
 
   const [isChoicerVisible, setChoicerVisibility] = useState(false);
   const [imagePostData, setImagePost] = useState({ id: null, value: null });
+  const [errors, setErrors] = useState([]);
 
   const handleSubmit = event => {
     event.preventDefault();
+    const form = event.target;
+    setErrors(validation(imagePostData, values));
+    if (errors.length > 0) {
+    } else {
+      resetForm();
+    }
+    console.log("submit", validation(imagePostData, values), event.target);
   };
 
+  const resetForm = () => {
+    setImagePost({ id: null, value: null });
+    setErrors([]);
+    handleChange({'content':''});
+  };
   const onClickChoicer = () => {
     setChoicerVisibility(true);
   };
 
-  console.log("imagePostData", imagePostData);
+  console.log("imagePostData", imagePostData, errors);
 
   const imageUrl = !imagePostData.id
     ? emptyImageUrl
     : imagePostUrl + imagePostData.value;
   const imagePostStyle = {
     backgroundImage: `url('${imageUrl}')`,
-    backgroundSize: 'cover'
+    backgroundSize: "cover"
   };
 
+  const validationSubmit = () => {
+    console.log();
+  };
 
   return (
     <div className={"creator"}>
@@ -48,6 +64,11 @@ const Creator = () => {
       <div className={"creator__image"} style={imagePostStyle}></div>
 
       <div className="creator-content">
+        {errors}
+        {errors.map(error => {
+          <div className="creator-content__error">{error}</div>;
+        })}
+
         <form onSubmit={handleSubmit}>
           <textarea
             onChange={handleChange}
@@ -62,7 +83,7 @@ const Creator = () => {
             </div>
 
             <div className="creator-submenu__action">
-              <RegularButton text={"Dodaj"} />
+              <RegularSubmitButton type={"submit"} text={"Dodaj"} />
             </div>
           </div>
         </form>

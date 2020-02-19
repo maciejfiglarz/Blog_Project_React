@@ -3,8 +3,9 @@ import {Redirect} from 'react-router-dom'
 
 
 const RegularButton = (props)=> <button className="button button-regular">Dodaj</button>;
+const RegularSubmitButton = (props)=> <input type="submit" value={props.text} className="button button-regular"/>;
 
-export {RegularButton};
+export {RegularButton,RegularSubmitButton};
 
 // class Button extends React.Component {
 
