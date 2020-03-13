@@ -9,6 +9,7 @@ import Index from "./Index";
 import Simulator from "./Simulator";
 import Login from "./Users/login";
 import Register from "./Users/register";
+import Footer from "./Footer";
 
 import { setCurrentUser } from "./../actions/users_action";
 import { BACKEND_URL } from "./../constants/types";
@@ -24,6 +25,7 @@ const App = () => {
           <Route exact path="/rejestracja" component={Register} />
           <Route exact path="/symulator" component={Simulator} />
         </Switch>
+        <Footer/>
       </div>
     </BrowserRouter>
   );

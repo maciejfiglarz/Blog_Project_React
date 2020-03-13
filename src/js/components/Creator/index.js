@@ -9,51 +9,55 @@ import Choicer from "./choicer";
 import { Cover } from "./../../containers/cover";
 import { imagePostUrl } from "./../../constants/types";
 import { validation } from "./validation";
+import {insertPost} from "./../../services/post_services"
 
 const Creator = () => {
   const [values, handleChange] = useForm("");
   const emptyImageUrl = imagesUrl + `empty-avatar.jpeg`;
-
   const [isChoicerVisible, setChoicerVisibility] = useState(false);
   const [imagePostData, setImagePost] = useState({ id: null, value: null });
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = event => {
+
     event.preventDefault();
-    const form = event.target;
+    // const form = event.target;
     setErrors(validation(imagePostData, values));
+    console.log('errors',validation(imagePostData, values,errors));
     if (errors.length > 0) {
+
     } else {
-      resetForm();
+      console.log("imagePostData", imagePostData, errors);
+     insertPost(imagePostData.id,values.content);
+     resetForm();
     }
-    console.log("submit", validation(imagePostData, values), event.target);
   };
 
   const resetForm = () => {
     setImagePost({ id: null, value: null });
     setErrors([]);
-    handleChange({'content':''});
+   // handleChange({ content : "" });
   };
   const onClickChoicer = () => {
     setChoicerVisibility(true);
   };
 
-  console.log("imagePostData", imagePostData, errors);
+
 
   const imageUrl = !imagePostData.id
     ? emptyImageUrl
     : imagePostUrl + imagePostData.value;
+
   const imagePostStyle = {
     backgroundImage: `url('${imageUrl}')`,
     backgroundSize: "cover"
   };
 
-  const validationSubmit = () => {
-    console.log();
-  };
+
 
   return (
     <div className={"creator"}>
+
       <Cover isVisable={isChoicerVisible} />
       <Choicer
         isVisable={isChoicerVisible}

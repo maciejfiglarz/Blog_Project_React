@@ -5,7 +5,6 @@ export const Loader = props=> {
   if(props.extraClass){
     classNames += props.extraClass;
   }
-    console.log(classNames,props);
   return (
     <div className={classNames}>
       <div className="lds-ring">
