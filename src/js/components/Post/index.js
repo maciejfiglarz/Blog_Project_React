@@ -25,7 +25,10 @@ const Post = props => {
       <div className={`post__image post__image--display`} style={imageStyle}>
         {loader}
       </div>
-  <h1 className={"post__description"}>{post.id}{post.description}</h1>
+  <h1 className={"post__description"}>
+    {post.id}
+    {/* {post.description} */}
+  </h1>
     </article>
   );
 };

@@ -7,7 +7,7 @@ import InfiniteList from "./../../containers/infinity-list";
 
 const Index = props => {
   const [ page, setPage ] = useState(1);
-  const { data, loading } = useFetchIndex(`http://localhost:3000/posts?_page=${page}&_limit=3_sort=id&_order=desc`);
+  // const { data, loading } = useFetchIndex(`http://localhost:3000/posts?_page=${page}&_limit=3_sort=id&_order=desc`);
   const [url,setUrl] = useState(`http://localhost:3000/posts?_page=${page}&_limit=3_sort=id&_order=desc`);
   const [state, setState] = useState([]);
 
@@ -76,8 +76,8 @@ const Index = props => {
           return  <Post key={post.id} post={post} />;
         })} */}
               <Creator />
-      <div>{loading ? "Ładuję..." : ""}</div>
-   
+      {/* <div>{loading ? "Ładuję..." : ""}</div> */}
+   4
             <InfiniteList state={state} setState={setState}/>
     </div>
   );

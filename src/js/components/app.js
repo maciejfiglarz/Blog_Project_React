@@ -7,6 +7,7 @@ import "../../scss/main.scss";
 import Header from "./Header";
 import Index from "./Index";
 import Simulator from "./Simulator";
+import Single from "./Single";
 import Login from "./Users/login";
 import Register from "./Users/register";
 import Footer from "./Footer";
@@ -24,6 +25,7 @@ const App = () => {
           <Route exact path="/logowanie" component={Login} />
           <Route exact path="/rejestracja" component={Register} />
           <Route exact path="/symulator" component={Simulator} />
+          <Route exact path="/post/:id" component={Single} />
         </Switch>
         <Footer/>
       </div>
