@@ -13,11 +13,9 @@ mongoose.connect("mongodb://localhost:27017", {
   useUnifiedTopology: true
 });
 
-const indexRouter = require("./api/routes/index");
-const usersRouter = require("./api/routes/users");
 const postRouter = require("./api/routes/post");
 const fileRouter = require("./api/routes/file");
-const userRouter = require("./api/routes/user");
+
 
 const morgan = require("morgan");
 
@@ -55,11 +53,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+
 app.use("/post", postRouter);
 app.use("/file", fileRouter);
-app.use("/user", userRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
