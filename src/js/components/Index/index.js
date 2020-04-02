@@ -1,21 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Post from "./../Post";
 import { connect } from "react-redux";
 import Creator from "./../Creator";
-import { useFetch } from "./../../hooks/useFetch";
+import { useFetch, useFetchIndex } from "./../../hooks/useFetch";
+import InfiniteList from "./../../containers/infinity-list";
 
 const Index = props => {
-  const { data, loading } = useFetch("http://localhost:3000/posts");
+  const [page, setPage] = useState(1);
+  // const { data, loading } = useFetchIndex(`http://localhost:3000/posts?_page=${page}&_limit=3_sort=id&_order=desc`);
+  const [url, setUrl] = useState(
+    `http://localhost:3000/posts?_page=${page}&_limit=3_sort=id&_order=desc`
+  );
+  const [state, setState] = useState([]);
+
 
   return (
-    <div className={"container"}>
+    <div className="container">
       <Creator />
-      <div>{loading ? "Ładuję..." : ""}</div>
 
-      {data &&
-        data.map((post) => {
-          return  <Post key={post.id} post={post} />;
-        })}
+      <InfiniteList state={state} setState={setState} />
     </div>
   );
 };

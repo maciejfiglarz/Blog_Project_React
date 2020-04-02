@@ -6,15 +6,29 @@ $width-max: 700px;
 $width-max-small: 500px;
 
 $color-primary:#ffae00; 
-$color-basic-dark:#353c48;
-$color-basic-middle:#3c4452;
-$color-blue-light:#4c5667;
+$color-basic-dark:#030303;
+$color-basic-middle:#1a1a1b;
+$color-basic-middle-hover: #242425;
+$color-basic-light:#272729;
 
 $color-whitesmoke: whitesmoke;
 
-$color-border-bright:#bababa;
-$color-text:white;
+$color-border:#2a2e30;
+$color-text:#c1c4c5;
+$color-text-hover:#818384;
 
+$color-link:#c1c4c5;
+$color-link-hover:#818384;
+
+$color-placeholder: #bababa;
+
+$border-radius: 3px;
+
+@mixin desktop() {
+    @media (max-width: #{$width-tablet}) and  (min-width: #{$width-desktop}) {
+        @content;
+    }
+}
 
 @mixin tablet() {
     @media screen and (max-width: #{$width-desktop}) and  (min-width: #{$width-mobile}) {
@@ -28,3 +42,22 @@ $color-text:white;
         @content;
     }
 }
+
+
+@mixin placeholder() {
+    ::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: $color-placeholder;
+      opacity: 1; /* Firefox */
+    }
+  
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: $color-placeholder;
+    }
+  
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: $color-placeholder;
+    }
+  }

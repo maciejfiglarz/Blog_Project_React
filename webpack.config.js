@@ -13,6 +13,7 @@ module.exports = {
     output: {
         filename: "out.js",
         path: path.resolve(__dirname, "./dist")
+        
     },
     devServer: {
         inline: true,

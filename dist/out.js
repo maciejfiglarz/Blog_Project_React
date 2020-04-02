@@ -14831,7 +14831,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "/*\n    HTML5 Reset :: style.css\n    ----------------------------------------------------------\n    We have learned much from/been inspired by/taken code where offered from:\n    Eric Meyer                  :: http://meyerweb.com\n    HTML5 Doctor                :: http://html5doctor.com\n    and the HTML5 Boilerplate   :: http://html5boilerplate.com\n-------------------------------------------------------------------------------*/\n/* Let's default this puppy out\n-------------------------------------------------------------------------------*/\nhtml, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font-weight: normal;\n  vertical-align: baseline;\n  background: transparent; }\n\nmain, article, aside, figure, footer, header, nav, section, details, summary {\n  display: block; }\n\n/* Handle box-sizing while better addressing child elements:\n   http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*:before,\n*:after {\n  box-sizing: inherit; }\n\n/* consider resetting the default cursor: https://gist.github.com/murtaugh/5247154 */\n/* Responsive images and other embedded objects */\n/* if you don't have full control over `img` tags (if you have to overcome attributes), consider adding height: auto */\nimg,\nobject,\nembed {\n  max-width: 100%; }\n\n/*\n   Note: keeping IMG here will cause problems if you're using foreground images as sprites.\n    In fact, it *will* cause problems with Google Maps' controls at small size.\n    If this is the case for you, try uncommenting the following:\n#map img {\n        max-width: none;\n}\n*/\n/* force a vertical scrollbar to prevent a jumpy page */\nhtml {\n  overflow-y: scroll; }\n\n/* we use a lot of ULs that aren't bulleted.\n    you'll have to restore the bullets within content,\n    which is fine because they're probably customized anyway */\nul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before,\nblockquote:after,\nq:before,\nq:after {\n  content: '';\n  content: none; }\n\na {\n  margin: 0;\n  padding: 0;\n  font-size: 100%;\n  vertical-align: baseline;\n  background: transparent; }\n\ndel {\n  text-decoration: line-through; }\n\nabbr[title], dfn[title] {\n  border-bottom: 1px dotted #000;\n  cursor: help; }\n\n/* tables still need cellspacing=\"0\" in the markup */\ntable {\n  border-collapse: separate;\n  border-spacing: 0; }\n\nth {\n  font-weight: bold;\n  vertical-align: bottom; }\n\ntd {\n  font-weight: normal;\n  vertical-align: top; }\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0; }\n\ninput, select {\n  vertical-align: middle; }\n\npre {\n  white-space: pre;\n  /* CSS2 */\n  white-space: pre-wrap;\n  /* CSS 2.1 */\n  white-space: pre-line;\n  /* CSS 3 (and 2.1 as well, actually) */\n  word-wrap: break-word;\n  /* IE */ }\n\ninput[type=\"radio\"] {\n  vertical-align: text-bottom; }\n\ninput[type=\"checkbox\"] {\n  vertical-align: bottom; }\n\n.ie7 input[type=\"checkbox\"] {\n  vertical-align: baseline; }\n\n.ie6 input {\n  vertical-align: text-bottom; }\n\nselect, input, textarea {\n  font: 99% sans-serif; }\n\ntable {\n  font-size: inherit;\n  font: 100%; }\n\nsmall {\n  font-size: 85%; }\n\nstrong {\n  font-weight: bold; }\n\ntd, td img {\n  vertical-align: top; }\n\n/* Make sure sup and sub don't mess with your line-heights http://gist.github.com/413930 */\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\n/* standardize any monospaced elements */\npre, code, kbd, samp {\n  font-family: monospace, sans-serif; }\n\n/* hand cursor on clickable elements */\n.clickable,\nlabel,\ninput[type=button],\ninput[type=submit],\ninput[type=file],\nbutton {\n  cursor: pointer; }\n\n/* Webkit browsers add a 2px margin outside the chrome of form elements */\nbutton, input, select, textarea {\n  margin: 0; }\n\n/* make buttons play nice in IE */\nbutton,\ninput[type=button] {\n  width: auto;\n  overflow: visible; }\n\n/* scale images in IE7 more attractively */\n.ie7 img {\n  -ms-interpolation-mode: bicubic; }\n\n/* prevent BG image flicker upon hover\n   (commented out as usage is rare, and the filter syntax messes with some pre-processors)\n.ie6 html {filter: expression(document.execCommand(\"BackgroundImageCache\", false, true));}\n*/\n/* let's clear some floats */\n.clearfix:after {\n  content: \" \";\n  display: block;\n  clear: both; }\n\nhtml {\n  font-size: 10px; }\n\nbody {\n  background-color: #3c4452;\n  font-family: 'Hind', sans-serif;\n  color: white; }\n\n.container {\n  width: 80%;\n  max-width: 1040px;\n  margin: 0 auto; }\n\n.container-small {\n  width: 70%;\n  max-width: 500px;\n  margin: 0 auto;\n  background: #353c48;\n  border-radius: 5px; }\n\na {\n  color: rgba(255, 255, 255, 0.8);\n  text-decoration: none; }\n  a:hover {\n    color: white; }\n\n.center {\n  margin: 0 auto;\n  display: block; }\n\n#simulator {\n  margin: 0 auto;\n  width: 90%;\n  background: #353c48; }\n\n.header {\n  width: 100%;\n  background: #4c5667;\n  margin-bottom: 20px;\n  display: none; }\n  .header .container {\n    display: flex;\n    justify-content: space-between; }\n  .header__logo {\n    margin-top: 5px; }\n  .header__menu {\n    margin-top: 15px; }\n    .header__menu a {\n      padding: 15px;\n      font-size: 1.4rem; }\n  .header__left {\n    display: flex; }\n  .header__right {\n    display: flex; }\n  .header__panel {\n    padding: 10px;\n    font-size: 1.7rem;\n    display: flex; }\n    .header__panel i {\n      padding: 5px;\n      cursor: pointer;\n      color: rgba(255, 255, 255, 0.8);\n      text-decoration: none; }\n      .header__panel i:hover {\n        color: white; }\n  .header__panel-paths {\n    margin-top: 3px;\n    margin-right: 10px;\n    position: relative;\n    display: flex; }\n  .header__icon {\n    padding: 2px 5px 5px; }\n  .header__hover-access-frame:hover {\n    background: #353c48;\n    border-top-left-radius: 3px;\n    border-top-right-radius: 3px; }\n  .header__hover-access-frame:hover .access-frame {\n    display: block; }\n  .header__hover-access-frame:hover .header__icon i {\n    color: white; }\n  .header__user-unlogged {\n    background: #353c48; }\n  .header__panel-user {\n    display: flex;\n    position: relative;\n    display: inline-block; }\n  .header__panel-user:hover .header__dropdown {\n    display: block; }\n  .header__panel-user:hover a:hover {\n    background-color: #ffae00; }\n  .header__dropdown {\n    display: none;\n    position: absolute;\n    background-color: #353c48;\n    min-width: 160px;\n    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);\n    z-index: 1; }\n    .header__dropdown a {\n      color: white;\n      font-size: 1.3rem;\n      padding: 8px 12px;\n      text-decoration: none;\n      display: block; }\n  .header__avatar {\n    width: 32px;\n    margin-right: 3px; }\n  .header__username {\n    padding: 5px;\n    font-weight: 400; }\n\n.access-frame {\n  position: absolute;\n  right: 0;\n  top: 33px;\n  width: 300px;\n  height: auto;\n  background: #353c48;\n  -webkit-border-radius: 4px;\n  -khtml-border-radius: 4px;\n  -moz-border-radius: 4px;\n  border-radius: 4px;\n  padding: 10px;\n  display: none;\n  z-index: 100; }\n  .access-frame__item {\n    display: flex;\n    margin: 10px auto;\n    width: 240px; }\n  .access-frame__item:first-of-type {\n    margin-top: 20px; }\n  .access-frame__label {\n    padding-right: 15px;\n    padding-top: 5px;\n    min-width: 0;\n    font-size: 1.4rem; }\n  .access-frame .btn-social-connect--small {\n    margin-top: 10px; }\n  .access-frame__link {\n    width: 70px;\n    padding-top: 10px;\n    margin: 0 auto;\n    display: block;\n    font-size: 1.3rem; }\n\n.post {\n  width: 100%;\n  background: #353c48;\n  margin-bottom: 30px; }\n  .post:last-child {\n    margin-bottom: 0; }\n  .post__image {\n    width: 100%;\n    min-height: 400px;\n    background-size: cover; }\n    @media screen and (max-width: 480px) {\n      .post__image {\n        min-height: 250px; } }\n    .post__image--hide {\n      visibility: hidden; }\n    .post__image--show {\n      visibility: visible; }\n  .post__loader {\n    width: 100%;\n    min-height: 400px;\n    display: flex;\n    justify-content: center;\n    align-items: center; }\n    @media screen and (max-width: 480px) {\n      .post__loader {\n        min-height: 250px; } }\n  .post__title {\n    text-align: center;\n    font-size: 3rem; }\n  .post__description {\n    font-size: 1.4rem;\n    padding: 20px; }\n\n.lds-ring {\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px; }\n\n.lds-ring div {\n  box-sizing: border-box;\n  display: block;\n  position: absolute;\n  width: 64px;\n  height: 64px;\n  margin: 8px;\n  border: 8px solid #fff;\n  border-radius: 50%;\n  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n  border-color: #fff transparent transparent transparent; }\n\n.lds-ring div:nth-child(1) {\n  animation-delay: -0.45s; }\n\n.lds-ring div:nth-child(2) {\n  animation-delay: -0.3s; }\n\n.lds-ring div:nth-child(3) {\n  animation-delay: -0.15s; }\n\n@keyframes lds-ring {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n", ""]);
+exports.push([module.i, "/*\n    HTML5 Reset :: style.css\n    ----------------------------------------------------------\n    We have learned much from/been inspired by/taken code where offered from:\n    Eric Meyer                  :: http://meyerweb.com\n    HTML5 Doctor                :: http://html5doctor.com\n    and the HTML5 Boilerplate   :: http://html5boilerplate.com\n-------------------------------------------------------------------------------*/\n/* Let's default this puppy out\n-------------------------------------------------------------------------------*/\nhtml, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font-weight: normal;\n  vertical-align: baseline;\n  background: transparent; }\n\nmain, article, aside, figure, footer, header, nav, section, details, summary {\n  display: block; }\n\n/* Handle box-sizing while better addressing child elements:\n   http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*:before,\n*:after {\n  box-sizing: inherit; }\n\n/* consider resetting the default cursor: https://gist.github.com/murtaugh/5247154 */\n/* Responsive images and other embedded objects */\n/* if you don't have full control over `img` tags (if you have to overcome attributes), consider adding height: auto */\nimg,\nobject,\nembed {\n  max-width: 100%; }\n\n/*\n   Note: keeping IMG here will cause problems if you're using foreground images as sprites.\n    In fact, it *will* cause problems with Google Maps' controls at small size.\n    If this is the case for you, try uncommenting the following:\n#map img {\n        max-width: none;\n}\n*/\n/* force a vertical scrollbar to prevent a jumpy page */\nhtml {\n  overflow-y: scroll; }\n\n/* we use a lot of ULs that aren't bulleted.\n    you'll have to restore the bullets within content,\n    which is fine because they're probably customized anyway */\nul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before,\nblockquote:after,\nq:before,\nq:after {\n  content: '';\n  content: none; }\n\na {\n  margin: 0;\n  padding: 0;\n  font-size: 100%;\n  vertical-align: baseline;\n  background: transparent; }\n\ndel {\n  text-decoration: line-through; }\n\nabbr[title], dfn[title] {\n  border-bottom: 1px dotted #000;\n  cursor: help; }\n\n/* tables still need cellspacing=\"0\" in the markup */\ntable {\n  border-collapse: separate;\n  border-spacing: 0; }\n\nth {\n  font-weight: bold;\n  vertical-align: bottom; }\n\ntd {\n  font-weight: normal;\n  vertical-align: top; }\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0; }\n\ninput, select {\n  vertical-align: middle; }\n\npre {\n  white-space: pre;\n  /* CSS2 */\n  white-space: pre-wrap;\n  /* CSS 2.1 */\n  white-space: pre-line;\n  /* CSS 3 (and 2.1 as well, actually) */\n  word-wrap: break-word;\n  /* IE */ }\n\ninput[type=\"radio\"] {\n  vertical-align: text-bottom; }\n\ninput[type=\"checkbox\"] {\n  vertical-align: bottom; }\n\n.ie7 input[type=\"checkbox\"] {\n  vertical-align: baseline; }\n\n.ie6 input {\n  vertical-align: text-bottom; }\n\nselect, input, textarea {\n  font: 99% sans-serif; }\n\ntable {\n  font-size: inherit;\n  font: 100%; }\n\nsmall {\n  font-size: 85%; }\n\nstrong {\n  font-weight: bold; }\n\ntd, td img {\n  vertical-align: top; }\n\n/* Make sure sup and sub don't mess with your line-heights http://gist.github.com/413930 */\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\n/* standardize any monospaced elements */\npre, code, kbd, samp {\n  font-family: monospace, sans-serif; }\n\n/* hand cursor on clickable elements */\n.clickable,\nlabel,\ninput[type=button],\ninput[type=submit],\ninput[type=file],\nbutton {\n  cursor: pointer; }\n\n/* Webkit browsers add a 2px margin outside the chrome of form elements */\nbutton, input, select, textarea {\n  margin: 0; }\n\n/* make buttons play nice in IE */\nbutton,\ninput[type=button] {\n  width: auto;\n  overflow: visible; }\n\n/* scale images in IE7 more attractively */\n.ie7 img {\n  -ms-interpolation-mode: bicubic; }\n\n/* prevent BG image flicker upon hover\n   (commented out as usage is rare, and the filter syntax messes with some pre-processors)\n.ie6 html {filter: expression(document.execCommand(\"BackgroundImageCache\", false, true));}\n*/\n/* let's clear some floats */\n.clearfix:after {\n  content: \" \";\n  display: block;\n  clear: both; }\n\nhtml {\n  font-size: 10px; }\n\nbody {\n  background-color: #3c4452;\n  font-family: 'Hind', sans-serif;\n  color: white; }\n\n.container {\n  width: 80%;\n  max-width: 700px;\n  margin: 0 auto; }\n\n.container-small {\n  width: 70%;\n  max-width: 500px;\n  margin: 0 auto;\n  background: #353c48;\n  border-radius: 5px; }\n\na {\n  color: rgba(255, 255, 255, 0.8);\n  text-decoration: none; }\n  a:hover {\n    color: white; }\n\n.center {\n  margin: 0 auto;\n  display: block; }\n\n.cover {\n  display: none;\n  position: fixed;\n  top: 0;\n  left: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  width: 100%;\n  height: 100%;\n  z-index: 889; }\n  .cover--visable {\n    display: block; }\n\n.header {\n  width: 100%;\n  background: #353c48;\n  height: 40px;\n  margin-bottom: 20px; }\n\n.creator {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 20px;\n  background: #353c48;\n  padding: 10px;\n  border-radius: 5px; }\n  .creator__textarea {\n    width: 100%;\n    background: #4c5667;\n    border-radius: 3px;\n    min-height: 70px;\n    border: 0;\n    color: white;\n    font-size: 1.3rem;\n    padding: 5px; }\n  .creator-content {\n    width: calc(100% - 120px); }\n  .creator__image {\n    width: 100px;\n    height: 100px; }\n  .creator-submenu {\n    display: flex;\n    justify-content: space-between;\n    align-items: center; }\n    .creator-submenu__functionality i {\n      font-size: 2.3rem;\n      opacity: 0.8;\n      cursor: pointer; }\n      .creator-submenu__functionality i:hover {\n        opacity: 1; }\n\n.header {\n  width: 100%;\n  background: #353c48;\n  height: 40px;\n  margin-bottom: 20px; }\n\n.post {\n  width: 100%;\n  background: #353c48;\n  margin-bottom: 30px; }\n  .post:last-child {\n    margin-bottom: 0; }\n  .post__image {\n    width: 100%;\n    min-height: 400px;\n    background-size: cover; }\n    @media screen and (max-width: 480px) {\n      .post__image {\n        min-height: 250px; } }\n    .post__image--hide {\n      visibility: hidden; }\n    .post__image--show {\n      visibility: visible; }\n  .post__loader {\n    width: 100%;\n    min-height: 400px;\n    display: flex;\n    justify-content: center;\n    align-items: center; }\n    @media screen and (max-width: 480px) {\n      .post__loader {\n        min-height: 250px; } }\n  .post__title {\n    text-align: center;\n    font-size: 3rem; }\n  .post__description {\n    font-size: 1.4rem;\n    padding: 20px; }\n\n.lds-ring {\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px; }\n\n.lds-ring div {\n  box-sizing: border-box;\n  display: block;\n  position: absolute;\n  width: 64px;\n  height: 64px;\n  margin: 8px;\n  border: 8px solid #fff;\n  border-radius: 50%;\n  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n  border-color: #fff transparent transparent transparent; }\n\n.lds-ring div:nth-child(1) {\n  animation-delay: -0.45s; }\n\n.lds-ring div:nth-child(2) {\n  animation-delay: -0.3s; }\n\n.lds-ring div:nth-child(3) {\n  animation-delay: -0.15s; }\n\n@keyframes lds-ring {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n.button {\n  padding: 5px 10px;\n  color: white;\n  border: 0; }\n  .button-regular {\n    border-radius: 5px;\n    background: #ffae00; }\n\n.choicer {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 900;\n  width: 100%;\n  max-width: 500px;\n  background: #353c48;\n  height: auto;\n  display: none;\n  padding: 15px;\n  border-radius: 5px; }\n  .choicer--visable {\n    display: block; }\n  .choicer-list {\n    display: flex;\n    justify-content: space-between;\n    flex-wrap: wrap; }\n  .choicer__close {\n    position: absolute;\n    top: -30px;\n    right: 0;\n    font-size: 1.9rem;\n    background-color: #353c48;\n    border-radius: 5px 0 5px 0;\n    padding: 3px 7px;\n    cursor: pointer; }\n    .choicer__close i {\n      opacity: 0.8; }\n      .choicer__close i:hover {\n        opacity: 1; }\n  .choicer__image {\n    width: 31%;\n    min-height: 100px;\n    margin-right: 10px;\n    margin-top: 10px;\n    background-size: cover;\n    opacity: 0.8;\n    cursor: pointer; }\n    .choicer__image:hover {\n      opacity: 1; }\n    .choicer__image:nth-child(3n) {\n      margin-right: 0; }\n    @media screen and (max-width: 480px) {\n      .choicer__image {\n        min-height: 50px; } }\n", ""]);
 
 // exports
 
@@ -101073,6 +101073,86 @@ exports.default = Textarea;
 
 /***/ }),
 
+/***/ "./src/js/components/Creator/choicer.js":
+/*!**********************************************!*\
+  !*** ./src/js/components/Creator/choicer.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _useFetch2 = __webpack_require__(/*! ./../../hooks/useFetch */ "./src/js/hooks/useFetch.js");
+
+var _types = __webpack_require__(/*! ./../../constants/types */ "./src/js/constants/types.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Choicer = function Choicer(props) {
+  var _useFetch = (0, _useFetch2.useFetch)(_types.domainUrl + "photo/"),
+      data = _useFetch.data,
+      loading = _useFetch.loading;
+
+  var setVisibility = props.setVisibility;
+  var isVisible = props.isVisable;
+  var setImage = props.setImage;
+
+  var onClickClose = function onClickClose() {
+    setVisibility(function (prev) {
+      return !prev;
+    });
+  };
+
+  var onClickSetImage = function onClickSetImage(event) {
+    var id = event.target.dataset.id;
+    var value = event.target.dataset.value;
+    setImage({ 'id': id, 'value': value });
+    onClickClose();
+  };
+
+  return _react2.default.createElement(
+    "div",
+    { className: "choicer " + (isVisible ? "choicer--visable" : "") },
+    _react2.default.createElement(
+      "div",
+      { className: "choicer__close", onClick: onClickClose },
+      _react2.default.createElement("i", { className: "fas fa-times" })
+    ),
+    _react2.default.createElement(
+      "div",
+      { className: "choicer-list" },
+      data && data.map(function (photo) {
+        var imageUrl = _types.imagePostUrl + photo.value;
+        var imageStyle = {
+          backgroundImage: "url('" + imageUrl + "')",
+          backgroundSize: 'cover'
+        };
+        return _react2.default.createElement("div", {
+          key: photo.value,
+          className: "choicer__image",
+          style: imageStyle,
+          onClick: onClickSetImage,
+          "data-id": photo.id,
+          "data-value": photo.value
+        });
+      })
+    )
+  );
+};
+
+exports.default = Choicer;
+
+/***/ }),
+
 /***/ "./src/js/components/Creator/index.js":
 /*!********************************************!*\
   !*** ./src/js/components/Creator/index.js ***!
@@ -101101,6 +101181,18 @@ var _Textarea2 = _interopRequireDefault(_Textarea);
 
 var _useForm3 = __webpack_require__(/*! ./../../hooks/useForm */ "./src/js/hooks/useForm.js");
 
+var _types = __webpack_require__(/*! ./../../constants/types */ "./src/js/constants/types.js");
+
+var _buttons = __webpack_require__(/*! ./../../containers/buttons */ "./src/js/containers/buttons.js");
+
+var _choicer = __webpack_require__(/*! ./choicer */ "./src/js/components/Creator/choicer.js");
+
+var _choicer2 = _interopRequireDefault(_choicer);
+
+var _cover = __webpack_require__(/*! ./../../containers/cover */ "./src/js/containers/cover.js");
+
+var _validation = __webpack_require__(/*! ./validation */ "./src/js/components/Creator/validation.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Creator = function Creator() {
@@ -101109,15 +101201,100 @@ var Creator = function Creator() {
       values = _useForm2[0],
       handleChange = _useForm2[1];
 
+  var emptyImageUrl = _types.imagesUrl + "empty-avatar.jpeg";
+
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isChoicerVisible = _useState2[0],
+      setChoicerVisibility = _useState2[1];
+
+  var _useState3 = (0, _react.useState)({ id: null, value: null }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      imagePostData = _useState4[0],
+      setImagePost = _useState4[1];
+
+  var _useState5 = (0, _react.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      errors = _useState6[0],
+      setErrors = _useState6[1];
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    var form = event.target;
+    setErrors((0, _validation.validation)(imagePostData, values));
+    if (errors.length > 0) {} else {
+      resetForm();
+    }
+    console.log("submit", (0, _validation.validation)(imagePostData, values), event.target);
+  };
+
+  var resetForm = function resetForm() {
+    setImagePost({ id: null, value: null });
+    setErrors([]);
+    handleChange({ 'content': '' });
+  };
+  var onClickChoicer = function onClickChoicer() {
+    setChoicerVisibility(true);
+  };
+
+  console.log("imagePostData", imagePostData, errors);
+
+  var imageUrl = !imagePostData.id ? emptyImageUrl : _types.imagePostUrl + imagePostData.value;
+  var imagePostStyle = {
+    backgroundImage: "url('" + imageUrl + "')",
+    backgroundSize: "cover"
+  };
+
+  var validationSubmit = function validationSubmit() {
+    console.log();
+  };
+
   return _react2.default.createElement(
     "div",
     { className: "creator" },
-    _react2.default.createElement("textarea", {
-      onChange: handleChange,
-      value: values.content,
-      className: "creator__textarea",
-      name: "content"
-    })
+    _react2.default.createElement(_cover.Cover, { isVisable: isChoicerVisible }),
+    _react2.default.createElement(_choicer2.default, {
+      isVisable: isChoicerVisible,
+      setVisibility: setChoicerVisibility,
+      setImage: setImagePost
+    }),
+    _react2.default.createElement("div", { className: "creator__image", style: imagePostStyle }),
+    _react2.default.createElement(
+      "div",
+      { className: "creator-content" },
+      errors,
+      errors.map(function (error) {
+        _react2.default.createElement(
+          "div",
+          { className: "creator-content__error" },
+          error
+        );
+      }),
+      _react2.default.createElement(
+        "form",
+        { onSubmit: handleSubmit },
+        _react2.default.createElement("textarea", {
+          onChange: handleChange,
+          value: values.content,
+          className: "creator__textarea",
+          name: "content"
+        }),
+        _react2.default.createElement(
+          "div",
+          { className: "creator-submenu" },
+          _react2.default.createElement(
+            "div",
+            { className: "creator-submenu__functionality" },
+            _react2.default.createElement("i", { onClick: onClickChoicer, className: "far fa-image" })
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "creator-submenu__action" },
+            _react2.default.createElement(_buttons.RegularSubmitButton, { type: "submit", text: "Dodaj" })
+          )
+        )
+      )
+    )
   );
 };
 
@@ -101127,6 +101304,41 @@ var Creator = function Creator() {
 
 // export default connect(mapStateToProps)(Creator);
 exports.default = Creator;
+
+/***/ }),
+
+/***/ "./src/js/components/Creator/validation.js":
+/*!*************************************************!*\
+  !*** ./src/js/components/Creator/validation.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.validation = undefined;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var validation = exports.validation = function validation(imageData, content) {
+    var errors = [];
+
+    if (content.length < 8) {
+        errors.push('Komentarz musi zawierać conajmniej 8 znaków!');
+    }
+    if (!imageData.id) {
+        errors.push('Musisz wybrać zdjęcie!');
+    }
+    return errors;
+};
 
 /***/ }),
 
@@ -101143,8 +101355,6 @@ exports.default = Creator;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
@@ -101168,157 +101378,88 @@ var _loginframe2 = _interopRequireDefault(_loginframe);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Header = function (_React$Component) {
-    _inherits(Header, _React$Component);
-
-    function Header() {
-        var _ref;
-
-        var _temp, _this, _ret;
-
-        _classCallCheck(this, Header);
-
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Header.__proto__ || Object.getPrototypeOf(Header)).call.apply(_ref, [this].concat(args))), _this), _this.handleLogout = function (e) {
-            e.preventDefault();
-            _this.props.logout();
-        }, _temp), _possibleConstructorReturn(_this, _ret);
-    }
-
-    _createClass(Header, [{
-        key: 'renderUserPanel',
-        value: function renderUserPanel(data) {
-            var userId = data.userId,
-                userUsername = data.userUsername,
-                userEmail = data.userEmail,
-                userAvatar = data.userAvatar;
-
-            var avatar = _lodash2.default.isEmpty(userAvatar) ? 'empty_avatar.png' : userAvatar;
-            return _react2.default.createElement(
-                'div',
-                { className: 'header__panel-user' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'header__avatar' },
-                    _react2.default.createElement('img', { src: "./images/" + avatar })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'header__dropdown' },
-                    _react2.default.createElement(
-                        'a',
-                        { href: '#' },
-                        'M\xF3j profil'
-                    ),
-                    _react2.default.createElement(
-                        'a',
-                        { href: '#' },
-                        'Ustawienia'
-                    ),
-                    _react2.default.createElement(
-                        'a',
-                        { onClick: this.handleLogout, href: '#' },
-                        'Wyloguj'
-                    )
-                )
-            );
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            console.log('headerprops', this.props.user.userId);
-            return _react2.default.createElement(
-                'header',
-                { className: 'header' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'container' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'header__left' },
-                        _react2.default.createElement(
-                            _reactRouterDom.NavLink,
-                            { to: '/' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'header__logo' },
-                                _react2.default.createElement('img', { src: './images/logo_small.png' })
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'header__menu' },
-                            _react2.default.createElement(
-                                _reactRouterDom.NavLink,
-                                { to: '/nowe', activeClassName: 'selected' },
-                                'Nowe'
-                            ),
-                            _react2.default.createElement(
-                                _reactRouterDom.NavLink,
-                                { to: '/top', activeClassName: 'selected' },
-                                'Top'
-                            ),
-                            _react2.default.createElement(
-                                _reactRouterDom.NavLink,
-                                { to: '/login', activeClassName: 'selected' },
-                                'Poczekalnia'
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'header__right' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'header__panel' },
-                            this.props.user.userId > 0 ? this.renderUserPanel(this.props.user) : _react2.default.createElement(
-                                'div',
-                                { className: 'header__panel-paths' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'header__icon' },
-                                    _react2.default.createElement('i', { className: 'fas fa-search' })
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'header__hover-access-frame' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'header__icon' },
-                                        _react2.default.createElement('i', { className: 'fas fa-user' }),
-                                        _react2.default.createElement(_loginframe2.default, null)
-                                    )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                _reactRouterDom.NavLink,
-                                { to: '/dodaj-post' },
-                                _react2.default.createElement(_buttons.Button, { label: "Dodaj", className: 'btn-primary', align: "", size: "small" })
-                            )
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Header;
-}(_react2.default.Component);
-
-var mapStateToProps = function mapStateToProps(state) {
-    return { user: state.user };
+var Header = function Header() {
+    return _react2.default.createElement('header', { className: "header" });
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { logout: _users_action.logout })(Header);
+exports.default = Header;
+
+// class Header extends React.Component {
+
+//     handleLogout = (e) => {
+//         e.preventDefault();
+//         this
+//             .props
+//             .logout();
+//     }
+
+//     renderUserPanel(data) {
+
+//         const {userId, userUsername, userEmail, userAvatar} = data;
+//         const avatar = _.isEmpty(userAvatar)
+//             ? 'empty_avatar.png'
+//             : userAvatar
+//         return (
+//             <div className="header__panel-user">
+//                 <div className="header__avatar"><img src={"./images/" + avatar}/></div>
+//                 <div className="header__dropdown">
+//                     <a href="#">Mój profil</a>
+//                     <a href="#">Ustawienia</a>
+//                     <a onClick={this.handleLogout} href="#">Wyloguj</a>
+//                 </div>
+//             </div>
+//         )
+//     }
+//     render() {
+//         console.log('headerprops', this.props.user.userId);
+//         return (
+//             <header className="header">
+//                 <div className="container">
+//                     <div className="header__left">
+//                         <NavLink to="/">
+//                             <div className="header__logo"><img src="./images/logo_small.png"/></div>
+//                         </NavLink>
+//                         <div className="header__menu">
+//                             <NavLink to="/nowe" activeClassName="selected">Nowe</NavLink>
+//                             <NavLink to="/top" activeClassName="selected">Top</NavLink>
+//                             <NavLink to="/login" activeClassName="selected">Poczekalnia</NavLink>
+//                         </div>
+//                     </div>
+
+//                     <div className="header__right">
+//                         <div className="header__panel">
+//                             {this.props.user.userId > 0
+//                                 ? this.renderUserPanel(this.props.user)
+//                                 : <div className="header__panel-paths">
+//                                     <div className="header__icon">
+//                                         <i className="fas fa-search"></i>
+//                                     </div>
+//                                     <div className="header__hover-access-frame">
+//                                         <div className="header__icon">
+//                                             <i className="fas fa-user"></i>
+//                                             <LoginFrame/>
+//                                         </div>
+//                                     </div>
+
+//                                 </div>}
+//                             <NavLink to="/dodaj-post">
+//                                 <Button label={"Dodaj"} className="btn-primary" align={""} size={"small"}/>
+//                             </NavLink>
+
+//                         </div>
+//                     </div>
+
+//                 </div>
+//             </header>
+//         )
+//     }
+// }
+
+// const mapStateToProps = (state) => {
+//     return {user: state.user};
+// }
+
+// export default connect(mapStateToProps, {logout})(Header);
 
 /***/ }),
 
@@ -101544,25 +101685,25 @@ var Post = function Post(props) {
       data = _useFetch.data,
       loading = _useFetch.loading;
 
-  console.log(_types.imagePostUrl + data.value);
   var imageUrl = _types.imagePostUrl + data.value;
   var imageStyle = {
-    backgroundImage: "url('" + _types.imagePostUrl + data.value + "')"
+    backgroundImage: "url('" + imageUrl + "')",
+    backgroundSize: 'cover'
   };
-  var imageClassName = "post__image ";
-  imageClassName += loading ? "post__image--hide" : "post__image--display";
 
-  if (loading) {}
+  var loader = "";
+  if (loading) {
+    loader = _react2.default.createElement(_loader.Loader, { extraClass: "post__loader" });
+  }
 
   return _react2.default.createElement(
     "article",
     { className: "post" },
     _react2.default.createElement(
       "div",
-      { className: imageClassName, style: imageStyle },
-      _react2.default.createElement(_loader.Loader, { extraClass: "post__loader" })
+      { className: "post__image " + (loading ? "post__image--hide" : "post__image--display"), style: imageStyle },
+      loader
     ),
-    _react2.default.createElement("img", { src: imageUrl }),
     _react2.default.createElement(
       "h1",
       { className: "post__description" },
@@ -102030,7 +102171,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var domainUrl = exports.domainUrl = 'http://localhost:3000/';
-var imagePostUrl = exports.imagePostUrl = 'http://localhost:3000/dist/data/post';
+var imagePostUrl = exports.imagePostUrl = './data/post/';
+var imagesUrl = exports.imagesUrl = './images/';
 var LOGIN_SUCCES = exports.LOGIN_SUCCES = 'login_succes';
 
 /***/ }),
@@ -102046,11 +102188,9 @@ var LOGIN_SUCCES = exports.LOGIN_SUCCES = 'login_succes';
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.ButtonSocial = exports.Button = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+exports.RegularSubmitButton = exports.RegularButton = undefined;
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
@@ -102060,106 +102200,112 @@ var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_module
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var RegularButton = function RegularButton(props) {
+  return _react2.default.createElement(
+    'button',
+    { className: 'button button-regular' },
+    'Dodaj'
+  );
+};
+var RegularSubmitButton = function RegularSubmitButton(props) {
+  return _react2.default.createElement('input', { type: 'submit', value: props.text, className: 'button button-regular' });
+};
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+exports.RegularButton = RegularButton;
+exports.RegularSubmitButton = RegularSubmitButton;
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// class Button extends React.Component {
 
-var Button = function (_React$Component) {
-    _inherits(Button, _React$Component);
+//     state = {
+//         redirect: false
+//     }
 
-    function Button() {
-        var _ref;
+//     setRedirect = () => {
+//         this.setState({redirect: true})
+//     }
+//     renderRedirect = () => {
 
-        var _temp, _this, _ret;
+//         if (this.state.redirect) {
+//             return <Redirect to={"/" + this.props.path}/>
+//         }
+//     }
 
-        _classCallCheck(this, Button);
+//     render() {
+//         const {className, label, align, type} = this.props;
+//         let classNames = [className, align,type].join(" ");
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
+//         return (
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Button.__proto__ || Object.getPrototypeOf(Button)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            redirect: false
-        }, _this.setRedirect = function () {
-            _this.setState({ redirect: true });
-        }, _this.renderRedirect = function () {
+//             <button className={classNames}>
+//                 {label
+//                     ? label
+//                     : ""}
 
-            if (_this.state.redirect) {
-                return _react2.default.createElement(_reactRouterDom.Redirect, { to: "/" + _this.props.path });
-            }
-        }, _temp), _possibleConstructorReturn(_this, _ret);
-    }
+//                 {/* {this.props.icon
+//                     ? <i className={"fas " + this.props.icon}/>
+//                     : ""} */}
+//             </button>
+//         )
+//     }
 
-    _createClass(Button, [{
-        key: 'render',
-        value: function render() {
-            var _props = this.props,
-                className = _props.className,
-                label = _props.label,
-                align = _props.align,
-                type = _props.type;
+// }
 
-            var classNames = [className, align, type].join(" ");
+// class ButtonSocial extends React.Component {
 
-            return _react2.default.createElement(
-                'button',
-                { className: classNames },
-                label ? label : ""
-            );
-        }
-    }]);
+//     render() {
+//         const {label, type, size, align} = this.props;
+//         let buttonSize = "";
 
-    return Button;
-}(_react2.default.Component);
+//         switch (size) {
+//             case "normal":
+//                 buttonSize = "btn-social-connect btn-social-connect--facebook"
+//                 break;
+//             case "small":
+//                 buttonSize = "btn-social-connect--small btn-social-connect--facebook"
+//                 break;
+//             default:
+//                 buttonSize = "btn-social-connect btn-social-connect--facebook"
+//         }
+//         console.log('buttonSize',buttonSize);
+//         let classNames = ["btn-social-connect", buttonSize, align].join(" ");
 
-var ButtonSocial = function (_React$Component2) {
-    _inherits(ButtonSocial, _React$Component2);
+//         return (
 
-    function ButtonSocial() {
-        _classCallCheck(this, ButtonSocial);
+//             <button className={classNames}>
+//                 {label}
+//             </button>
+//         )
+//     }
+// }
 
-        return _possibleConstructorReturn(this, (ButtonSocial.__proto__ || Object.getPrototypeOf(ButtonSocial)).apply(this, arguments));
-    }
+/***/ }),
 
-    _createClass(ButtonSocial, [{
-        key: 'render',
-        value: function render() {
-            var _props2 = this.props,
-                label = _props2.label,
-                type = _props2.type,
-                size = _props2.size,
-                align = _props2.align;
+/***/ "./src/js/containers/cover.js":
+/*!************************************!*\
+  !*** ./src/js/containers/cover.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-            var buttonSize = "";
+"use strict";
 
-            switch (size) {
-                case "normal":
-                    buttonSize = "btn-social-connect btn-social-connect--facebook";
-                    break;
-                case "small":
-                    buttonSize = "btn-social-connect--small btn-social-connect--facebook";
-                    break;
-                default:
-                    buttonSize = "btn-social-connect btn-social-connect--facebook";
-            }
-            console.log('buttonSize', buttonSize);
-            var classNames = ["btn-social-connect", buttonSize, align].join(" ");
 
-            return _react2.default.createElement(
-                'button',
-                { className: classNames },
-                label
-            );
-        }
-    }]);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Cover = undefined;
 
-    return ButtonSocial;
-}(_react2.default.Component);
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
-exports.Button = Button;
-exports.ButtonSocial = ButtonSocial;
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Cover = function Cover(props) {
+  return _react2.default.createElement('div', { className: 'cover ' + (props.isVisable ? 'cover--visable' : '') });
+};
+
+exports.Cover = Cover;
 
 /***/ }),
 

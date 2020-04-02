@@ -7,8 +7,10 @@ import "../../scss/main.scss";
 import Header from "./Header";
 import Index from "./Index";
 import Simulator from "./Simulator";
+import Single from "./Single";
 import Login from "./Users/login";
 import Register from "./Users/register";
+import Footer from "./Footer";
 
 import { setCurrentUser } from "./../actions/users_action";
 import { BACKEND_URL } from "./../constants/types";
@@ -23,7 +25,9 @@ const App = () => {
           <Route exact path="/logowanie" component={Login} />
           <Route exact path="/rejestracja" component={Register} />
           <Route exact path="/symulator" component={Simulator} />
+          <Route exact path="/zzpost/:id" component={Single} />
         </Switch>
+        <Footer/>
       </div>
     </BrowserRouter>
   );

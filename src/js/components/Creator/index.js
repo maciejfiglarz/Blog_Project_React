@@ -1,100 +1,87 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-import { connect } from "react-redux";
-import Textarea from "./Textarea";
-import { useForm } from "./../../hooks/useForm";
-import { imagesUrl } from "./../../constants/types";
-import { RegularSubmitButton } from "./../../containers/buttons";
-import Choicer from "./choicer";
-import { Cover } from "./../../containers/cover";
-import { imagePostUrl } from "./../../constants/types";
-import { validation } from "./validation";
+import { PrimaryBtn } from "./../../containers/buttons";
+import { serverUrl } from "./../../constants/types";
 
-const Creator = () => {
-  const [values, handleChange] = useForm("");
-  const emptyImageUrl = imagesUrl + `empty-avatar.jpeg`;
+import CreatorMenu from "./menu";
+import CreatorBase from "./base";
+import CreatorPhoto from "./photo";
+import CreatorYoutube from "./youtube";
+import CreatorLink from "./link";
 
-  const [isChoicerVisible, setChoicerVisibility] = useState(false);
-  const [imagePostData, setImagePost] = useState({ id: null, value: null });
-  const [errors, setErrors] = useState([]);
+const Creator = props => {
+  const [title, setTitle] = useState();
+  const [content, setContent] = useState();
+
+  const [photo, setPhoto] = useState();
+  const [youtube, setYoutube] = useState();
+  const [link, setLink] = useState();
+
+  const [type, setType] = useState('post');
 
   const handleSubmit = event => {
     event.preventDefault();
-    const form = event.target;
-    setErrors(validation(imagePostData, values));
-    if (errors.length > 0) {
-    } else {
-      resetForm();
-    }
-    console.log("submit", validation(imagePostData, values), event.target);
+    axios
+      .post(`${serverUrl}/post`, {
+        title: title,
+        content: content
+      })
+      .then(resp => {
+        console.log("data", resp.data);
+        // props.setLoaded(true);
+        resetForm();
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   const resetForm = () => {
-    setImagePost({ id: null, value: null });
-    setErrors([]);
-    handleChange({'content':''});
-  };
-  const onClickChoicer = () => {
-    setChoicerVisibility(true);
-  };
-
-  console.log("imagePostData", imagePostData, errors);
-
-  const imageUrl = !imagePostData.id
-    ? emptyImageUrl
-    : imagePostUrl + imagePostData.value;
-  const imagePostStyle = {
-    backgroundImage: `url('${imageUrl}')`,
-    backgroundSize: "cover"
-  };
-
-  const validationSubmit = () => {
-    console.log();
+    setTitle("");
+    setContent("");
   };
 
   return (
-    <div className={"creator"}>
-      <Cover isVisable={isChoicerVisible} />
-      <Choicer
-        isVisable={isChoicerVisible}
-        setVisibility={setChoicerVisibility}
-        setImage={setImagePost}
-      />
+    <section className="creator">
+      <h1 className="creator-title">Dodaj {type}</h1>
 
-      <div className={"creator__image"} style={imagePostStyle}></div>
+      <form className="creator-form" onSubmit={handleSubmit}>
+        <CreatorMenu setType={setType} />
 
-      <div className="creator-content">
-        {errors}
-        {errors.map(error => {
-          <div className="creator-content__error">{error}</div>;
-        })}
+        <div className="creator-switcher__content-wrap">
+          <div
+            data-name="post"
+            className="creator-switcher__content creator-switcher__content--active"
+          ></div>
 
-        <form onSubmit={handleSubmit}>
-          <textarea
-            onChange={handleChange}
-            value={values.content}
-            className={"creator__textarea"}
-            name="content"
-          ></textarea>
-
-          <div className="creator-submenu">
-            <div className={"creator-submenu__functionality"}>
-              <i onClick={onClickChoicer} className="far fa-image"></i>
-            </div>
-
-            <div className="creator-submenu__action">
-              <RegularSubmitButton type={"submit"} text={"Dodaj"} />
-            </div>
+          <div data-name="photo" className="creator-switcher__content">
+            <CreatorPhoto setPhoto={setPhoto} photo={photo} />
           </div>
-        </form>
-      </div>
-    </div>
+
+          <div data-name="youtube" className="creator-switcher__content">
+            <CreatorYoutube setYoutube={setYoutube} youtube={youtube} />
+          </div>
+
+          <div data-name="link" className="creator-switcher__content">
+            <CreatorLink link={link} link={setLink} />
+          </div>
+          <CreatorBase
+            setTitle={setTitle}
+            title={title}
+            setContent={setContent}
+            content={content}
+          />
+
+          <PrimaryBtn
+            extraClass="creator-form__button"
+            text="Dodaj"
+            handleSubmit={handleSubmit}
+          />
+        </div>
+      </form>
+    </section>
   );
 };
 
-// const mapStateToProps = state => {
-//   return { user: state.user };
-// };
-
-// export default connect(mapStateToProps)(Creator);
 export default Creator;

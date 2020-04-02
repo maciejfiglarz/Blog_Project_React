@@ -5,8 +5,8 @@ import { Loader } from "./../../containers/loader";
 
 const Post = props => {
   const post = props.post;
-  const photoID = post.photoID;
-  const { data, loading } = useFetch(`${domainUrl}photo/${photoID}`);
+  const imageID = post.imageID;
+   const { data, loading } = useFetch(`${domainUrl}photo/${imageID}`);
 
   const imageUrl = imagePostUrl + data.value;
   const imageStyle = {
@@ -22,10 +22,13 @@ const Post = props => {
 
   return (
     <article className="post">
-      <div className={`post__image ${loading ? "post__image--hide" : "post__image--display"}`} style={imageStyle}>
+      <div className={`post__image post__image--display`} style={imageStyle}>
         {loader}
       </div>
-      <h1 className={"post__description"}>{post.description}</h1>
+  <h1 className={"post__description"}>
+    {post.id}
+    {/* {post.description} */}
+  </h1>
     </article>
   );
 };
