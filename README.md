@@ -4,10 +4,12 @@
 ## Setup
 To run this project, install it locally using:
 
-
 ```
 $ yarn install
 $ yarn run serve
-$ yarn run json:server
+
+cd server
+npm install
+npm start
 
 ```

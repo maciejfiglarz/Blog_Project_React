@@ -1,11 +1,48 @@
 const mongoose = require("mongoose");
 const multer = require("multer");
-const path = require('path');
+const path = require("path");
 
 const Post = require("../models/post");
 
+const fileGetContents = require("file-get-contents");
+const domino = require("domino");
 
-exports.upload_photo_temponary = async(req, res, next) => {
+exports.get_link_info = async (req, res, next) => {
+  const url = req.body.url;
+  console.log("jest");
+  fileGetContents(url)
+    .then(text => {
+      const window = domino.createWindow(text);
+      const document = window.document;
+      console.log("jest");
+      const title = document
+        .querySelector("meta[property='og:title']")
+        .getAttribute("content");
+      const image = document
+        .querySelector("meta[property='og:image']")
+        .getAttribute("content");
+      const description = document
+        .querySelector("meta[property='og:image']")
+        .getAttribute("description");
+      var urlParts = url
+        .replace("http://", "")
+        .replace("https://", "")
+        .split(/[/?#]/);
+      const siteName = urlParts[0];
+
+      res.status(200).json({
+        title: title,
+        description: description,
+        image: image,
+        siteName: siteName
+      });
+    })
+    .catch(err => {
+      console.log(`err`, err);
+    });
+};
+
+exports.upload_photo_temponary = async (req, res, next) => {
   console.log(req, res);
   let fileName = "";
   const storage = multer.diskStorage({

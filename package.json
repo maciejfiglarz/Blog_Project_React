@@ -1,7 +1,7 @@
 {
   "name": "webpacka-init",
   "homepage": "https://maciejfiglarz.github.io/Eshop__React/",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "<img alt=\"Logo\" src=\"http://coderslab.pl/svg/logo-coderslab.svg\" width=\"400\">",
   "main": "index.js",
   "scripts": {

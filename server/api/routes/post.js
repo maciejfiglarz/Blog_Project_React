@@ -3,46 +3,10 @@ const router = express.Router();
 const multer = require("multer");
 
 const PostController = require("../controllers/post");
-// const upload = require('./../helper/upload');
 
 
 
 router.post("/photo-temponary", PostController.upload_photo_temponary);
-
-// await upload(req, res, err => {
-//         console.log("Request ---", req.body);
-//         console.log("Request file ---", req.file); //Here you get file.
-    
-//         if (!err) {
-//           const db = req.app.get("db")();
-//           const item = {
-//             fileName: fileName
-//           };
-//           // db.collection("photo-temponary").insertOne(item, (err, result) => {
-    
-//           //   if (err) return console.log(err);
-//           //   console.log("saved to database", result);
-//           //   const insertedId = result.insertedId;
-    
-//           //   let extension = path.extname(
-//           //     "./public/uploads/post-temponary/" + fileName
-//           //   );
-//           //   console.log('extension',extension);
-//           //   fs.rename(
-//           //     "./public/uploads/post-temponary/" + fileName,
-//           //     "./public/uploads/post-temponary/" + insertedId + extension,
-//           //     function(err) {
-//           //       if (err) console.log("ERROR: " + err);
-//           //     }
-//           //   );
-    
-//           //   res.setHeader("Content-Type", "application/json");
-//           //   res.end(JSON.stringify({ fileName: insertedId + extension }));
-//           // });
-    
-//           res.setHeader("Content-Type", "application/json");
-//           res.end(JSON.stringify({ fileName: fileName }));
-//         }
 
 router.get("/", PostController.fetch_all);
 
@@ -50,9 +14,44 @@ router.get("/:postId", PostController.get_post);
 
 router.post("/", PostController.create_post);
 
+router.post("/link",PostController.get_link_info);
+
+
 // router.patch("/:postId", PostController.post_update);
 
 // router.delete("/:postId", PostController.post_delete);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // router.patch("/:postId", (req, res) => {
 //   //titleNew contentNew

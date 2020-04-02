@@ -16,7 +16,10 @@
     background-color: $color-basic-middle;
     // padding: 15px;
     border-radius: $border-radius;
-
+    &__textarea {
+      overflow: hidden;
+      min-height: 180px;;
+    }
     &__photo {
       border: 1px dashed $color-border;
       width: 100%;
@@ -40,6 +43,13 @@
           }
         }
       }
+    }
+    &__youtube {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding:10px;
+      margin-bottom: 10px;
     }
   }
 
