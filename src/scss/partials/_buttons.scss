@@ -1,9 +1,18 @@
 .button{
-    padding:5px 10px;
-    color:white;
-    border:0;
-    &-regular {
+    &-primary {
         border-radius: 5px;
-        background: $color-primary;
+        color: $color-text;
+        border:1px solid $color-text;
+        padding:8px 16px;
+        font-size: 1.5rem;
+        background: none;
+    }
+    &-secondary {
+        border-radius: 5px;
+        color: $color-text;
+        border:1px solid $color-text;
+        padding:8px 16px;
+        font-size: 1.5rem;
+        background: none;
     }
 }

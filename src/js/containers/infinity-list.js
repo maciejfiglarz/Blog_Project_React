@@ -48,7 +48,9 @@ export default function InfiniteList(props) {
 
   const getData = (load) => {
     if (load) {
-      console.log('pageeeeeeeeeees',page);
+      
+
+      
       fetch(`http://localhost:3000/posts?_page=${page}&_limit=3_sort=id&_order=asc`)
         .then(res => {
           return !res.ok 

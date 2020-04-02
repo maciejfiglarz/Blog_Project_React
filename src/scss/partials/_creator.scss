@@ -1,41 +1,89 @@
 .creator {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  background: $color-basic-dark;
-  padding: 10px;
-  border-radius: 5px;
-
-  &__textarea {
-    width: 100%;
-    background: $color-blue-light;
-    border-radius: 3px;
-    min-height: 70px;
-    border: 0;
-    color: white;
-    font-size: 1.3rem;
-    padding: 5px;
+  color: $color-text;
+  &-inner {
+    background-color: $color-basic-middle;
+    padding: 10px / politics/submit;
+    border-radius: $border-radius;
   }
 
-  &-content {
-    width: calc(100% - 120px);
+  &-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
   }
-  &__image {
-    width: 100px;
-    height: 100px;
+
+  &-form {
+    background-color: $color-basic-middle;
+    // padding: 15px;
+    border-radius: $border-radius;
+
+    &__photo {
+      border: 1px dashed $color-border;
+      width: 100%;
+      min-height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding:10px;
+      margin-bottom: 10px;
+      &-footer {
+        display: flex;
+        justify-content: flex-end;
+        padding:0 0 10px 0;
+        width:100%;
+        i {
+          font-size: 1.9rem;
+          cursor: pointer;
+          color:$color-link;
+          &:hover {
+            color:$color-link-hover;
+          }
+        }
+      }
+    }
   }
-  &-submenu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    &__functionality {
-      i {
-        font-size: 2.3rem;
-        opacity: 0.8;
+
+  &-switcher {
+    &__menu {
+      display: flex;
+      margin-bottom: 15px;
+      &-tab {
+        width: 25%;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        font-size: 1.4rem;
+        opacity: 0.6;
+        border-bottom: 1px solid $color-border;
+        border-right: 1px solid $color-border;
         cursor: pointer;
+
+        &:last-child {
+          border-right: 0;
+        }
+        &--active {
+          opacity: 1;
+          background: $color-basic-middle-hover;
+        }
         &:hover {
           opacity: 1;
+          background: $color-basic-middle-hover;
         }
+      }
+      &-icon {
+        font-size: 1.4rem;
+        margin-top: 3px;
+        margin-right: 4px;
+      }
+    }
+    &__content {
+      display: none;
+
+      &--active {
+        display: block;
+      }
+      &-wrap {
+        padding: 10px;
       }
     }
   }

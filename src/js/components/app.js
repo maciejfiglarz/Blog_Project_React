@@ -25,7 +25,7 @@ const App = () => {
           <Route exact path="/logowanie" component={Login} />
           <Route exact path="/rejestracja" component={Register} />
           <Route exact path="/symulator" component={Simulator} />
-          <Route exact path="/post/:id" component={Single} />
+          <Route exact path="/zzpost/:id" component={Single} />
         </Switch>
         <Footer/>
       </div>

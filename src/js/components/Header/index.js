@@ -2,7 +2,7 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {logout} from './../../actions/users_action'
-import _ from 'lodash'
+
 
 import {Button} from '../../containers/buttons'
 import LoginFrame from './loginframe'
