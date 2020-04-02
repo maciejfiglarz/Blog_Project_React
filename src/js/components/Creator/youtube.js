@@ -6,74 +6,62 @@ import axios from "axios";
 
 const CreatorYoutube = props => {
   const [isLoaded, setLoaded] = useState();
+  const [link, setLink] = useState();
+  const [error, setError] = useState();
 
   const onChange = e => {
-    e.preventDefault();
-    const value = e.target.value;
-    setLoaded(true);
-    const formData = new FormData();
-    formData.append("photo", file);
-    const config = {
-      headers: {
-        "content-type": "multipart/form-data"
-      }
-    };
-    axios
-      .post(`${serverUrl}/post/photo-temponary`, formData, config)
-      .then(response => {
-        console.log("response", response);
-        setLoaded(false);
-        props.setPhoto(response.data.fileName);
-      })
-      .catch(error => {});
+    const link = e.target.value;
+    const id = getYoutubeID(link);
+    if (id) {
+      setError("");
+      props.setYoutube(id);
+    } else {
+      setError("Link jest niepoprawny!");
+      props.setYoutube("");
+    }
   };
 
-  const remove = () => {
-    console.log('remove');
-    props.setPhoto("");
-    axios
-      .post(`${serverUrl}/post/photo-temponary/remove`, { photo: props.photo })
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log('error',error);
-      });
+  
+  const getYoutubeID = url => {
+    const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return match && match[7].length == 11 ? match[7] : false;
+  };
+
+  const prepareEmbed = () => {
+    return (
+      <iframe
+        width="560"
+        height="315"
+        src={"https://www.youtube.com/embed/" + props.youtube}
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    );
   };
 
   return (
-    <div className="creator-form__photo-wrap">
-      <div className="creator-form__photo">
-        {isLoaded && <Loader />}
-
-        {!isLoaded && !props.photo && (
-          <div>
-            <input
-              type="file"
-              name="file"
-              id="file"
-              onChange={onChange}
-              className="inputfile creator-form__photo-file"
-            />
-            <label className="button-primary" htmlFor="file">
-              Wybierz zdjęcie
-            </label>
-          </div>
-        )}
-
-        {props.photo && (
-          <div>
-            <div className="creator-form__photo-uploaded">
-              <img src={uploadsUrl + "/post-temponary/" + props.photo} />
-            </div>
-          </div>
-        )}
-      </div>
-      {props.photo && (
-        <div className="creator-form__photo-footer">
-          <i onClick={remove} className="fas fa-trash-alt"></i>
-        </div>
+    <div>
+      {error}
+      {props.youtube && (
+        <iframe
+          className="creator-form__youtube"
+          width="100%"
+          height="215"
+          src={"https://www.youtube.com/embed/" + props.youtube}
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
       )}
+      <input
+        onChange={onChange}
+        value={link}
+        className="input__text-regular creator-form__input"
+        name="youtube"
+        placeholder="Link youtube"
+      />
     </div>
   );
 };

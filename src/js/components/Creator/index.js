@@ -8,6 +8,7 @@ import CreatorMenu from "./menu";
 import CreatorBase from "./base";
 import CreatorPhoto from "./photo";
 import CreatorYoutube from "./youtube";
+import CreatorLink from "./link";
 
 const Creator = props => {
   const [title, setTitle] = useState();
@@ -15,8 +16,9 @@ const Creator = props => {
 
   const [photo, setPhoto] = useState();
   const [youtube, setYoutube] = useState();
+  const [link, setLink] = useState();
 
-  const [type, setType] = useState();
+  const [type, setType] = useState('post');
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -42,7 +44,7 @@ const Creator = props => {
 
   return (
     <section className="creator">
-      <h1 className="creator-title">Dodaj</h1>
+      <h1 className="creator-title">Dodaj {type}</h1>
 
       <form className="creator-form" onSubmit={handleSubmit}>
         <CreatorMenu setType={setType} />
@@ -58,11 +60,11 @@ const Creator = props => {
           </div>
 
           <div data-name="youtube" className="creator-switcher__content">
-            <CreatorYoutube setYoutube={setPhoto} youtube={youtube} />
+            <CreatorYoutube setYoutube={setYoutube} youtube={youtube} />
           </div>
 
           <div data-name="link" className="creator-switcher__content">
-            link
+            <CreatorLink link={link} link={setLink} />
           </div>
           <CreatorBase
             setTitle={setTitle}

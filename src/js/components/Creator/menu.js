@@ -1,6 +1,6 @@
 import React from "react";
 
-const CreatorMenu = () => {
+const CreatorMenu = props => {
   const handleClick = event => {
     const name = event.target.dataset.name;
     actionMenu(name);
@@ -10,13 +10,14 @@ const CreatorMenu = () => {
   const actionMenu = name => {
     const menuArray = document.querySelectorAll(".creator-switcher__menu-tab");
 
-    menuArray .forEach(el => {
+    menuArray.forEach(el => {
       if (el.dataset.name == name) {
         el.classList.add("creator-switcher__menu-tab--active");
       } else {
         el.classList.remove("creator-switcher__menu-tab--active");
       }
     });
+    props.setType(name);
   };
 
   const actionContent = name => {
