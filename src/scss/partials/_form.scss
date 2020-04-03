@@ -15,6 +15,7 @@
       border: 1px solid $color-border;
       @include placeholder();
       margin-bottom: 15px;
+      overflow: hidden;
     }
   }
 }

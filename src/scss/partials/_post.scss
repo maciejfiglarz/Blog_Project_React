@@ -1,24 +1,27 @@
 .post {
   width: 100%;
-  background: $color-basic-dark;
+  background: $color-basic-middle;
   margin-bottom: 30px;
-  &:last-child {
-    margin-bottom: 0;
+
+  &-header{
+    padding:10px;
   }
-  &__image {
-    width: 100%;
-    min-height: 400px;
-    background-size: cover;
-    @include mobile() {
-      min-height: 250px;
-    }
-    &--hide {
-      visibility: hidden;
-    }
-    &--show {
-      visibility: visible;
+
+  &-content {
+    &__link {
+      &-photo {
+        width: 100%;
+        min-height: 200px;
+        // &--hide {
+        //   visibility: hidden;
+        // }
+        // &--show {
+        //   visibility: visible;
+        // }
+      }
     }
   }
+
   &__loader {
     width: 100%;
     min-height: 400px;
@@ -30,11 +33,37 @@
     align-items: center;
   }
   &__title {
-    text-align: center;
-    font-size: 3rem;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    padding: 8px 8px 0 8px;
   }
   &__description {
-      font-size: 1.4rem;
-      padding:20px;
+    font-size: 1.2rem;
+    line-height: 1.9rem;
+    padding: 8px;
+  }
+
+  &-action {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    padding:10px;
+    &__section {
+      display: flex;
+      &-item {
+        display: flex;
+        margin-right: 6px;
+        &:last-child{
+          margin-right: 0;
+        }
+        i{
+          padding:4px;
+           font-size: 1.2rem;
+        }
+      }
+    }
+    &__vote {
+      display: flex;
+    }
   }
 }
