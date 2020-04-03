@@ -5,6 +5,8 @@ const multer = require("multer");
 const PostController = require("../controllers/post");
 
 
+router.get("/destroy",PostController.destroy_all);
+
 
 router.post("/photo-temponary", PostController.upload_photo_temponary);
 
@@ -14,7 +16,10 @@ router.get("/:postId", PostController.get_post);
 
 router.post("/", PostController.create_post);
 
+router.get("/pagination/page-:page", PostController.pagination_post);
+
 router.post("/link",PostController.get_link_info);
+
 
 
 // router.patch("/:postId", PostController.post_update);

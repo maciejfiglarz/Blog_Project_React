@@ -1,12 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import axios from "axios";
+
 
 import "../../scss/main.scss";
 import Header from "./Header";
 import Index from "./Index";
-import Simulator from "./Simulator";
 import Single from "./Single";
 import Login from "./Users/login";
 import Register from "./Users/register";
@@ -24,8 +23,7 @@ const App = () => {
           <Route exact path="/" component={Index} />
           <Route exact path="/logowanie" component={Login} />
           <Route exact path="/rejestracja" component={Register} />
-          <Route exact path="/symulator" component={Simulator} />
-          <Route exact path="/zzpost/:id" component={Single} />
+          <Route exact path="/status/:id" component={Single} />
         </Switch>
         <Footer/>
       </div>

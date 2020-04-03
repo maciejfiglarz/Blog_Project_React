@@ -9,10 +9,10 @@ const multer = require("multer");
 // const upload = require('./../helper/upload');
 
 router.get("/post-temponary/:fileName", async (req, res) => {
-  const id = req.params.fileName;
+  const fileName = req.params.fileName;
 
-  res.sendFile(
-    path.join(__dirname, `../public/uploads/post-temponary/${fileName}`)
+await res.sendFile(
+    path.join(__dirname, `../../public/uploads/post-temponary/${fileName}`)
   );
 });
 

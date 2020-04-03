@@ -28,19 +28,6 @@ const CreatorYoutube = props => {
     return match && match[7].length == 11 ? match[7] : false;
   };
 
-  const prepareEmbed = () => {
-    return (
-      <iframe
-        width="560"
-        height="315"
-        src={"https://www.youtube.com/embed/" + props.youtube}
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
-    );
-  };
-
   return (
     <div>
       {error}

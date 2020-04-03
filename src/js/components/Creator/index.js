@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router";
+
 import axios from "axios";
 
 import { PrimaryBtn } from "./../../containers/buttons";
@@ -11,35 +13,43 @@ import CreatorYoutube from "./youtube";
 import CreatorLink from "./link";
 
 const Creator = props => {
+  const [postId, setPostId] = useState();
+
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
 
   const [photo, setPhoto] = useState();
   const [youtube, setYoutube] = useState();
-  const [link, setLink] = useState();
 
-  const [type, setType] = useState('post');
+  const [link, setLink] = useState();
+  const [linkPhoto, setLinkPhoto] = useState();
+
+  const [type, setType] = useState("post");
+
+  if (postId) {
+    // return <Redirect to={"/status/" + postId} />;
+    return <Redirect to="/" />;
+  }
 
   const handleSubmit = event => {
     event.preventDefault();
     axios
       .post(`${serverUrl}/post`, {
         title: title,
-        content: content
+        content: content,
+        type: type,
+        photo: photo,
+        youtube,youtube,
+        link: link,
+        linkPhoto: linkPhoto
       })
       .then(resp => {
-        console.log("data", resp.data);
-        // props.setLoaded(true);
-        resetForm();
+        const id = resp.data._id;
+        setPostId(id);
       })
       .catch(error => {
         console.log(error);
       });
-  };
-
-  const resetForm = () => {
-    setTitle("");
-    setContent("");
   };
 
   return (
@@ -64,7 +74,12 @@ const Creator = props => {
           </div>
 
           <div data-name="link" className="creator-switcher__content">
-            <CreatorLink link={link} link={setLink} />
+            <CreatorLink
+              link={link}
+              setLink={setLink}
+              linkPhoto={linkPhoto}
+              setLinkPhoto={setLinkPhoto}
+            />
           </div>
           <CreatorBase
             setTitle={setTitle}

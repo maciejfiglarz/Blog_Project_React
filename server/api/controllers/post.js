@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate-v2");
+
 const multer = require("multer");
 const path = require("path");
 
@@ -7,14 +9,69 @@ const Post = require("../models/post");
 const fileGetContents = require("file-get-contents");
 const domino = require("domino");
 
+exports.pagination_post = async (req, res, next) => {
+  const perPage = 5;
+  const page = Math.max(0, req.params.page);
+  console.log("page", page);
+  await Post.find({})
+    // .select("createdAt _id title description")
+    .limit(perPage)
+    // .skip(perPage * page)
+    .sort({
+      _id: "desc"
+    })
+    // .sort("-createdAt")
+    .exec((err, results) => {
+      console.log("results", results);
+      res.status(201).json(results);
+    });
+};
+
+exports.create_post = (req, res, next) => {
+  console.log("created");
+  const post = new Post({
+    _id: new mongoose.Types.ObjectId(),
+    title: req.body.title,
+    content: req.body.content,
+    type: req.body.type,
+    youtube: req.body.youtube,
+    photo: req.body.photo,
+    link: req.body.link,
+    linkPhoto: req.body.linkPhoto
+  });
+  post
+    .save()
+    .then(result => {
+      console.log(result);
+      res.status(201).json({
+        title: result.title,
+        content: result.content,
+        _id: result._id,
+        type: result.type,
+        photo: result.photo,
+        link: result.link,
+        linkPhoto: result.linkPhoto,
+        request: {
+          type: "GET",
+          url: `${global.baseUrl}/post/${result._id}`
+        }
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+};
+
 exports.get_link_info = async (req, res, next) => {
   const url = req.body.url;
-  console.log("jest");
-  fileGetContents(url)
+
+  fileGetContents(url, { encoding: "utf-8" })
     .then(text => {
       const window = domino.createWindow(text);
       const document = window.document;
-      console.log("jest");
       const title = document
         .querySelector("meta[property='og:title']")
         .getAttribute("content");
@@ -22,8 +79,8 @@ exports.get_link_info = async (req, res, next) => {
         .querySelector("meta[property='og:image']")
         .getAttribute("content");
       const description = document
-        .querySelector("meta[property='og:image']")
-        .getAttribute("description");
+        .querySelector("meta[property='og:description']")
+        .getAttribute("content");
       var urlParts = url
         .replace("http://", "")
         .replace("https://", "")
@@ -61,6 +118,16 @@ exports.upload_photo_temponary = async (req, res, next) => {
 
   await upload(req, res, err => {
     res.status(200).json({ fileName: fileName });
+  });
+};
+
+exports.destroy_all = (req, res, next) => {
+  Post.deleteMany({}, function(err) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.end("success");
+    }
   });
 };
 
@@ -122,37 +189,6 @@ exports.get_post = (req, res, next) => {
     .catch(err => {
       console.log(err);
       res.status(500).json({ error: err });
-    });
-};
-
-exports.create_post = (req, res, next) => {
-  const post = new Post({
-    _id: new mongoose.Types.ObjectId(),
-    title: req.body.title,
-    content: req.body.content
-  });
-  post
-    .save()
-    .then(result => {
-      console.log(result);
-      res.status(201).json({
-        message: "Created post successfully",
-        createdPost: {
-          title: result.title,
-          content: result.content,
-          _id: result._id,
-          request: {
-            type: "GET",
-            url: `${global.baseUrl}/post/${result._id}`
-          }
-        }
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        error: err
-      });
     });
 };
 

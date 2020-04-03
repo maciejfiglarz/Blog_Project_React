@@ -73,10 +73,10 @@ module.exports = {
         new ExtractTextPlugin('./css/main.css'),
         new HtmlWebpackPlugin({template: "./src/index.html", filename: "index.html"}),
         new CopyWebpackPlugin([
-            {
-                from: 'src/data/post',
-                to: 'data/post'
-            },
+            // {
+            //     from: 'src/data/post',
+            //     to: 'data/post'
+            // },
              {
                 from: 'src/images',
                 to: 'images'

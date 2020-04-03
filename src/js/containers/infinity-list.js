@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Post from "./../components/Post";
-import Single from './../components/Single';
+import axios from 'axios';
+import {serverUrl} from './../constants/types';
 
 export default function InfiniteList(props) {
 
@@ -48,25 +49,23 @@ export default function InfiniteList(props) {
 
   const getData = (load) => {
     if (load) {
-      
 
-      
-      fetch(`http://localhost:3000/posts?_page=${page}&_limit=3_sort=id&_order=asc`)
+      axios.get(`${serverUrl}/post/pagination/page-${page}`)
+        // .then(res => {
+        //   return !res.ok 
+        //   ? res.json().then(e => Promise.reject(e)) 
+        //   : res.json();
+        // })
         .then(res => {
-          return !res.ok 
-          ? res.json().then(e => Promise.reject(e)) 
-          : res.json();
-        })
-        .then(res => {
-            console.log('reeeees',res);
-          props.setState([...props.state, ...res]);
+            console.log('reeeees',res.data);
+          props.setState([...props.state, ...res.data]);
         });
     }
   };
 
   return (
     <ul id='list'>
-      { props.state.map(post => <Link to={`/post/${post.id}`}><Post key={post.id} post={post}/></Link>) }
+      { props.state.map(post => <Post key={post._id} post={post}/>) }
     </ul>
   );
 };
