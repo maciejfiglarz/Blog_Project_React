@@ -1,48 +1,63 @@
-import React from 'react'
-import {Button} from '../../containers/buttons'
-import {connect} from 'react-redux'
-import {loginValidation} from './../../services/validation'
-import {login,logout} from './../../actions/users_action'
-import axios from 'axios'
+import React, { useState } from "react";
+import { PrimaryBtn } from "../../containers/buttons";
+import { connect } from "react-redux";
+import { userActions } from "./../../actions/users_action";
 
-import {BACKEND_URL} from './../../constants/types'
+import { login } from "./../../services/user_services";
 
 
-const Login = () =>{
-    const [values, handleChange] = useForm("");
- 
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log('sub');
+    userActions.login({ email, password });
+  };
 
-    return (
+  
 
-        <div>
-             <form className="form-default container-small" onSubmit={this.onSubmit}>
-                    <h1 className="form-default__h1">Zaloguj!</h1>
-                    <input
-                        onChange={this.onChange}
-                        value={this.state.password}
-                        type="password"
-                        name="password"
-                        placeholder="Hasło"/>
+  return (
+    <div>
 
+      <form className="form-default container-small" onSubmit={onSubmit}>
+        <h1 className="form-default__h1">Zaloguj!</h1>
+        <input
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          className="input__text-regular"
+          type="email"
+          name="email"
+          placeholder="Email"
+        />
 
-        <button onClick={this.handleClick}>
-          {this.state.isToggleOn ? 'ON' : 'OFF'}
-        </button>
+        <input
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          className="input__text-regular"
+          type="password"
+          name="password"
+          placeholder="Hasło"
+        />
 
-             </form>
-        </div>
-      
-    );
-}
-
-const mapStateToProps = (state) => {
-    return {user: state.user};
+        <PrimaryBtn text={"Zaloguj"} />
+      </form>
+    </div>
+  );
 };
 
-export default connect(mapStateToProps,{login,logout})(Login);
+const mapStateToProps = (state) => {
+  console.log(state);
+  return { user: state.user };
+};
 
+const actionCreators = {
+  // login: userActions.login,
+  // logout: userActions.logout,
+};
+
+export default connect(mapStateToProps, actionCreators)(Login);
 
 // class Login extends React.Component {
 
@@ -71,7 +86,7 @@ export default connect(mapStateToProps,{login,logout})(Login);
 //             // this.setState({redirect: true}) this     .props     .history     .push('/');
 //             this
 //                 .props
-//                 .login(this.state); 
+//                 .login(this.state);
 
 //         });
 

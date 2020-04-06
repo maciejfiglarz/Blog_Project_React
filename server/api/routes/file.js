@@ -11,8 +11,17 @@ const multer = require("multer");
 router.get("/post-temponary/:fileName", async (req, res) => {
   const fileName = req.params.fileName;
 
-await res.sendFile(
+  await res.sendFile(
     path.join(__dirname, `../../public/uploads/post-temponary/${fileName}`)
+  );
+});
+
+
+router.get("/avatar/:fileName", async (req, res) => {
+  const fileName = req.params.fileName;
+
+  await res.sendFile(
+    path.join(__dirname, `../../public/uploads/avatar/${fileName}`)
   );
 });
 

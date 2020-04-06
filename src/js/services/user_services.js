@@ -1,37 +1,42 @@
-import axios from 'axios'
-import {BACKEND_URL} from './../constants/types'
-import{setCurrentUser} from './../actions/users_action'
+import axios from "axios";
+import { serverUrl } from "./../constants/types";
+import { setCurrentUser } from "./../actions/users_action";
 
-const ROOT_URL = 'http://localhost:80/Redux_PHP/src/server';
+const register = async (params) => {
 
+  let res = await axios.post(`${serverUrl}/user/register`, params);
+  let { data } = res;
+  console.log("bbb", data);
+  return data ;
 
-export const userRegister = async(data) => {
-    console.log('data', data);
-    const {username, email, password} = data;
-    const url = `${ROOT_URL}/index.php?model=register`;
-    const request = axios.post(url, {
-        'username': username,
-        'email': email,
-        'password': password
-    });
-    request.then(function (response) {
-        console.log(response);
-        return true;
-    })
-        .catch(function (error) {
-            // console.log(error);
-            return false;
-        });
-}
+};
 
-export const login = async (data) => {
-    const url = `${BACKEND_URL}/index.php?model=login`;
-    const {email, password} = data;
+const login = async (params) => {
 
-    const request = await axios.post(url, {
-        'email': email,
-        'password': password
-    });
-    console.log('request', request);
-    setCurrentUser(request);
-}
+  let res = await axios.post(`${serverUrl}/user/login`, params);
+  let { data } = res;
+  return data ;
+
+  // const { email, password } = data;
+  // //sefsefse@w.pl
+  // //xx
+  // await axios
+  //   .post(`${serverUrl}/user/login`, {
+  //     email: email,
+  //     password: password,
+  //   })
+  //   .then((resp) => {
+  //     console.log("login", resp);
+  //     const { status, user } = resp.data;
+  //     // status ? setCurrentUser(user) : "";
+  //   });
+
+  // //   console.log("request", request);
+  // //   setCurrentUser(request);
+};
+
+export const userServices = {
+  login,
+  // logout,
+  register,
+};

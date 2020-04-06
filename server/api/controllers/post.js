@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const mongoosePaginate = require("mongoose-paginate-v2");
 
 const multer = require("multer");
 const path = require("path");
@@ -11,18 +10,19 @@ const domino = require("domino");
 
 exports.pagination_post = async (req, res, next) => {
   const perPage = 5;
-  const page = Math.max(0, req.params.page);
+  // const page = Math.max(0, req.params.page);
+  const page = parseInt(req.params.page);
   console.log("page", page);
   await Post.find({})
     // .select("createdAt _id title description")
     .limit(perPage)
-    // .skip(perPage * page)
+    .skip(perPage * page)
     .sort({
-      _id: "desc"
+      _id: "desc",
     })
     // .sort("-createdAt")
     .exec((err, results) => {
-      console.log("results", results);
+      // console.log("results", results);
       res.status(201).json(results);
     });
 };
@@ -37,11 +37,11 @@ exports.create_post = (req, res, next) => {
     youtube: req.body.youtube,
     photo: req.body.photo,
     link: req.body.link,
-    linkPhoto: req.body.linkPhoto
+    linkPhoto: req.body.linkPhoto,
   });
   post
     .save()
-    .then(result => {
+    .then((result) => {
       console.log(result);
       res.status(201).json({
         title: result.title,
@@ -53,14 +53,14 @@ exports.create_post = (req, res, next) => {
         linkPhoto: result.linkPhoto,
         request: {
           type: "GET",
-          url: `${global.baseUrl}/post/${result._id}`
-        }
+          url: `${global.baseUrl}/post/${result._id}`,
+        },
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json({
-        error: err
+        error: err,
       });
     });
 };
@@ -69,7 +69,7 @@ exports.get_link_info = async (req, res, next) => {
   const url = req.body.url;
 
   fileGetContents(url, { encoding: "utf-8" })
-    .then(text => {
+    .then((text) => {
       const window = domino.createWindow(text);
       const document = window.document;
       const title = document
@@ -91,10 +91,10 @@ exports.get_link_info = async (req, res, next) => {
         title: title,
         description: description,
         image: image,
-        siteName: siteName
+        siteName: siteName,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(`err`, err);
     });
 };
@@ -104,25 +104,25 @@ exports.upload_photo_temponary = async (req, res, next) => {
   let fileName = "";
   const storage = multer.diskStorage({
     destination: "./public/uploads/post-temponary",
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
       extension = path.extname(path.extname(file.originalname));
       fileName = "IMAGE-" + Date.now() + path.extname(file.originalname);
       cb(null, fileName);
-    }
+    },
   });
 
   const upload = multer({
     storage: storage,
-    limits: { fileSize: 1000000 }
+    limits: { fileSize: 1000000 },
   }).single("photo");
 
-  await upload(req, res, err => {
+  await upload(req, res, (err) => {
     res.status(200).json({ fileName: fileName });
   });
 };
 
 exports.destroy_all = (req, res, next) => {
-  Post.deleteMany({}, function(err) {
+  Post.deleteMany({}, function (err) {
     if (err) {
       console.log(err);
     } else {
@@ -135,20 +135,20 @@ exports.fetch_all = (req, res, next) => {
   Post.find()
     .select("title content _id")
     .exec()
-    .then(docs => {
+    .then((docs) => {
       const response = {
         count: docs.length,
-        posts: docs.map(doc => {
+        posts: docs.map((doc) => {
           return {
             title: doc.title,
             content: doc.content,
             _id: doc._id,
             request: {
               type: "GET",
-              url: `${global.baseUrl}/post/${doc._id}`
-            }
+              url: `${global.baseUrl}/post/${doc._id}`,
+            },
           };
-        })
+        }),
       };
       //   if (docs.length >= 0) {
       res.status(200).json(response);
@@ -158,10 +158,10 @@ exports.fetch_all = (req, res, next) => {
       //       });
       //   }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json({
-        error: err
+        error: err,
       });
     });
 };
@@ -171,14 +171,14 @@ exports.get_post = (req, res, next) => {
   Post.findById(id)
     // .select("title content _id")
     .exec()
-    .then(doc => {
+    .then((doc) => {
       if (doc) {
         res.status(200).json({
           post: doc,
           request: {
             type: "GET",
-            url: `${global.baseUrl}/post/${doc._id}`
-          }
+            url: `${global.baseUrl}/post/${doc._id}`,
+          },
         });
       } else {
         res
@@ -186,7 +186,7 @@ exports.get_post = (req, res, next) => {
           .json({ message: "No valid entry found for provided ID" });
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json({ error: err });
     });
@@ -200,19 +200,19 @@ exports.update_post = (req, res, next) => {
   }
   Post.update({ _id: id }, { $set: updateOps })
     .exec()
-    .then(result => {
+    .then((result) => {
       res.status(200).json({
         message: "Post updated",
         request: {
           type: "GET",
-          url: "http://localhost:3000/post" + id
-        }
+          url: "http://localhost:3000/post" + id,
+        },
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json({
-        error: err
+        error: err,
       });
     });
 };
@@ -221,20 +221,20 @@ exports.post_delete = (req, res, next) => {
   const id = req.params.postId;
   Post.remove({ _id: id })
     .exec()
-    .then(result => {
+    .then((result) => {
       res.status(200).json({
         message: "Post deleted",
         request: {
           type: "POST",
           url: `${global.baseUrl}/post/`,
-          body: { title: "String", content: "Number" }
-        }
+          body: { title: "String", content: "Number" },
+        },
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json({
-        error: err
+        error: err,
       });
     });
 };

@@ -15,6 +15,8 @@ mongoose.connect("mongodb://localhost:27017", {
 
 const postRouter = require("./api/routes/post");
 const fileRouter = require("./api/routes/file");
+const commentRouter = require("./api/routes/comment");
+const userRouter = require("./api/routes/user");
 
 const morgan = require("morgan"); 
 
@@ -55,7 +57,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/post", postRouter);
 app.use("/file", fileRouter);
-
+app.use("/comment", commentRouter);
+app.use("/user", userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

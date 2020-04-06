@@ -1,16 +1,27 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-const PrimaryBtn = props => (
+const PrimaryBtn = (props) => (
   <button
-    className={
-      "button-primary " + (props.extraClass ? props.extraClass : "")
-    }
+    className={"button-primary " + (props.extraClass ? props.extraClass : "")}
     type="submit"
-    // handleSubmit={props.handleSubmit}
   >
     {props.text}
   </button>
 );
 
-export { PrimaryBtn };
+const SecondaryBtn =  props => {
+  return (
+    <button
+      className={
+        "button-secondary " +
+        (props.extraClass ? props.extraClass : "") +
+        (props.type == "small" ? " button-secondary--small" : "")
+      }
+      type="submit"
+    >
+      {props.text}
+    </button>
+  );
+};
+export { PrimaryBtn, SecondaryBtn };

@@ -1,0 +1,24 @@
+.comment {
+  padding: 10px;
+  &-creator {
+    display: flex;
+
+    &__avatar {
+      border-radius: 50%;
+      max-width: 30px;
+      margin-right: 10px;
+    }
+    &__content {
+      margin-bottom:5px !important;
+      &-wrap {
+        width: calc(100% - 40px);
+      }
+    }
+    &__action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+  }
+}
