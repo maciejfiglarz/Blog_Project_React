@@ -13,28 +13,38 @@ const register = async (params) => {
 
   if (result.status) {
     return { type: userConstants.LOGIN_SUCCESS, payload: request };
-  } 
-
+  }
 
   return { type: userConstants.LOGIN_SUCCESS, payload: request };
 };
 
-const login =  async (params) => {
-  const result = await userServices.login(params);
-  const {success,token,user} = result;
-
-  console.log('result',result,success, userConstants.LOGIN_SUCCESS,);
-
-  if(success){
-    return { type: userConstants.LOGIN_SUCCESS, payload: {token,user} };
-  }
+const login = (params) => {
+  return (dispatch) => {
+    const { email, password } = params;
+    userServices.login(params).then((result) => {
+      const { data } = result;
+      const { loggedUser } = data;
+      console.log("data", data);
+      localStorage.setItem("user", JSON.stringify(loggedUser));
+      console.log("fn", userConstants.LOGIN_SUCCESS);
+      dispatch({
+        type: userConstants.LOGIN_SUCCESS,
+        payload: data,
+      });
+    });
+  };
 };
 
-const logout = () => {
-  const url = `${BACKEND_URL}/index.php?model=logout`;
-  axios.get(url);
+// const login = async (params) => {
+//   const result = await userServices.login(params);
+//   const { success, token, user } = result;
 
-  return { type: LOGIN_LOGOUT, payload: "request" };
+//   return { type: userConstants.LOGIN_SUCCESS, payload: { token, user } };
+// };
+
+const logout = () => {
+  userServices.logout();
+  return { type: userConstants.LOGOUT };
 };
 
 export const userActions = {

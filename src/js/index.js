@@ -1,25 +1,37 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import {Provider} from 'react-redux'
-import {createStore, applyMiddleware} from 'redux'
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 
-import promise from 'redux-promise';
-import '../scss/main.scss'
+import "../scss/main.scss";
 
-import App from './components/app';
-import reducers from './reducers';
+import App from "./components/app";
+import reducers from "./reducers";
 
 // import createBrowserHistory from "history/createBrowserHistory"; const
 // history = createBrowserHistory()
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
-document.addEventListener('DOMContentLoaded', function () {
+// const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
-    ReactDOM.render(
-        <Provider store={createStoreWithMiddleware(reducers)}>
-        <App/>
-    </Provider>
-    , document.getElementById('app'));
 
+const loggerMiddleware = createLogger();
+
+const store = createStore(
+    reducers,
+    applyMiddleware(
+        thunkMiddleware,
+        loggerMiddleware
+    )
+);
+
+document.addEventListener("DOMContentLoaded", function () {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById("app")
+  );
 });

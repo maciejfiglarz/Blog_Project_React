@@ -1,22 +1,39 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {logout} from './../../actions/users_action'
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { logout } from "./../../actions/users_action";
 
+import { userActions } from "./../../actions/users_action";
 
-import {Button} from '../../containers/buttons'
-import LoginFrame from './loginframe'
+import { Button } from "../../containers/buttons";
+import LoginFrame from "./loginframe";
 
-
-const Header = ()=>{
-    return (<header className={"header"}>
-
+const Header = (props) => {
+    const logout = () => {
+        props.logout();
+        window.location.reload();
+    }
+  return (
+    <header className="header">
+      {props.authentication && props.authentication.loggedIn && (
+        <div> 
+            {props.authentication.user.username}
+        <div onClick={logout}>Wyloguj</div>
+    </div>
+      )}
     </header>
-
-    );
+  );
+};
+const  mapStateToProps = (state) => {
+  const { authentication } = state;
+  return { authentication };
 }
 
-export default Header;
+const actionCreators = {
+  logout: userActions.logout,
+};
+
+export default connect(mapStateToProps, actionCreators)(Header);
 
 // class Header extends React.Component {
 
@@ -26,7 +43,7 @@ export default Header;
 //             .props
 //             .logout();
 //     }
-    
+
 //     renderUserPanel(data) {
 
 //         const {userId, userUsername, userEmail, userAvatar} = data;

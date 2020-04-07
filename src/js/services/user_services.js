@@ -11,11 +11,12 @@ const register = async (params) => {
 
 };
 
-const login = async (params) => {
+const login = (params) => {
 
-  let res = await axios.post(`${serverUrl}/user/login`, params);
-  let { data } = res;
-  return data ;
+  return axios.post(`${serverUrl}/user/login`, params);
+  // let { data } = res;
+  // console.log('data',data);
+  // return data ;
 
   // const { email, password } = data;
   // //sefsefse@w.pl
@@ -35,8 +36,13 @@ const login = async (params) => {
   // //   setCurrentUser(request);
 };
 
+const logout =() => {
+  // remove user from local storage to log user out
+  localStorage.removeItem('user');
+}
+
 export const userServices = {
   login,
-  // logout,
+  logout,
   register,
 };

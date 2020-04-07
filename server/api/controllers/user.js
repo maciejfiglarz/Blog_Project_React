@@ -3,23 +3,22 @@ const mongoose = require("mongoose");
 const User = require("./../models/user");
 const UserSession = require("./../models/userSession");
 
-
 exports.login = async (req, res, next) => {
   const { body } = req;
   const { password } = body;
-  let { email } = body; 
+  let { email } = body;
 
   if (!email) {
     return res.send({
       success: false,
-      message: "Error: Email name cannot be blank."
+      message: "Error: Email name cannot be blank.",
     });
   }
 
   if (!password) {
     return res.send({
       success: false,
-      message: "Error: Password name cannot be blank."
+      message: "Error: Password name cannot be blank.",
     });
   }
 
@@ -27,30 +26,29 @@ exports.login = async (req, res, next) => {
 
   User.find(
     {
-      email
+      email,
     },
     (err, users) => {
       if (err) {
         return res.send({
           success: false,
-          message: "Error: Server error #0."
+          message: "Error: Server error #0.",
         });
       }
-      console.log('users',users);
+      console.log("users", users);
       if (users.length != 1) {
         return res.send({
           success: false,
-          message: "Error: Invalid1"
+          message: "Error: Invalid1",
         });
       }
 
- 
       const user = users[0];
-  
+
       if (!user.validPassword(password)) {
         return res.send({
           success: false,
-          message: "Error: Invalid2"
+          message: "Error: Invalid2",
         });
       }
 
@@ -60,21 +58,19 @@ exports.login = async (req, res, next) => {
         if (err) {
           return res.send({
             success: false,
-            message: "Error: Server error #1."
+            message: "Error: Server error #1.",
           });
         }
 
         return res.send({
           success: true,
           message: "Valid sign in.",
-          token: doc._id,
-          user
+          loggedUser: { username: user.username, token:  doc._id },
         });
       });
     }
   );
 };
-
 
 exports.register = async (req, res, next) => {
   const { body } = req;
@@ -153,7 +149,7 @@ exports.fetch_all = (req, res, next) => {
         count: docs.length,
         posts: docs.map((doc) => {
           return {
-           user : doc,
+            user: doc,
             request: {
               type: "GET",
               url: `${global.baseUrl}/post/${doc._id}`,

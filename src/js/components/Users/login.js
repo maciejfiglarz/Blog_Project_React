@@ -6,14 +6,14 @@ import { userActions } from "./../../actions/users_action";
 import { login } from "./../../services/user_services";
 
 
-const Login = () => {
+const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const onSubmit = (event) => {
     event.preventDefault();
     console.log('sub');
-    userActions.login({ email, password });
+    props.login({ email, password });
   };
 
   
@@ -53,8 +53,7 @@ const mapStateToProps = (state) => {
 };
 
 const actionCreators = {
-  // login: userActions.login,
-  // logout: userActions.logout,
+  login: userActions.login,
 };
 
 export default connect(mapStateToProps, actionCreators)(Login);
