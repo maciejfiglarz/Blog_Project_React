@@ -10,7 +10,7 @@ const PrimaryBtn = (props) => (
   </button>
 );
 
-const SecondaryBtn =  props => {
+const SecondaryBtn = (props) => {
   return (
     <button
       className={
@@ -24,4 +24,17 @@ const SecondaryBtn =  props => {
     </button>
   );
 };
-export { PrimaryBtn, SecondaryBtn };
+
+const LoginBtn = (props) => (
+  <button className="button-primary button-login" onClick={props.onClick}>
+    {props.text}
+  </button>
+);
+
+const RegisterBtn = (props) => (
+  <button className="button-secondary button-register" onClick={props.onClick}>
+    {props.text}
+  </button>
+);
+
+export { PrimaryBtn, SecondaryBtn, LoginBtn, RegisterBtn };

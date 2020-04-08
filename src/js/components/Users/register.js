@@ -1,30 +1,26 @@
 import React, { useState } from "react";
 import { PrimaryBtn } from "../../containers/buttons";
-// import { register } from "./../../services/user_services.js";
-// import { register } from "./../../actions/users_action";
+
 import { NavLink } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-import  {userActions}  from './../../actions/users_action';
+import { userActions } from "./../../actions/user_action";
 
-const Register = () => {
+const Register = (props) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    console.log('ua',userActions);
-    console.log(
-      "xxxxx",
-      userActions.register({ username, email, password, passwordConfirmation })
-    );
+  const onSubmit = (event) => {
+    event.preventDefault();
+      props.register({ username, email, password, passwordConfirmation })
   };
 
   return (
-    <form className="form-default container-small" onSubmit={onSubmit}>
+    <form className="auth container-small" onSubmit={onSubmit}>
+      <h1 className="auth-title">Załóż konto</h1>
       <input
         onChange={(e) => setUsername(e.target.value)}
         className="input__text-regular"
@@ -58,8 +54,8 @@ const Register = () => {
       />
 
       <PrimaryBtn text={"Załóż konto"} />
-      <div className="form-default">
-        Posiadasz już konto? Możesz zalogować się tutaj{" "}
+      <div className="auth-footer">
+        Posiadasz już konto? Możesz zalogować się
         <NavLink to="/logowanie">tutaj.</NavLink>
       </div>
     </form>
@@ -67,9 +63,9 @@ const Register = () => {
 };
 
 const mapState = (state) => {
-    console.log('state',state);
-  const { registration } = state.registration;
-  return { registration };
+  console.log("state", state);
+  const { registration,alert } = state.registration;
+  return { registration,alert };
 };
 
 const actionCreators = {
@@ -77,5 +73,3 @@ const actionCreators = {
 };
 
 export default connect(mapState, actionCreators)(Register);
-
-

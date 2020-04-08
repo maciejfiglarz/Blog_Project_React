@@ -6,15 +6,7 @@ const PostController = require("../controllers/post");
 
 
 router.get("/destroy",PostController.destroy_all);
-exports.destroy_all = (req, res, next) => {
-    Post.deleteMany({}, function(err) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.end("success");
-      }
-    });
-  };
+
 
 router.post("/photo-temponary", PostController.upload_photo_temponary);
 

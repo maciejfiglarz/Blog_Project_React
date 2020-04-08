@@ -19,7 +19,7 @@ export const useFetch = url => {
 
   export const useFetchIndex = (url,page) => {
     const [state, setState] = useState({ data: [], loading: true });
-  console.log('url',url);
+
     useEffect(() => {
       setState(state => ({ data: state.data, loading: true }));
       fetch(url)

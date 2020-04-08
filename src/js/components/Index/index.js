@@ -13,12 +13,10 @@ const Index = props => {
   );
   const [state, setState] = useState([]);
 
-console.log('data',state);
   
   return (
     <div className="container">
       <Creator />
-
       <InfiniteList state={state} setState={setState} />
     </div>
   );

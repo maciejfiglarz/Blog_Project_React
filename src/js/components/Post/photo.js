@@ -6,7 +6,7 @@ const ContentPhoto = props => {
   const photo = post.photo;
 
   const imageUrl = `${serverUrl}/file/post-temponary/${photo}`;
-  console.log('url',imageUrl);
+
   const imageStyle = {
     backgroundImage: `url('${imageUrl}')`,
     backgroundSize: "cover",

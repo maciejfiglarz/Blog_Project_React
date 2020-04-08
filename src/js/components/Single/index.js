@@ -7,7 +7,7 @@ const Single = props => {
     // let { id } = useParams();
     let id = props.match.params.id;
     const { data, loading } = useFetch(`${domainUrl}posts/${id}`);
-    console.log('post',data,`${domainUrl}posts/${id}`,loading);
+    // console.log('post',data,`${domainUrl}posts/${id}`,loading);
     return (
         <div className="container">
             {data ? <Post key={id} post={data}/>:''}

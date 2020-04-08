@@ -1,6 +1,8 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+
+import { history } from "./../helper/history";
 
 import GlobalState from "../context/global-context";
 
@@ -13,29 +15,34 @@ import Login from "./Users/login";
 import Register from "./Users/register";
 import Footer from "./Footer";
 
-import { PrivateRoute } from './PrivateRoute';
+import { PrivateRoute } from "./PrivateRoute";
 
 import { setCurrentUser } from "./../";
 
 const App = () => {
-
-  // localStorage.removeItem('user');
+  // history.listen((location, action) => {
+  //   // clear alert on location change
+  //   // props.clearAlerts();
+  // });
 
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
+    <Router history={history}>
       <GlobalState>
         <Header />
-        
-        <Switch>
-          <Route exact path="/" component={Index} />
-          <PrivateRoute exact path="/profil" component={Profile} />
-          <Route exact path="/zaloguj-sie" component={Login} />
-          <Route exact path="/zaloz-konto" component={Register} />
-          <Route exact path="/status/:id" component={Single} />
-        </Switch>
+        <div className="content">
+          <Switch>
+            <Route exact path="/" component={Index} />
+            <PrivateRoute exact path="/profil" component={Profile} />
+            <Route exact path="/zaloguj-sie" component={Login} />
+            <Route exact path="/zaloz-konto" component={Register} />
+            <Route exact path="/status/:id" component={Single} />
+          </Switch>
+        </div>
         <Footer />
       </GlobalState>
-    </BrowserRouter>
+      {/* </BrowserRouter> */}
+    </Router>
   );
 };
 

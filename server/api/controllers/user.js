@@ -11,14 +11,14 @@ exports.login = async (req, res, next) => {
   if (!email) {
     return res.send({
       success: false,
-      message: "Error: Email name cannot be blank.",
+      message: "Musisz podać email i hasło",
     });
   }
 
   if (!password) {
     return res.send({
       success: false,
-      message: "Error: Password name cannot be blank.",
+      message: "Musisz podać email i hasło",
     });
   }
 
@@ -32,14 +32,13 @@ exports.login = async (req, res, next) => {
       if (err) {
         return res.send({
           success: false,
-          message: "Error: Server error #0.",
+          message: "Błąd serwera. Spróbuj ponownie.",
         });
       }
-      console.log("users", users);
       if (users.length != 1) {
         return res.send({
           success: false,
-          message: "Error: Invalid1",
+          message: "Podane email lub hasło są niepoprawne",
         });
       }
 
@@ -48,7 +47,7 @@ exports.login = async (req, res, next) => {
       if (!user.validPassword(password)) {
         return res.send({
           success: false,
-          message: "Error: Invalid2",
+          message: "Podane email lub hasło są niepoprawne",
         });
       }
 
@@ -58,14 +57,14 @@ exports.login = async (req, res, next) => {
         if (err) {
           return res.send({
             success: false,
-            message: "Error: Server error #1.",
+            message: "Błąd serwera. Spróbuj ponownie.",
           });
         }
 
         return res.send({
           success: true,
-          message: "Valid sign in.",
-          loggedUser: { username: user.username, token:  doc._id },
+          message: "OK!",
+          loggedUser: { username: user.username, token: doc._id },
         });
       });
     }
@@ -131,12 +130,42 @@ exports.register = async (req, res, next) => {
           message: "Błąd serwera.",
         });
       }
-      return res.send({
-        success: true,
-        message: "Udało się!",
-        user: user,
+
+
+
+      let userSession = new UserSession();
+      userSession.userId = user._id;
+      userSession.save((err, doc) => {
+        if (err) {
+          return res.send({
+            success: false,
+            message: "Błąd serwera. Spróbuj ponownie.",
+          });
+        }
+
+        return res.send({
+          success: true,
+          message: "OK!",
+          loggedUser: { username: user.username, token: doc._id },
+        });
       });
+
+      
+      // return res.send({
+      //   success: true,
+      //   message: "Udało się!",
+      //   user: user,
+      // });
+
+
+
+
     });
+
+
+
+
+
   });
 };
 

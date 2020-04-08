@@ -5,6 +5,9 @@ $width-desktop: 1040px;
 $width-max: 700px;
 $width-max-small: 500px;
 
+$color-success: #009542;
+$color-error: #d9002b;
+
 $color-primary:#ffae00; 
 $color-basic-dark:#030303;
 $color-basic-middle:#1a1a1b;
@@ -23,6 +26,7 @@ $color-link-hover:#818384;
 $color-placeholder: #bababa;
 
 $border-radius: 3px;
+
 
 @mixin desktop() {
     @media (max-width: #{$width-tablet}) and  (min-width: #{$width-desktop}) {

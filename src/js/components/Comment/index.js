@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "./../../actions/users_action";
+import { logout } from "./../../actions/user_action";
 
 import { serverUrl } from "./../../constants/types";
 

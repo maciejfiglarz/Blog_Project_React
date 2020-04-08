@@ -1,8 +1,14 @@
 import { userConstants } from "./../constants/user_constants";
 
-let user = JSON.parse(localStorage.getItem("user"));
-const initialState = user ? { loggedIn: true, user } : {};
-console.log("initialState", initialState, user);
+console.log("userinit", localStorage.getItem("user"));
+let userLocal = localStorage.getItem("user");
+let initialState = { loggedIn: false, user: {} };
+
+if (userLocal && userLocal != undefined && userLocal != "undefined") {
+  let userJson = JSON.parse(userLocal);
+  console.log("userJson", userJson);
+  initialState = { loggedIn: true, user: userJson };
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -17,9 +23,12 @@ export default (state = initialState, action) => {
         user: action.user,
       };
     case userConstants.LOGIN_FAILURE:
-      return {};
-    case userConstants.LOGOUT:
-      return {};
+      return { loggedIn: false, user: {} };
+    case userConstants.LOGIN_LOGOUT:
+      return {
+        loggingIn: false,
+        user: {},
+      };
     default:
       return state;
   }

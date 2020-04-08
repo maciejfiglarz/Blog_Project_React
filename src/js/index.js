@@ -27,6 +27,8 @@ const store = createStore(
     )
 );
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
   ReactDOM.render(
     <Provider store={store}>

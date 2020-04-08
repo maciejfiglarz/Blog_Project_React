@@ -18,7 +18,7 @@ const Post = props => {
   // if (loading) {
   //   loader = <Loader extraClass={"post__loader"} />;
   // }
-console.log('post',post);
+
   return (
     <article className="post">
       <PostHeader />

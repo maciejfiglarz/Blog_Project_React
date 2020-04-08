@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { PrimaryBtn } from "../../containers/buttons";
 import { connect } from "react-redux";
-import { userActions } from "./../../actions/users_action";
 
-import { login } from "./../../services/user_services";
+import { userActions } from "./../../actions/user_action";
 
+import { Message } from "./../../containers/message";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -12,44 +13,43 @@ const Login = (props) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log('sub');
     props.login({ email, password });
   };
 
-  
-
+  const { alert } = props;
   return (
-    <div>
+    <form className="auth container-small" onSubmit={onSubmit}>
+      <h1 className="auth-title">Zaloguj się</h1>
+      {alert.message && <Message alert={alert} />}
+      <input
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
+        className="input__text-regular"
+        type="email"
+        name="email"
+        placeholder="Email"
+      />
+      <input
+        onChange={(e) => setPassword(e.target.value)}
+        value={password}
+        className="input__text-regular"
+        type="password"
+        name="password"
+        placeholder="Hasło"
+      />
 
-      <form className="form-default container-small" onSubmit={onSubmit}>
-        <h1 className="form-default__h1">Zaloguj!</h1>
-        <input
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          className="input__text-regular"
-          type="email"
-          name="email"
-          placeholder="Email"
-        />
-
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          className="input__text-regular"
-          type="password"
-          name="password"
-          placeholder="Hasło"
-        />
-
-        <PrimaryBtn text={"Zaloguj"} />
-      </form>
-    </div>
+      <PrimaryBtn text={"Zaloguj"} />
+      <div className="auth-footer">
+        Nie masz konta? Możesz założyć je
+        <NavLink to="/zaloz-konto">tutaj.</NavLink>
+      </div>
+    </form>
   );
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
-  return { user: state.user };
+  const { user, alert } = state;
+  return { user, alert };
 };
 
 const actionCreators = {

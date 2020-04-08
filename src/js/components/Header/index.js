@@ -1,33 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "./../../actions/users_action";
+import { logout } from "../../actions/user_action";
 
-import { userActions } from "./../../actions/users_action";
+import { userActions } from "../../actions/user_action";
 
-import { Button } from "../../containers/buttons";
+import Menu from "./menu";
+
+import {
+  RegisterBtn,
+  LoginBtn,
+  PrimaryBtn,
+  SecondaryBtn,
+} from "../../containers/buttons";
+import { history } from "./../../helper/history";
 import LoginFrame from "./loginframe";
 
+import logo from "./../../../images/logo.png";
+
 const Header = (props) => {
-    const logout = () => {
-        props.logout();
-        window.location.reload();
-    }
+  const [isMenu, setIsMenu] = useState(false);
+  const logout = () => {
+    props.logout();
+    window.location.reload();
+  };
+  const onClickMenu = () => {
+      setIsMenu(!isMenu);
+  };
+  console.log("headerAuth", props.authentication);
   return (
-    <header className="header">
-      {props.authentication && props.authentication.loggedIn && (
-        <div> 
-            {props.authentication.user.username}
-        <div onClick={logout}>Wyloguj</div>
-    </div>
-      )}
-    </header>
+    <React.Fragment>
+      <header className="header">
+        <div className="header-container container-full">
+          <div className="header-logo">
+            <img src={logo} />
+          </div>
+
+          <div onClick={onClickMenu} className="header-menu__init">
+            <i className={ isMenu ? "fas fa-times" : "fas fa-bars"}></i>
+          </div>
+
+          {/* <div className="header-label">
+          {props.authentication.loggedIn && (
+            <div>
+              {props.authentication.user.username}
+              <div onClick={logout}>Wyloguj</div>
+            </div>
+          )}
+          {!props.authentication.loggedIn && (
+            <div>
+              <LoginBtn onClick={onClickLogin} text={"Zaloguj się"} />
+              <RegisterBtn onClick={onClickLogin} text={"Załóż konto"}/>
+            </div>
+          )}
+        </div> */}
+        </div>
+      </header>
+      <Menu isMenu={isMenu} setIsMenu={setIsMenu} />
+    </React.Fragment>
   );
 };
-const  mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
+  console.log("state", state);
   const { authentication } = state;
   return { authentication };
-}
+};
 
 const actionCreators = {
   logout: userActions.logout,

@@ -20,6 +20,23 @@
   }
 }
 
+.message {
+  width: 97%;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  border-radius: $border-radius;
+  margin: 5px 0;
+  padding: 2px;
+  font-size: 1.2rem;
+  &-error {
+    background: $color-error;
+  }
+  &-success {
+    background: $color-success;
+  }
+}
+
 .inputfile {
   width: 0.1px;
   height: 0.1px;
