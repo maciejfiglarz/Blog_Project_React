@@ -5,6 +5,8 @@ import Post from "./../components/Post";
 import axios from "axios";
 import { serverUrl } from "./../constants/types";
 
+import { postActions } from "../actions/post_action";
+
 const InfiniteList = (props) => {
   const [loadMore, setLoadMore] = useState(true);
   const [page, setPage] = useState(0);
@@ -29,8 +31,6 @@ const InfiniteList = (props) => {
 
   const getData = (load) => {
     if (load) {
-      console.log("load", page);
-      console.log(`${serverUrl}/post/pagination/page-${page}`);
       axios.get(`${serverUrl}/post/pagination/page-${page}`).then((res) => {
         props.setState([...props.state, ...res.data]);
       });
@@ -40,7 +40,10 @@ const InfiniteList = (props) => {
   return (
     <ul id="list">
       {props.state.map((post) => (
-        <Post key={post._id} post={post} />
+        // <Link to={`/status/${post._id}`}>
+    
+          <Post key={post._id} post={post} />
+        // </Link>
       ))}
     </ul>
   );

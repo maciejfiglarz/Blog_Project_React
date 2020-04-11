@@ -17,6 +17,7 @@ const postRouter = require("./api/routes/post");
 const fileRouter = require("./api/routes/file");
 const commentRouter = require("./api/routes/comment");
 const userRouter = require("./api/routes/user");
+const voteRouter = require("./api/routes/vote");
 
 const morgan = require("morgan"); 
 
@@ -59,6 +60,7 @@ app.use("/post", postRouter);
 app.use("/file", fileRouter);
 app.use("/comment", commentRouter);
 app.use("/user", userRouter);
+app.use("/vote", voteRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import  PostsReducer  from "./posts_reducers";
+import  PostsReducer  from "./post_reducers";
 import UserReducer from './user_reducers';
 import RegistrationReducer  from "./registration_reducers";
 import AuthenticationReducer  from "./authentication_reducers";

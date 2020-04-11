@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { PrimaryBtn } from "../../containers/buttons";
-
 import { NavLink } from "react-router-dom";
-
 import { connect } from "react-redux";
-
+import { Message } from "./../../containers/message";
 import { userActions } from "./../../actions/user_action";
 
 const Register = (props) => {
@@ -15,12 +13,13 @@ const Register = (props) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-      props.register({ username, email, password, passwordConfirmation })
+    props.register({ username, email, password, passwordConfirmation });
   };
-
+  const { alert } = props;
   return (
     <form className="auth container-small" onSubmit={onSubmit}>
       <h1 className="auth-title">Załóż konto</h1>
+      {alert.message && <Message alert={alert} />}
       <input
         onChange={(e) => setUsername(e.target.value)}
         className="input__text-regular"
@@ -64,8 +63,8 @@ const Register = (props) => {
 
 const mapState = (state) => {
   console.log("state", state);
-  const { registration,alert } = state.registration;
-  return { registration,alert };
+  const { registration, alert } = state;
+  return { registration, alert };
 };
 
 const actionCreators = {

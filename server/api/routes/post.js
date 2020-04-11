@@ -22,6 +22,7 @@ router.post("/link",PostController.get_link_info);
 
 
 
+
 // router.patch("/:postId", PostController.post_update);
 
 // router.delete("/:postId", PostController.post_delete);

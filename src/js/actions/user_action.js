@@ -1,37 +1,27 @@
 import React from "react";
-import { Redirect } from "react-router";
-
 import alertActions from "./alert_action";
 
 import { userConstants } from "../constants/user_constants";
-import { alertConstants } from "../constants/user_constants";
-
 import { userServices } from "../services/user_services";
 
 import { history } from "../helper/history";
 
 const register = (params) => {
-  // const result = await userServices.register(data);
-
-  // if (result.status) {
-  //   return { type: userConstants.LOGIN_SUCCESS, payload: request };
-  // }
-
-  // return { type: userConstants.LOGIN_SUCCESS, payload: request };
 
   return (dispatch) => {
     userServices.register(params).then((result) => {
       const { data } = result;
       const { loggedUser, success } = data;
-      console.log("dataRegister", data);
+      console.log('dataReg',data);
       if (success) {
         localStorage.setItem("user", JSON.stringify(loggedUser));
         dispatch({
           type: userConstants.LOGIN_SUCCESS,
           payload: data,
         });
-        history.push("/");
+        history.push(`/profil/${loggedUser.id}`);
       } else {
+        dispatch(alertActions.error(data.message.toString()));
       }
     });
   };

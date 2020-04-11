@@ -1,14 +1,10 @@
-import {domainUrl} from "./../constants/types";
-import axios from 'axios'
-export const insertPost = (imageID,description) => {
-   axios.post('http://localhost:3000/posts', {
-    // id: 6,
-    author: "typicode2",
-    description: description,
-    imageID: imageID
-}).then(resp => {
-    console.log(resp.data);
-}).catch(error => {
-    console.log(error);
-});  
+import axios from "axios";
+import { serverUrl } from "./../constants/types";
+
+const fetchPagination = async (params) => {
+  return await axios.post(`${serverUrl}/user/register`, params);
+};
+
+export const postServices = {
+  fetchPagination,
 };

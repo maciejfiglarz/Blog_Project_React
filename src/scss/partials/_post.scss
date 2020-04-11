@@ -3,8 +3,8 @@
   background: $color-basic-middle;
   margin-bottom: 30px;
 
-  &-header{
-    padding:10px;
+  &-header {
+    padding: 10px;
   }
 
   &-content {
@@ -47,23 +47,35 @@
     display: flex;
     justify-content: space-between;
     font-size: 1.3rem;
-    padding:10px;
+    padding: 10px;
     &__section {
       display: flex;
       &-item {
         display: flex;
         margin-right: 6px;
-        &:last-child{
+        &:last-child {
           margin-right: 0;
         }
-        i{
-          padding:4px;
-           font-size: 1.2rem;
+        i {
+          padding: 4px;
+          font-size: 1.2rem;
         }
       }
     }
     &__vote {
       display: flex;
+
+      &-item {
+        padding: 2px;
+        &--voted {
+          .post-action__vote-icon--up {
+            color: $color-success;
+          }
+          .post-action__vote-icon--down {
+            color: $color-error;
+          }
+        }
+      }
     }
   }
 }

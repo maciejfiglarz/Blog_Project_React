@@ -6,6 +6,7 @@ import { domainUrl } from "./../../constants/types";
 const Single = props => {
     // let { id } = useParams();
     let id = props.match.params.id;
+    console.log('id',id);
     const { data, loading } = useFetch(`${domainUrl}posts/${id}`);
     // console.log('post',data,`${domainUrl}posts/${id}`,loading);
     return (

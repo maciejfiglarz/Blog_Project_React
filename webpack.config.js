@@ -12,7 +12,7 @@ module.exports = {
     ],
     output: {
         filename: "out.js",
-        path: path.resolve(__dirname, "./dist")
+        path: path.resolve(__dirname, "/dist/")
         
     },
     devServer: {
@@ -21,7 +21,8 @@ module.exports = {
             'Access-Control-Allow-Origin': '*'
         },
         historyApiFallback: true,
-        contentBase: path.join(__dirname, '../'),
+        contentBase: path.join(__dirname, '/..'),
+        hot:true,
         port: 3001
     },
     watch: true,

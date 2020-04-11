@@ -64,7 +64,7 @@ exports.login = async (req, res, next) => {
         return res.send({
           success: true,
           message: "OK!",
-          loggedUser: { username: user.username, token: doc._id },
+          loggedUser: { id: user._id, username: user.username, token: doc._id },
         });
       });
     }
@@ -79,21 +79,31 @@ exports.register = async (req, res, next) => {
   if (!username) {
     return res.send({
       success: false,
-      message: "Puste pole username",
+      message: "Musisz wybrać nazwę użytkownika",
     });
   }
 
   if (!email) {
     return res.send({
       success: false,
-      message: "Pusty adres email",
+      message: "Musisz podać email",
+    });
+  }
+
+
+  let reg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
+  if (!reg.test(email)) {
+    return res.send({
+      success: false,
+      message: "Adres email jest nieprawidłowy",
     });
   }
 
   if (!password) {
     return res.send({
       success: false,
-      message: "Puste hasło",
+      message: "Musisz wpisać hasło",
     });
   }
 
@@ -131,8 +141,6 @@ exports.register = async (req, res, next) => {
         });
       }
 
-
-
       let userSession = new UserSession();
       userSession.userId = user._id;
       userSession.save((err, doc) => {
@@ -145,27 +153,17 @@ exports.register = async (req, res, next) => {
 
         return res.send({
           success: true,
-          message: "OK!",
-          loggedUser: { username: user.username, token: doc._id },
+          message: "wszystko OK!",
+          loggedUser: { id: user._id, username: user.username, token: doc._id },
         });
       });
 
-      
       // return res.send({
       //   success: true,
       //   message: "Udało się!",
       //   user: user,
       // });
-
-
-
-
     });
-
-
-
-
-
   });
 };
 

@@ -5,7 +5,7 @@ export default (state = {}, action) => {
     case userConstants.SET_CURRENT_USER:
       return action.payload;
     case userConstants.LOGIN_SUCCESS:
-      return action.payload;
+      return { loggedIn: true, user: action.user };
     case userConstants.LOGIN_FAILURE:
       return { loggedIn: false, user: {} };
     case userConstants.LOGIN_LOGOUT:

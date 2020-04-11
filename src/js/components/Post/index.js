@@ -8,11 +8,11 @@ import ContentPhoto from "./photo";
 import ContentLink from "./link";
 
 import PostHeader from "./header";
-import PostAction from "./action";
+import PostAction from "./action/";
 
 import Comment from "./../Comment";
 
-const Post = props => {
+const Post = (props) => {
   const post = props.post;
   let loader = "";
   // if (loading) {

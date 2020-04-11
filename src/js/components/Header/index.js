@@ -25,7 +25,7 @@ const Header = (props) => {
     window.location.reload();
   };
   const onClickMenu = () => {
-      setIsMenu(!isMenu);
+    setIsMenu(!isMenu);
   };
   console.log("headerAuth", props.authentication);
   return (
@@ -36,15 +36,22 @@ const Header = (props) => {
             <img src={logo} />
           </div>
 
+          {props.authentication.loggedIn && (
+            <React.Fragment>
+              Zalogowany
+              <div onClick={logout}>Wyloguj</div>
+            </React.Fragment>
+          )}
+
           <div onClick={onClickMenu} className="header-menu__init">
-            <i className={ isMenu ? "fas fa-times" : "fas fa-bars"}></i>
+            <i className={isMenu ? "fas fa-times" : "fas fa-bars"}></i>
           </div>
 
           {/* <div className="header-label">
           {props.authentication.loggedIn && (
             <div>
               {props.authentication.user.username}
-              <div onClick={logout}>Wyloguj</div>
+             
             </div>
           )}
           {!props.authentication.loggedIn && (
@@ -56,7 +63,11 @@ const Header = (props) => {
         </div> */}
         </div>
       </header>
-      <Menu isMenu={isMenu} setIsMenu={setIsMenu} />
+      <Menu
+        isMenu={isMenu}
+        setIsMenu={setIsMenu}
+        authentication={props.authentication}
+      />
     </React.Fragment>
   );
 };

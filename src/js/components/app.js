@@ -33,10 +33,10 @@ const App = () => {
         <div className="content">
           <Switch>
             <Route exact path="/" component={Index} />
-            <PrivateRoute exact path="/profil" component={Profile} />
+            <PrivateRoute exact strict path="/profil/:id" component={Profile} />
             <Route exact path="/zaloguj-sie" component={Login} />
             <Route exact path="/zaloz-konto" component={Register} />
-            <Route exact path="/status/:id" component={Single} />
+            <Route exact strict path="/status/:id" component={Single} />
           </Switch>
         </div>
         <Footer />

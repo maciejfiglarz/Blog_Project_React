@@ -8,11 +8,13 @@ const Post = require("../models/post");
 const fileGetContents = require("file-get-contents");
 const domino = require("domino");
 
+const postServices = require("./../services/post");
+
 exports.pagination_post = async (req, res, next) => {
   const perPage = 5;
   // const page = Math.max(0, req.params.page);
   const page = parseInt(req.params.page);
-  console.log("page", page);
+
   await Post.find({})
     // .select("createdAt _id title description")
     .limit(perPage)
@@ -38,6 +40,7 @@ exports.create_post = (req, res, next) => {
     photo: req.body.photo,
     link: req.body.link,
     linkPhoto: req.body.linkPhoto,
+    voteNumber: 0,
   });
   post
     .save()
@@ -51,6 +54,7 @@ exports.create_post = (req, res, next) => {
         photo: result.photo,
         link: result.link,
         linkPhoto: result.linkPhoto,
+        voteNumber: result.voteNumber,
         request: {
           type: "GET",
           url: `${global.baseUrl}/post/${result._id}`,
