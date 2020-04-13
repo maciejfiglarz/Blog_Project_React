@@ -13,8 +13,9 @@ const postServices = require("./../services/post");
 exports.pagination_post = async (req, res, next) => {
   const perPage = 5;
   // const page = Math.max(0, req.params.page);
-  const page = parseInt(req.params.page);
-
+  const { body } = req;
+  const { page } = body;
+  console.log("page", page, perPage * page,req.body);
   await Post.find({})
     // .select("createdAt _id title description")
     .limit(perPage)
@@ -24,10 +25,28 @@ exports.pagination_post = async (req, res, next) => {
     })
     // .sort("-createdAt")
     .exec((err, results) => {
-      // console.log("results", results);
       res.status(201).json(results);
     });
 };
+
+exports.pagination_get = async (req, res, next) => {
+  const perPage = 5;
+  // const page = Math.max(0, req.params.page);
+  const page = req.params.page;
+  console.log("page", page, perPage * page,req.body);
+  await Post.find({})
+    // .select("createdAt _id title description")
+    .limit(perPage)
+    .skip(perPage * page)
+    .sort({
+      _id: "desc",
+    })
+    // .sort("-createdAt")
+    .exec((err, results) => {
+      res.status(201).json(results);
+    });
+};
+
 
 exports.create_post = (req, res, next) => {
   console.log("created");

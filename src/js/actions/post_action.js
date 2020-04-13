@@ -1,27 +1,42 @@
 import React from "react";
 import { Redirect } from "react-router";
 
-import alertActions from "./alert_action";
-
 import { postConstants } from "../constants/post_constants";
-import { alertConstants } from "../constants/user_constants";
 
-import { postServices } from "../services/user_services";
+import postServices from "../services/post_services";
 
-import { history } from "../helper/history";
+const fetchedSuccess = (items) => {
+  return {
+    type: postConstants.POSTS_FETCH_SUCCESS,
+    items,
+  };
+};
 
-const fetchPagination = (params) => {
+const loading = (bool) => {
+  return {
+    type: postConstants.POSTS_ARE_LOADING,
+    isLoading: bool,
+  };
+};
 
+const pagination = (page) => {
   return (dispatch) => {
-    postServices.register(params).then((result) => {
+    dispatch(loading(true));
+    postServices.pagination({ page }).then((result) => {
+      dispatch(loading(false));
       const { data } = result;
-      const { loggedUser, success } = data;
-      console.log('dataReg',data);
-      if (success) {
-      
-      } else {
-        // dispatch(alertActions.error(data.message.toString()));
-      }
+      // if (data.length > 0) {
+      dispatch({
+        type: postConstants.POSTS_FETCH_SUCCES,
+        payload: data,
+      });
+      // }
     });
   };
 };
+
+const userActions = {
+  pagination,
+};
+
+export default userActions;

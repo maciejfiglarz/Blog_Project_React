@@ -16,7 +16,10 @@ router.get("/:postId", PostController.get_post);
 
 router.post("/", PostController.create_post);
 
-router.get("/pagination/page-:page", PostController.pagination_post);
+router.post("/pagination", PostController.pagination_post);
+
+
+router.get("/pagination/page-:page", PostController.pagination_get);
 
 router.post("/link",PostController.get_link_info);
 

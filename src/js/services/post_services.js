@@ -1,10 +1,12 @@
 import axios from "axios";
 import { serverUrl } from "./../constants/types";
 
-const fetchPagination = async (params) => {
-  return await axios.post(`${serverUrl}/user/register`, params);
+const pagination = async (params) => {
+  return axios.post(`${serverUrl}/post/pagination`, params);
 };
 
-export const postServices = {
-  fetchPagination,
+const postServices = {
+  pagination 
 };
+
+export default postServices;

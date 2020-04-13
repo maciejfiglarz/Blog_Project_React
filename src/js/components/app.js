@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { history } from "./../helper/history";
 
@@ -17,7 +18,7 @@ import Footer from "./Footer";
 
 import { PrivateRoute } from "./PrivateRoute";
 
-import { setCurrentUser } from "./../";
+import { userActions } from "./../actions/user_action";
 
 const App = () => {
   // history.listen((location, action) => {
@@ -33,7 +34,8 @@ const App = () => {
         <div className="content">
           <Switch>
             <Route exact path="/" component={Index} />
-            <PrivateRoute exact strict path="/profil/:id" component={Profile} />
+            {/* <PrivateRoute exact strict path="/profil/:id" component={Profile} /> */}
+            <Route exact strict path="/profil" component={Profile} />
             <Route exact path="/zaloguj-sie" component={Login} />
             <Route exact path="/zaloz-konto" component={Register} />
             <Route exact strict path="/status/:id" component={Single} />

@@ -7,12 +7,11 @@ import { userServices } from "../services/user_services";
 import { history } from "../helper/history";
 
 const register = (params) => {
-
   return (dispatch) => {
     userServices.register(params).then((result) => {
       const { data } = result;
       const { loggedUser, success } = data;
-      console.log('dataReg',data);
+
       if (success) {
         localStorage.setItem("user", JSON.stringify(loggedUser));
         dispatch({
@@ -57,8 +56,17 @@ const logout = () => {
   };
 };
 
+const setInitialData = async (userId) => {
+  return (dispatch) => {
+    const preparedVotes = voteService.prepareVotesForUser(userId);
+    console.log('preparedPost',preparedVotes);
+    dispatch({ type: userConstants.FETCH_USER_VOTES, payload: preparedPostVotes });
+  };
+};
+
 export const userActions = {
   login,
   logout,
   register,
+  setInitialData,
 };

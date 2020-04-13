@@ -18,10 +18,7 @@ const InfiniteList = (props) => {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (
-        window.scrollY + window.innerHeight >
-        list.clientHeight + list.offsetTop
-      ) {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
         console.log("load");
         setPage(page + 1);
         setLoadMore(true);
@@ -41,8 +38,8 @@ const InfiniteList = (props) => {
     <ul id="list">
       {props.state.map((post) => (
         // <Link to={`/status/${post._id}`}>
-    
-          <Post key={post._id} post={post} />
+
+        <Post key={post._id} post={post} />
         // </Link>
       ))}
     </ul>
