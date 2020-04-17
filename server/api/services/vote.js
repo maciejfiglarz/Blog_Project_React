@@ -4,6 +4,7 @@ const Post = require("./../models/post");
 const mongoose = require("mongoose");
 
 class VoteService {
+  
   async prepareForUser(userId) {
     let preparedData = {};
     return Vote.find({ user: userId })
@@ -19,7 +20,6 @@ class VoteService {
   async vote(params) {
     const { postId, voteNumber } = params;
     let vote = await this.fetchIfExist(params);
-    // console.log("xxx", vote);
     if (!vote) {
       vote = new Vote();
       console.log("nie ma");

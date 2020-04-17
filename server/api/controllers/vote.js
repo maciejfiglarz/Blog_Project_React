@@ -15,7 +15,9 @@ exports.vote = (req, res, next) => {
 };
 
 exports.prepare_for_user = async (req, res, next) => {
-  const { id } = req.body;
+  const { user } = req.body;
+  const { id } = user;
+  
   const voteService = new VoteService();
   const preparedVotes = await voteService.prepareForUser(id);
 
