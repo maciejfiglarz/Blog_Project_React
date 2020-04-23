@@ -26,8 +26,12 @@ const validation = (params) => {
   const {
     title,
     content,
-    titlePost,
-    contentPost,
+
+    postTitle,
+    postContent,
+    postPhoto,
+    isPostPhotoActive,
+
     type,
     photo,
     youtube,
@@ -42,7 +46,13 @@ const validation = (params) => {
 
   switch (type) {
     case "post":
-      errors = validPost({ titlePost, contentPost, errors, photo });
+      errors = validPost({
+        postTitle,
+        postContent,
+        postPhoto,
+        isPostPhotoActive,
+        errors,
+      });
       break;
     case "link":
       errors = validLink({
@@ -63,19 +73,27 @@ const validation = (params) => {
 };
 
 const validPost = (params) => {
-  const { titlePost, contentPost, photo, errors } = params;
+  const {
+    postTitle,
+    postContent,
+    postPhoto,
+    isPostPhotoActive,
+    errors,
+  } = params;
   console.log("paramsValid", params);
-  if (isMinLength(titlePost, 0)) {
-    errors["titlePost"] = "Musisz wybrać tytuł";
+  if (isMinLength(postTitle, 0)) {
+    errors["postTitle"] = "Musisz wybrać tytuł";
   }
-  if (isMaxLength(titlePost, 255)) {
-    errors["titlePost"] = "Wybrany tytuł jest z długi";
+  if (isMaxLength(postTitle, 255)) {
+    errors["postTitle"] = "Wybrany tytuł jest z długi";
   }
-  if (isMinLength(photo, 0)) {
-    errors["photo"] = "Musisz dołączyć zdjęcie";
+  if (isPostPhotoActive) {
+    if (isMinLength(postPhoto, 0)) {
+      errors["postPhoto"] = "Musisz dołączyć zdjęcie";
+    }
   }
-  if (isMinLength(contentPost, 0)) {
-    errors["contentPost"] = "Musisz dołączyć opis";
+  if (isMinLength(postContent, 0)) {
+    errors["postContent"] = "Musisz dołączyć opis";
   }
 
   return errors;

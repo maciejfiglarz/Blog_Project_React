@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import CreatorMenu from "./menu";
 import CreatorBase from "./base";
 import CreatorPost from "./post";
-import CreatorPhoto from "./photo";
+import CreatorGraphic from "./graphic/index";
 import CreatorYoutube from "./youtube";
 import CreatorLink from "./link";
 import { Message } from "./../../containers/message";
@@ -16,11 +16,13 @@ import { Message } from "./../../containers/message";
 const Creator = (props) => {
   const [postId, setPostId] = useState();
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [graphicPhoto, setGraphicPhoto] = useState("");
+  const [graphicTitle, setGraphicTitle] = useState("");
+  const [graphicTitleTop, setGraphicTitleTop] = useState("");
+  const [graphicContent, setGraphicContent] = useState("");
 
-  const [titlePost, setTitlePost] = useState("");
-  const [contentPost, setContentPost] = useState("");
+  const [postTitle, setPostTitle] = useState("");
+  const [postContent, setPostContent] = useState("");
   const [postPhoto, setPostPhoto] = useState("");
   const [isPostPhotoActive, setIsPostPhotoActive] = useState(false);
 
@@ -46,9 +48,15 @@ const Creator = (props) => {
       title,
       content,
 
-      titlePost,
-      contentPost,
+      graphicPhoto,
+      graphicTitle,
+      graphicTitleTop,
+      graphicContent,
+
+      postTitle,
+      postContent,
       postPhoto,
+      isPostPhotoActive,
 
       type,
       photo,
@@ -70,15 +78,12 @@ const Creator = (props) => {
           <CreatorMenu setType={setType} />
 
           <div className="creator-switcher__content-wrap">
-            <div
-              data-name="post"
-              className="creator-switcher__content creator-switcher__content--active"
-            >
+            <div data-name="post" className="creator-switcher__content">
               <CreatorPost
-                setTitle={setTitlePost}
-                title={titlePost}
-                setContent={setContentPost}
-                content={contentPost}
+                setPostTitle={setPostTitle}
+                postTitle={postTitle}
+                setPostContent={setPostContent}
+                postContent={postContent}
                 alert={alert}
                 postPhoto={postPhoto}
                 setPostPhoto={setPostPhoto}
@@ -87,26 +92,24 @@ const Creator = (props) => {
               />
             </div>
 
-            <div data-name="photo" className="creator-switcher__content">
-              <CreatorPhoto alert={alert} setPhoto={setPhoto} photo={photo} />
-              <CreatorBase
-                setTitle={setTitle}
-                title={title}
-                setContent={setContent}
-                content={content}
+            <div
+              data-name="photo"
+              className="creator-switcher__content creator-switcher__content--active"
+            >
+              <CreatorGraphic
                 alert={alert}
+                setGraphicPhoto={setGraphicPhoto}
+                graphicPhoto={graphicPhoto}
+                graphicTitle={graphicTitle}
+                setGraphicTitle={graphicTitle}
+                graphicTitleTop={graphicTitleTop}
+                setGraphicContent={setGraphicContent}
+                graphicContent={graphicContent}
               />
             </div>
 
             <div data-name="youtube" className="creator-switcher__content">
               <CreatorYoutube setYoutube={setYoutube} youtube={youtube} />
-              <CreatorBase
-                setTitle={setTitle}
-                title={title}
-                setContent={setContent}
-                content={content}
-                alert={alert}
-              />
             </div>
 
             <div data-name="link" className="creator-switcher__content">

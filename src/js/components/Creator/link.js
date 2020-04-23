@@ -66,7 +66,7 @@ const CreatorLink = (props) => {
   };
 
   const { alert } = props;
-  console.log("alertxxx", alert);
+
   return (
     <React.Fragment>
       {error}

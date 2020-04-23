@@ -3,10 +3,11 @@ import { Button } from "./buttons";
 
 export const InputText = (props) => {
   const { onChange, className, placeholder, name, type } = props;
+  console.log('className',className);
   return (
     <input
       onChange={onChange}
-      className={"input-text-default " + className}
+      className={`input__text-regular  ${className}`}
       type={type}
       name={name}
       placeholder={placeholder}
@@ -37,14 +38,18 @@ export const TextArea = (props) => {
     height: props.height,
   };
   const { onChange, name, className, placeholder } = props;
-
+  const handleKeyDown = (e) => {
+    e.target.style.height = "inherit";
+    e.target.style.height = `${e.target.scrollHeight}px`;
+  };
   return (
     <div className="textarea-default-wrap">
       <textarea
         style={style}
         onChange={onChange}
         name={name}
-        className={"textarea-default" + className}
+        onKeyDown={handleKeyDown}
+        className={"input__text-regular creator-form__textarea" + className}
         placeholder={placeholder}
       />
     </div>
