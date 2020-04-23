@@ -1,19 +1,31 @@
-import axios from "axios";
-import { serverUrl } from "../constants/types";
+import API from "./../helper/api";
 
 const vote = (params) => {
-  return axios.post(`${serverUrl}/vote`, params);
+  return API.post(`/vote`, params);
 };
 
-const prepareVotesForUser = async (id) => {
-  return await axios
-    .post(`${serverUrl}/vote/prepare-for-user`, { id })
-    .then((result) => result.data);
+const prepareVotesForUser = async (user) => {
+  console.log('user',user);
+  return API.post(
+    `/vote/prepare-for-user`,
+    { user },
+    { headers: { Authorization: "Bearer " + user.token } }
+  );
 };
+const prepareVotesForUserTest = async (user) => {
+  
+  return API.post(
+    `/vote/prepare-for-user`,
+    { user },
+    { headers: { Authorization: "Bearer " + user.token } }
+  );
+};
+
 
 const voteService = {
   vote,
   prepareVotesForUser,
+  prepareVotesForUserTest,
 };
 
 export default voteService;

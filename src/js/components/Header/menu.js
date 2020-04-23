@@ -1,5 +1,8 @@
 import React from "react";
 import { history } from "./../../helper/history";
+import userActions from "./../../actions/user_action";
+import { connect } from "react-redux";
+import logo from "./../../../images/logo.png";
 
 const Menu = (props) => {
   const onClickLogin = () => {
@@ -13,30 +16,63 @@ const Menu = (props) => {
   const hideMenu = () => {
     props.setIsMenu(false);
   };
+  const logout = () => {
+    props.logout();
+    window.location.reload();
+  };
 
-  const isAuth = props.authentication.loggedIn;
-  const user = isAuth ? props.authentication.user : {};
-
+  const isLogged = props.user.isLogged;
+  console.log('props.user',props.user);
   return (
     <nav
       className={`header-menu ${props.isMenu ? "header-menu--visible" : ""}`}
     >
-      {isAuth && (
-        <div className="header-menu__user">
-          {/* {user.username} */}
-          
-        </div>
-      )}
+      <div onClick={hideMenu} className="header-menu__close">
+        <i className="fas fa-times"></i>
+      </div>
+
+      <div className="header-menu__logo">
+        <img src={logo} />
+      </div>
+
       <ul className="header-menu__list">
-        <li onClick={onClickLogin} className="header-menu__item">
-          <i className="fas fa-sign-in-alt"></i> Zaloguj się
-        </li>
-        <li onClick={onClickRegister} className="header-menu__item">
-          <i className="fas fa-user-plus"></i> Załóż konto
-        </li>
+        {isLogged && (
+          <React.Fragment>
+            <li onClick={logout} className="header-menu__item">
+              <i className="fas fa-sign-out-alt "></i> {props.user.username}
+              <i className="fas fa-caret-down header-menu__item-dropicon"></i>
+            </li>
+          </React.Fragment>
+        )}
+        {!isLogged && (
+          <React.Fragment>
+            <li onClick={onClickLogin} className="header-menu__item">
+              <i className="fas fa-sign-in-alt"></i> Zaloguj się
+            </li>
+            <li onClick={onClickRegister} className="header-menu__item">
+              <i className="fas fa-user-plus"></i> Załóż konto
+            </li>
+          </React.Fragment>
+        )}
+        {isLogged && (
+          <React.Fragment>
+            <li onClick={logout} className="header-menu__item">
+              <i className="fas fa-sign-out-alt"></i> Wyloguj
+            </li>
+          </React.Fragment>
+        )}
       </ul>
     </nav>
   );
 };
 
-export default Menu;
+const mapStateToProps = (state) => {
+  const { user } = state;
+  return {user};
+};
+
+const actionCreators = {
+  logout: userActions.logout,
+};
+
+export default connect(mapStateToProps, actionCreators)(Menu);

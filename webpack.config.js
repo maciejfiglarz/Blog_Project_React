@@ -63,7 +63,19 @@ module.exports = {
                         loader: 'sass-loader'
                     }
                 ]
-            }, {
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    }, {
+                        loader: 'css-loader'
+                    }
+                ]
+            },
+            
+            {
                 test: /\.(jpg|png|woff|woff2|eot|ttf|svg)$/,
                 loader: 'file-loader?limit=100000'
             }

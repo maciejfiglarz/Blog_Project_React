@@ -33,7 +33,7 @@ export const loginValidation = async(email, password) => {
 }
 
 export const addPostValidation = (props) => {
-    console.log('props', props);
+
     const {title, temponaryFile, describe, source, confirmation} = props;
     let errors = [];
     if (title.length > 255) {

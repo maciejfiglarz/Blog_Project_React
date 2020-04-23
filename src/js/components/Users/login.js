@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { PrimaryBtn } from "../../containers/buttons";
 import { connect } from "react-redux";
 
-import { userActions } from "./../../actions/user_action";
+import userActions  from "./../../actions/user_action";
 
 import { Message } from "./../../containers/message";
 

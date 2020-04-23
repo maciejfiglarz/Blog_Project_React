@@ -1,4 +1,4 @@
-const userSessionModel = require("./../models/userSession");
+const userSessionModel = require("./../models/user-session");
 
 class UserService {
   async findOneById(id) {

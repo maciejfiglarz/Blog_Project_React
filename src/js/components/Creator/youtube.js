@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { PrimaryBtn } from "../../containers/buttons";
 import { serverUrl, uploadsUrl } from "../../constants/types";
 import { Loader } from "../../containers/loader";
-import axios from "axios";
+
 
 const CreatorYoutube = props => {
   const [isLoaded, setLoaded] = useState();

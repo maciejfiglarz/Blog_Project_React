@@ -7,7 +7,7 @@ const Profile = props => {
     console.log('userID',id);
     return (
         <div className="container">
-         xxx  <InfinityList />
+           <InfinityList />
         </div>
     );
 

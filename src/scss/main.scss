@@ -1,31 +1,19 @@
-@import './modules/all';
-@import './partials/reset';
-@import './partials/base';
+@import './abstracts/_mixins.scss';
+@import './abstracts/_variables.scss';
 
-@import './partials/header';
+@import './base/reset';
 
-@import './partials/index';
-@import './partials/creator';
-@import './partials/header';
+@import './layout/base';
+@import './layout/header';
+@import './layout/form';
 
-@import './partials/post';
-@import './partials/comment';
+@import './pages/index';
+@import './pages/creator';
 
-@import './partials/loader';
-
-@import './partials/form';
-
-@import './partials/auth';
-
-
-
-@import './partials/buttons';
-@import './partials/choicer';
-
-// @import './partials/register';
-// @import './partials/add';
-// @import './partials/form';
-// @import './partials/buttons';
-
+@import './components/post';
+@import './components/comment';
+@import './components/auth';
+@import './components/loader';
+@import './components/buttons';
 
 

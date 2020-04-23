@@ -1,13 +1,12 @@
-import axios from "axios";
-import { serverUrl } from "./../constants/types";
-import { setCurrentUser } from "../actions/user_action";
+import API from "./../helper/api";
+
 
 const register = async (params) => {
-  return axios.post(`${serverUrl}/user/register`, params);
+  return API.post(`/user/register`, params);
 };
 
 const login = (params) => {
-  return axios.post(`${serverUrl}/user/login`, params);
+  return API.post(`/user/login`, params);
 };
 
 const logout = () => {

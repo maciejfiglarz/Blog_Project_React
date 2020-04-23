@@ -3,7 +3,7 @@ import { PrimaryBtn } from "../../containers/buttons";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { Message } from "./../../containers/message";
-import { userActions } from "./../../actions/user_action";
+import  userActions from "./../../actions/user_action";
 
 const Register = (props) => {
   const [username, setUsername] = useState("");
@@ -62,7 +62,7 @@ const Register = (props) => {
 };
 
 const mapState = (state) => {
-  console.log("state", state);
+
   const { registration, alert } = state;
   return { registration, alert };
 };

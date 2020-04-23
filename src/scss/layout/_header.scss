@@ -15,41 +15,65 @@
   &-menu {
     position: fixed;
     z-index: 999;
-    top: 50px;
+    top: 0;
     width: 100%;
     height: 100%;
     min-height: 100%;
     background: $color-basic-middle;
-    display:none;
+    display: none;
+    padding: 20px;
     &--visible {
-      display:block;
+      display: block;
     }
-
+    &__close {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      i {
+        font-size: 1.5rem;
+      }
+    }
+    &__logo {
+      text-align: center;
+      img {
+        max-width: 30px;
+      }
+    }
     &__user {
       padding: 10px 20px;
       font-size: 1.5rem;
-      color:white;
+      color: white;
     }
 
     &__init {
       font-size: 1.8rem;
-      cursor:pointer;
+      cursor: pointer;
+    }
+    &__list {
+      margin-top: 20px;
     }
 
     &__item {
-      padding: 5px;
-      font-size: 1.7rem;
-      font-weight: 400;
-      padding: 10px 20px;
-      color:white;
-      font-weight: 500;
-     
+      padding: 15px;
+      width: calc(100% + 40px);
+      position: relative;
+      left: -20px;
+      border-bottom: 1px solid $color-basic-light;
+      border-top: 1px solid $color-basic-light;
+      cursor: pointer;
+      font-size: 1.4rem;
       i {
-        font-size: 1.7rem;
+        font-size: 1.4rem;
         margin-right: 10px;
       }
+      &-dropicon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: all 0.3s;
+      }
     }
-
   }
   &-logo {
     position: relative;

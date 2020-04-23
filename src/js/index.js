@@ -8,7 +8,7 @@ import { createLogger } from 'redux-logger';
 import "../scss/main.scss";
 
 import App from "./components/app";
-import reducers from "./reducers";
+import reducers from "./store";
 
 // import createBrowserHistory from "history/createBrowserHistory"; const
 // history = createBrowserHistory()

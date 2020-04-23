@@ -2,7 +2,6 @@
   &-wrap {
     margin-bottom: 10px;
   }
-
   &__text {
     &-regular {
       background: $color-basic-light;
@@ -18,17 +17,89 @@
       overflow: hidden;
     }
   }
+
+  &-checkbox {
+    position: absolute; 
+    opacity: 0; 
+    &__wrap {
+      margin:12px 0;
+    }
+    & + label {
+      font-size:1.3rem;
+    }
+
+    & + label {
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    & + label:before {
+      content: "";
+      margin-right: 10px;
+      display: inline-block;
+      vertical-align: text-top;
+      width: 17px;
+      height: 17px;
+      background: $color-basic-light;
+    }
+
+    &:hover + label:before {
+      background: $color-primary;
+    }
+
+    &:focus + label:before {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+    }
+
+    &:checked + label:before {
+      background: $color-primary
+    }
+
+    &:disabled + label {
+      color: $color-text;
+      cursor: auto;
+    }
+
+    &:disabled + label:before {
+      box-shadow: none;
+      background: #ddd;
+    }
+
+    &:checked + label:after {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 7px;
+      background: white;
+      width: 2px;
+      height: 2px;
+      box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white,
+        4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+      transform: rotate(45deg);
+    }
+  }
 }
 
+// <label class="container">Two
+//   <input type="checkbox">
+//   <span class="checkmark"></span>
+// </label>
+
 .message {
-  width: 97%;
+  width: 94%;
   text-align: center;
   color: white;
   margin: 0 auto;
+  display: block;
   border-radius: $border-radius;
   margin: 5px 0;
   padding: 2px;
   font-size: 1.2rem;
+  &-wrap {
+    display: flex;
+    justify-content: center;
+  }
   &-error {
     background: $color-error;
   }

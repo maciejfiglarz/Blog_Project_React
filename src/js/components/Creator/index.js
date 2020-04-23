@@ -1,28 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router";
 
-import axios from "axios";
-
 import { PrimaryBtn } from "./../../containers/buttons";
-import { serverUrl } from "./../../constants/types";
+import postActions from "./../../store/post/action";
+import { connect } from "react-redux";
 
 import CreatorMenu from "./menu";
 import CreatorBase from "./base";
+import CreatorPost from "./post";
 import CreatorPhoto from "./photo";
 import CreatorYoutube from "./youtube";
 import CreatorLink from "./link";
+import { Message } from "./../../containers/message";
 
-const Creator = props => {
+const Creator = (props) => {
   const [postId, setPostId] = useState();
 
-  const [title, setTitle] = useState();
-  const [content, setContent] = useState();
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
-  const [photo, setPhoto] = useState();
-  const [youtube, setYoutube] = useState();
+  const [titlePost, setTitlePost] = useState("");
+  const [contentPost, setContentPost] = useState("");
+  const [postPhoto, setPostPhoto] = useState("");
+  const [isPostPhotoActive, setIsPostPhotoActive] = useState(false);
 
-  const [link, setLink] = useState();
-  const [linkPhoto, setLinkPhoto] = useState();
+  const [photo, setPhoto] = useState("");
+  const [youtube, setYoutube] = useState("");
+
+  const [link, setLink] = useState("");
+  const [linkPhoto, setLinkPhoto] = useState("");
+  const [linkTitle, setLinkTitle] = useState("");
+  const [linkContent, setLinkContent] = useState("");
 
   const [type, setType] = useState("post");
 
@@ -31,72 +39,109 @@ const Creator = props => {
     return <Redirect to="/" />;
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post(`${serverUrl}/post`, {
-        title: title,
-        content: content,
-        type: type,
-        photo: photo,
-        youtube,youtube,
-        link: link,
-        linkPhoto: linkPhoto
-      })
-      .then(resp => {
-        const id = resp.data._id;
-        setPostId(id);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+
+    props.create({
+      title,
+      content,
+
+      titlePost,
+      contentPost,
+      postPhoto,
+
+      type,
+      photo,
+      youtube,
+
+      link,
+      linkPhoto,
+      linkTitle,
+      linkContent,
+    });
   };
+  const { alert } = props;
 
   return (
-    <section className="creator">
-      <h1 className="creator-title">Dodaj {type}</h1>
+    <div className="container">
+      <section className="creator">
+        <h1 className="creator-title">Dodaj {type}</h1>
+        <form className="creator-form" onSubmit={handleSubmit}>
+          <CreatorMenu setType={setType} />
 
-      <form className="creator-form" onSubmit={handleSubmit}>
-        <CreatorMenu setType={setType} />
+          <div className="creator-switcher__content-wrap">
+            <div
+              data-name="post"
+              className="creator-switcher__content creator-switcher__content--active"
+            >
+              <CreatorPost
+                setTitle={setTitlePost}
+                title={titlePost}
+                setContent={setContentPost}
+                content={contentPost}
+                alert={alert}
+                postPhoto={postPhoto}
+                setPostPhoto={setPostPhoto}
+                setIsPostPhotoActive={setIsPostPhotoActive}
+                isPostPhotoActive={isPostPhotoActive}
+              />
+            </div>
 
-        <div className="creator-switcher__content-wrap">
-          <div
-            data-name="post"
-            className="creator-switcher__content creator-switcher__content--active"
-          ></div>
+            <div data-name="photo" className="creator-switcher__content">
+              <CreatorPhoto alert={alert} setPhoto={setPhoto} photo={photo} />
+              <CreatorBase
+                setTitle={setTitle}
+                title={title}
+                setContent={setContent}
+                content={content}
+                alert={alert}
+              />
+            </div>
 
-          <div data-name="photo" className="creator-switcher__content">
-            <CreatorPhoto setPhoto={setPhoto} photo={photo} />
-          </div>
+            <div data-name="youtube" className="creator-switcher__content">
+              <CreatorYoutube setYoutube={setYoutube} youtube={youtube} />
+              <CreatorBase
+                setTitle={setTitle}
+                title={title}
+                setContent={setContent}
+                content={content}
+                alert={alert}
+              />
+            </div>
 
-          <div data-name="youtube" className="creator-switcher__content">
-            <CreatorYoutube setYoutube={setYoutube} youtube={youtube} />
-          </div>
+            <div data-name="link" className="creator-switcher__content">
+              <CreatorLink
+                link={link}
+                setLink={setLink}
+                linkPhoto={linkPhoto}
+                setLinkPhoto={setLinkPhoto}
+                linkTitle={linkTitle}
+                setLinkTitle={setLinkTitle}
+                linkContent={linkContent}
+                setLinkContent={setLinkContent}
+                alert={alert}
+              />
+            </div>
 
-          <div data-name="link" className="creator-switcher__content">
-            <CreatorLink
-              link={link}
-              setLink={setLink}
-              linkPhoto={linkPhoto}
-              setLinkPhoto={setLinkPhoto}
+            <PrimaryBtn
+              extraClass="creator-form__button"
+              text="Dodaj"
+              handleSubmit={handleSubmit}
             />
           </div>
-          <CreatorBase
-            setTitle={setTitle}
-            title={title}
-            setContent={setContent}
-            content={content}
-          />
-
-          <PrimaryBtn
-            extraClass="creator-form__button"
-            text="Dodaj"
-            handleSubmit={handleSubmit}
-          />
-        </div>
-      </form>
-    </section>
+        </form>
+      </section>
+    </div>
   );
 };
 
-export default Creator;
+const mapStateToProps = (state) => {
+  const { user, posts, alert } = state;
+  return { user, posts, alert };
+};
+
+const actionCreators = {
+  create: postActions.create,
+};
+
+export default connect(mapStateToProps, actionCreators)(Creator);

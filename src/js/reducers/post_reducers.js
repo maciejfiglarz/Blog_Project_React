@@ -1,15 +1,21 @@
 import { postConstants } from "./../constants/post_constants";
 
-export default (state = {}, action) => {
+let initialState = {
+  data: {},
+  isLoading: false,
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case postConstants.POSTS_FETCH_SUCCES:
       const payload = action.payload;
       let newState = Object.assign({}, state);
       for (const key in payload) {
-        newState[payload[key]._id] = payload[key];
+        newState.data[payload[key]._id] = payload[key];
       }
-
-      return { ...state, ...newState };
+  
+      // return { data : { ...state.data, ...newState } };
+      return newState;
   }
   return state;
 };

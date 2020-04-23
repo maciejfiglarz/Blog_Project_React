@@ -6,6 +6,27 @@ import { userServices } from "../services/user_services";
 
 import { history } from "../helper/history";
 
+import voteService from "./../services/vote_service";
+
+const setInitialData = (user) => {
+  return (dispatch) => {
+
+    voteService
+      .prepareVotesForUser(user)
+      .then((result) => {
+        const { data } = result;
+        console.log("data", data);
+        dispatch({
+          type: userConstants.FETCH_USER_VOTES,
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        console.log('error',error);
+      });
+  };
+};
+
 const register = (params) => {
   return (dispatch) => {
     userServices.register(params).then((result) => {
@@ -56,17 +77,11 @@ const logout = () => {
   };
 };
 
-const setInitialData = async (userId) => {
-  return (dispatch) => {
-    const preparedVotes = voteService.prepareVotesForUser(userId);
-    console.log('preparedPost',preparedVotes);
-    dispatch({ type: userConstants.FETCH_USER_VOTES, payload: preparedPostVotes });
-  };
-};
-
-export const userActions = {
+const userActions = {
   login,
   logout,
   register,
   setInitialData,
 };
+
+export default userActions;

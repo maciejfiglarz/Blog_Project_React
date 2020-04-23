@@ -18,13 +18,16 @@ import Footer from "./Footer";
 
 import { PrivateRoute } from "./PrivateRoute";
 
-import { userActions } from "./../actions/user_action";
+import userThunks from "./../store/user/thunks";
+import Creator from "./Creator";
 
-const App = () => {
-  // history.listen((location, action) => {
-  //   // clear alert on location change
-  //   // props.clearAlerts();
-  // });
+const App = (props) => {
+  useEffect(() => {
+    const isLogged = props.user.isLogged;
+    if (isLogged) {
+      props.setInitialData(props.user);
+    }
+  }, [props.setInitialData]);
 
   return (
     // <BrowserRouter>
@@ -39,6 +42,7 @@ const App = () => {
             <Route exact path="/zaloguj-sie" component={Login} />
             <Route exact path="/zaloz-konto" component={Register} />
             <Route exact strict path="/status/:id" component={Single} />
+            <Route exact strict path="/dodaj" component={Creator} />
           </Switch>
         </div>
         <Footer />
@@ -49,7 +53,12 @@ const App = () => {
 };
 
 const mapStateToProps = (state) => {
-  return { user: state.user };
+  const { user } = state;
+  return { user };
 };
 
-export default connect(mapStateToProps)(App);
+const actionCreators = {
+  setInitialData: userThunks.setInitialData,
+};
+
+export default connect(mapStateToProps, actionCreators)(App);

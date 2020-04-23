@@ -6,34 +6,30 @@ const path = require("path");
 const Post = require("../models/post");
 
 const fileGetContents = require("file-get-contents");
-const domino = require("domino");
 
-const postServices = require("./../services/post");
+const domino = require('domino');
+
+const PostService = require("./../services/post");
 
 exports.pagination_post = async (req, res, next) => {
   const perPage = 5;
   // const page = Math.max(0, req.params.page);
   const { body } = req;
   const { page } = body;
-  console.log("page", page, perPage * page,req.body);
-  await Post.find({})
-    // .select("createdAt _id title description")
-    .limit(perPage)
-    .skip(perPage * page)
-    .sort({
-      _id: "desc",
-    })
-    // .sort("-createdAt")
-    .exec((err, results) => {
-      res.status(201).json(results);
-    });
+
+  const postService = new PostService();
+  const result = await postService.pagination(page, perPage);
+  res.status(201).json(result);
 };
+
+
+
 
 exports.pagination_get = async (req, res, next) => {
   const perPage = 5;
   // const page = Math.max(0, req.params.page);
   const page = req.params.page;
-  console.log("page", page, perPage * page,req.body);
+  console.log("page", page, perPage * page, req.body);
   await Post.find({})
     // .select("createdAt _id title description")
     .limit(perPage)
@@ -46,7 +42,6 @@ exports.pagination_get = async (req, res, next) => {
       res.status(201).json(results);
     });
 };
-
 
 exports.create_post = (req, res, next) => {
   console.log("created");
@@ -88,39 +83,6 @@ exports.create_post = (req, res, next) => {
     });
 };
 
-exports.get_link_info = async (req, res, next) => {
-  const url = req.body.url;
-
-  fileGetContents(url, { encoding: "utf-8" })
-    .then((text) => {
-      const window = domino.createWindow(text);
-      const document = window.document;
-      const title = document
-        .querySelector("meta[property='og:title']")
-        .getAttribute("content");
-      const image = document
-        .querySelector("meta[property='og:image']")
-        .getAttribute("content");
-      const description = document
-        .querySelector("meta[property='og:description']")
-        .getAttribute("content");
-      var urlParts = url
-        .replace("http://", "")
-        .replace("https://", "")
-        .split(/[/?#]/);
-      const siteName = urlParts[0];
-
-      res.status(200).json({
-        title: title,
-        description: description,
-        image: image,
-        siteName: siteName,
-      });
-    })
-    .catch((err) => {
-      console.log(`err`, err);
-    });
-};
 
 exports.upload_photo_temponary = async (req, res, next) => {
   console.log(req, res);

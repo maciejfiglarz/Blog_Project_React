@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { PrimaryBtn } from "../../containers/buttons";
 import { serverUrl, uploadsUrl } from "./../../constants/types";
-import { Loader } from "./../../containers/loader";
-import axios from "axios";
 
-const CreatorPhoto = props => {
+import axios from "axios";
+import { Message } from "./../../containers/message";
+
+const CreatorPhoto = (props) => {
   const [isLoaded, setLoaded] = useState();
 
-  const onChange = e => {
+  const onChange = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
     setLoaded(true);
@@ -15,34 +16,35 @@ const CreatorPhoto = props => {
     formData.append("photo", file);
     const config = {
       headers: {
-        "content-type": "multipart/form-data"
-      }
+        "content-type": "multipart/form-data",
+      },
     };
     axios
       .post(`${serverUrl}/post/photo-temponary`, formData, config)
-      .then(response => {
+      .then((response) => {
         console.log("response", response);
         setLoaded(false);
         props.setPhoto(response.data.fileName);
       })
-      .catch(error => {});
+      .catch((error) => {});
   };
 
   const remove = () => {
-    console.log('remove');
+    console.log("remove");
     props.setPhoto("");
     axios
       .post(`${serverUrl}/post/photo-temponary/remove`, { photo: props.photo })
-      .then(response => {
+      .then((response) => {
         console.log(response);
       })
-      .catch(error => {
-        console.log('error',error);
+      .catch((error) => {
+        console.log("error", error);
       });
   };
-
+  const { alert } = props;
   return (
     <div className="creator-form__photo-wrap">
+      {alert.message && <Message alert={alert} field={"titlePost"} />}
       <div className="creator-form__photo">
         {isLoaded && <Loader />}
 

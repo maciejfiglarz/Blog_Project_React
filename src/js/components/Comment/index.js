@@ -15,11 +15,8 @@ const Comment = (props) => {
   const [page, setPage] = useState(1);
   const postId =  props.post._id;
 
-
-  
-
   useEffect(() => {
-    console.log('useEffect');
+
     getData(loadMore);
     setLoadMore(false);
   }, [loadMore]);

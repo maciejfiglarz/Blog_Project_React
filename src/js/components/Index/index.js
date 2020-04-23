@@ -3,7 +3,8 @@ import Post from "./../Post";
 import { connect } from "react-redux";
 import Creator from "./../Creator";
 import { useFetch, useFetchIndex } from "./../../hooks/useFetch";
-import InfiniteList from "./../../containers/infinity-list";
+import InfinityList from "./../InfinityList";
+import {Link} from "react-router-dom";
 
 const Index = props => {
   const [page, setPage] = useState(1);
@@ -16,11 +17,16 @@ const Index = props => {
   
   return (
     <div className="container">
-      <Creator />
-      <InfiniteList state={state} setState={setState} />
+      <div className="creator-redirect">
+        <Link to="/dodaj">Creator</Link>
+      </div>
+      {/* <Creator /> */}
+      <InfinityList />
     </div>
   );
 };
+
+
 
 const mapStateToProps = state => {
   return { user: state.user };

@@ -1,10 +1,27 @@
 const postModel = require("./../models/post");
 
 class PostService {
+  async pagination(page, perPage, sort = null) {
+    return  postModel
+      .find({})
+      // .select("createdAt _id title description")
+      .limit(perPage)
+      .skip(perPage * page)
+      .sort({
+        _id: "desc",
+      })
+      // .sort("-createdAt")
+      .exec()
+      .then((result) => {
+        // res.status(201).json(results);
+        console.log("pagination", result);
+        return result;
+      });
+  }
+  
   async findOneById(id) {
     return postModel.findById(id);
   }
-
   async updateVote(params) {
     const { type, postId } = params;
     const post = await this.findOneById(postId);

@@ -20,7 +20,7 @@ exports.prepare_for_user = async (req, res, next) => {
   
   const voteService = new VoteService();
   const preparedVotes = await voteService.prepareForUser(id);
-
+  console.log('prepared',user,id);
   return res.send(preparedVotes);
 };
 

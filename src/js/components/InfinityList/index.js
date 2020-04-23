@@ -4,17 +4,18 @@ import { connect } from "react-redux";
 import Post from "./../Post";
 import axios from "axios";
 import { serverUrl } from "./../../constants/types";
-import postActions from "./../../actions/post_action";
+import postActions from "./../../store/post/action";
 
 const InfiniteList = (props) => {
   const [loadMore, setLoadMore] = useState(true);
   const [page, setPage] = useState(0);
   const posts = props.posts;
+  // const data = posts.data;
+  // const isLoading = posts.isLoading;
 
   console.log("propsPost", posts);
 
   useEffect(() => {
-    console.log("xxx", loadMore);
     getData(loadMore);
     setLoadMore(false);
   }, [loadMore]);
@@ -23,15 +24,16 @@ const InfiniteList = (props) => {
     window.addEventListener("scroll", () => {
       console.log("load");
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        setPage(page + 1);
-        setLoadMore(true);
+        setPage((prev) => {
+          setLoadMore(true);
+
+          return prev + 1;
+        });
       }
     });
   }, []);
 
-
   const getData = (load) => {
-    console.log("load", load);
     if (load) {
       // axios.get(`${serverUrl}/post/pagination/page-${page}`).then((res) => {
       //   props.setState([...props.state, ...res.data]);
@@ -43,23 +45,27 @@ const InfiniteList = (props) => {
 
   return (
     <ul id="list">
-      {Object.keys(posts).length > 0 &&
-        Object.keys(posts).map((key) => (
-          <div>
-            <Link to={`/status/${posts[key]._id}`}>
-              <Post key={posts[key]._id} post={posts[key]} />
-              //{" "}
-            </Link>
-          </div>
-        ))}
+      {posts && (
+        <React.Fragment>
+          {!posts.isLoading &&
+            Object.keys(posts.data).length > 0 &&
+            Object.keys(posts.data).map((key) => (
+              <div>
+                {/* <Link to={`/status/${posts[key]._id}`}> */}
+                <Post key={posts.data[key]._id} post={posts.data[key]} />
+                {/* </Link> */}
+              </div>
+            ))}
+        </React.Fragment>
+      )}
     </ul>
   );
 };
 
 const mapStateToProps = (state) => {
   console.log("state123", state);
-  const { authentication, posts } = state;
-  return { authentication, posts };
+  const { posts } = state;
+  return { posts };
 };
 
 const actionCreators = {
