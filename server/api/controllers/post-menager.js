@@ -1,31 +1,43 @@
 const mongoose = require("mongoose");
-const multer = require("multer");
-const path = require("path");
+
 const Post = require("../models/post");
 const fileGetContents = require("file-get-contents");
 const domino = require("domino");
 const PostService = require("../services/post");
+const FileService = require("../services/file");
+const PostMenagerService = require("../services/post-menager");
 
 const fs = require("fs");
+const multer = require("multer");
+const path = require("path");
 
-var domtoimage = require("dom-to-image");
-
+exports.insert_post = async (req, res, next) => {
+  const { body } = req;
+  console.log("reqInsertPost", body);
+  const postMenagerService = new PostMenagerService();
+  const result = await postMenagerService.insertPost(body);
+  const { success, postId } = result;
+  res.status(200).json({ success, postId });
+};
 
 exports.remove_photo_temponary = async (req, res, next) => {
   const { body } = req;
   const { photo } = body;
   const path = `./public/uploads/post-temponary/${photo}`;
 
-  fs.unlink(path, (err) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log('succes');
-  });
+  const postMenagerService = new PostMenagerService();
+  postMenagerService.remove(path);
+
+  res.status(200).json({ success: true });
 };
 
 exports.upload_photo_temponary = async (req, res, next) => {
+  // const fileService = new FileService();
+  // const fileName = await fileService.upload("post-temponary", req, res);
+  // console.log('ffffffff',fileName);
+  // fileService.saveTemponaryImageInDB(fileName);
+  // res.status(200).json({ fileName });
+
   let fileName = "";
   const storage = multer.diskStorage({
     destination: "./public/uploads/post-temponary",
@@ -42,6 +54,8 @@ exports.upload_photo_temponary = async (req, res, next) => {
   }).single("photo");
 
   await upload(req, res, (err) => {
+    const fileService = new FileService();
+    fileService.saveTemponaryImageInDB(fileName);
     res.status(200).json({ fileName: fileName });
   });
 };

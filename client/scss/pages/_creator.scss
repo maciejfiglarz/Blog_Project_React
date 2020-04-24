@@ -1,0 +1,186 @@
+.creator {
+  color: $color-text;
+  margin-bottom: 30px;
+  padding: 10px;
+  background-color: $color-basic-middle;
+  border-radius: $border-radius;
+  position: relative;
+
+  &-inner {
+    // padding: 10px;
+  }
+
+  &-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  &-graphic {
+    &__workspace {
+      &-photo {
+        background: $color-border;
+        width: 100%;
+        min-height: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        img {
+          padding: 0;
+          margin:0;
+        }
+      }
+      &-title {
+        background: $color-basic-dark;
+        font-size:2rem;
+        text-align: center;
+        padding:5px;
+      }
+      &-wrap {
+        display: none;
+        &--active {
+          display: block;
+        }
+      }
+      &-footer {
+        position: absolute;
+        bottom:10px;
+        right:10px;
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 0 10px 0;
+        width: 100%;
+        i {
+          padding:5px;
+          font-size: 1.9rem;
+          cursor: pointer;
+          color: $color-link;
+          background: $color-basic-middle;
+          border-radius: 5px;
+          &:hover {
+            color: $color-link-hover;
+          }
+        }
+      }
+    }
+  }
+
+  &-form {
+    &__textarea {
+      min-height: 120px;
+      &--title {
+        min-height: 30px;
+      }
+    }
+    &__photo {
+      border: 1px dashed $color-border;
+      width: 100%;
+      min-height: 130px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+      &-wrap {
+        display: none;
+        &--active {
+          display: block;
+        }
+      }
+      &-footer {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 0 10px 0;
+        width: 100%;
+        i {
+          font-size: 1.9rem;
+          cursor: pointer;
+          color: $color-link;
+          &:hover {
+            color: $color-link-hover;
+          }
+        }
+      }
+    }
+    &__youtube {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    &__link {
+      &-section {
+        width: 30%;
+      }
+      &-photo {
+        width: 100%;
+        min-height: 200px;
+      }
+      &-sitename {
+        font-size: 0.8rem;
+        color: $color-primary;
+        margin: 4px 0;
+      }
+      &-title {
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 1.7rem;
+        opacity: 0.8;
+        margin-top: 8px;
+      }
+      &-description {
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        margin: 4px 0 15px 0;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &-switcher {
+    &__menu {
+      display: flex;
+      margin-bottom: 15px;
+      &-tab {
+        width: 25%;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        font-size: 1.4rem;
+        opacity: 0.6;
+        border-bottom: 1px solid $color-border;
+        border-right: 1px solid $color-border;
+        cursor: pointer;
+
+        &:last-child {
+          border-right: 0;
+        }
+        &--active {
+          opacity: 1;
+          background: $color-basic-middle-hover;
+        }
+        &:hover {
+          opacity: 1;
+          background: $color-basic-middle-hover;
+        }
+      }
+      &-icon {
+        font-size: 1.4rem;
+        margin-top: 3px;
+        margin-right: 4px;
+      }
+    }
+    &__content {
+      display: none;
+
+      &--active {
+        display: block;
+      }
+      &-wrap {
+        padding: 10px;
+      }
+    }
+  }
+}

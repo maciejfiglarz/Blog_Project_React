@@ -10,7 +10,7 @@ router.get("/", PostController.fetch_all);
 
 router.get("/:postId", PostController.get_post);
 
-router.post("/", PostController.create_post);
+// router.post("/", PostController.create_post);
 
 router.post("/pagination", PostController.pagination_post);
 
@@ -18,7 +18,7 @@ router.get("/pagination/page-:page", PostController.pagination_get);
 
 // router.post("/link",PostController.get_link_info);
 
-router.post("/photo-temponary", PostController.upload_photo_temponary);
+// router.post("/photo-temponary", PostController.upload_photo_temponary);
 
 
 // router.patch("/:postId", PostController.post_update);

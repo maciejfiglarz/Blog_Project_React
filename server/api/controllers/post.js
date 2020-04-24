@@ -6,14 +6,12 @@ const path = require("path");
 const Post = require("../models/post");
 
 const fileGetContents = require("file-get-contents");
-
 const domino = require('domino');
 
 const PostService = require("./../services/post");
 
 exports.pagination_post = async (req, res, next) => {
   const perPage = 5;
-  // const page = Math.max(0, req.params.page);
   const { body } = req;
   const { page } = body;
 
@@ -21,8 +19,6 @@ exports.pagination_post = async (req, res, next) => {
   const result = await postService.pagination(page, perPage);
   res.status(201).json(result);
 };
-
-
 
 
 exports.pagination_get = async (req, res, next) => {
@@ -43,68 +39,6 @@ exports.pagination_get = async (req, res, next) => {
     });
 };
 
-exports.create_post = (req, res, next) => {
-  console.log("created");
-  const post = new Post({
-    _id: new mongoose.Types.ObjectId(),
-    title: req.body.title,
-    content: req.body.content,
-    type: req.body.type,
-    youtube: req.body.youtube,
-    photo: req.body.photo,
-    link: req.body.link,
-    linkPhoto: req.body.linkPhoto,
-    voteNumber: 0,
-  });
-  post
-    .save()
-    .then((result) => {
-      console.log(result);
-      res.status(201).json({
-        title: result.title,
-        content: result.content,
-        _id: result._id,
-        type: result.type,
-        photo: result.photo,
-        link: result.link,
-        linkPhoto: result.linkPhoto,
-        voteNumber: result.voteNumber,
-        request: {
-          type: "GET",
-          url: `${global.baseUrl}/post/${result._id}`,
-        },
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({
-        error: err,
-      });
-    });
-};
-
-
-exports.upload_photo_temponary = async (req, res, next) => {
-  console.log(req, res);
-  let fileName = "";
-  const storage = multer.diskStorage({
-    destination: "./public/uploads/post-temponary",
-    filename: function (req, file, cb) {
-      extension = path.extname(path.extname(file.originalname));
-      fileName = "IMAGE-" + Date.now() + path.extname(file.originalname);
-      cb(null, fileName);
-    },
-  });
-
-  const upload = multer({
-    storage: storage,
-    limits: { fileSize: 1000000 },
-  }).single("photo");
-
-  await upload(req, res, (err) => {
-    res.status(200).json({ fileName: fileName });
-  });
-};
 
 exports.destroy_all = (req, res, next) => {
   Post.deleteMany({}, function (err) {

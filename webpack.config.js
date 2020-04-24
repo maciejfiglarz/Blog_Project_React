@@ -8,7 +8,7 @@ const BrowserPlugin = require('webpack-browser-plugin');
 
 module.exports = {
     entry: [
-        'babel-polyfill', "./src/js/index.js"
+        'babel-polyfill', "./client/js/index.js"
     ],
     output: {
         filename: "out.js",
@@ -84,14 +84,14 @@ module.exports = {
 
     plugins: [
         new ExtractTextPlugin('./css/main.css'),
-        new HtmlWebpackPlugin({template: "./src/index.html", filename: "index.html"}),
+        new HtmlWebpackPlugin({template: "./client/index.html", filename: "index.html"}),
         new CopyWebpackPlugin([
             // {
             //     from: 'src/data/post',
             //     to: 'data/post'
             // },
              {
-                from: 'src/images',
+                from: 'client/images',
                 to: 'images'
             }
         ]),
