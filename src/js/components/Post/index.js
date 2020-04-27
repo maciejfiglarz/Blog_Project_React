@@ -21,7 +21,7 @@ const Post = (props) => {
 
   return (
     <article className="post">
-      <PostHeader post={post} />
+      <PostHeader post={post} /> {post._id} id
       <section className="post-content">
         {post.type == "youtube" && <ContentYoutube post={post} />}
         {post.type == "photo" && <ContentPhoto post={post} />}

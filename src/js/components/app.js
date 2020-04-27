@@ -31,6 +31,7 @@ const App = (props) => {
 
   return (
     // <BrowserRouter>
+    <div id="App">
     <Router history={history}>
       <GlobalState>
         <Header />
@@ -49,6 +50,7 @@ const App = (props) => {
       </GlobalState>
       {/* </BrowserRouter> */}
     </Router>
+    </div>
   );
 };
 

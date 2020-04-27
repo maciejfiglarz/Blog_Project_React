@@ -5,10 +5,11 @@ import { createStore, applyMiddleware } from "redux";
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
-import "../scss/main.scss";
+import "./scss/main.scss";
 
-import App from "./components/app";
-import reducers from "./store";
+import App from "./js/components/app";
+import reducers from "./js/store";
+import * as serviceWorker from './serviceWorker';
 
 // import createBrowserHistory from "history/createBrowserHistory"; const
 // history = createBrowserHistory()
@@ -29,11 +30,15 @@ const store = createStore(
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
+// document.addEventListener("DOMContentLoaded", function () {
   ReactDOM.render(
     <Provider store={store}>
       <App />
     </Provider>,
-    document.getElementById("app")
+    document.getElementById("root")
   );
-});
+// });
+
+
+
+serviceWorker.unregister();

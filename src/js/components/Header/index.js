@@ -12,9 +12,10 @@ import {
   LoginBtn,
   PrimaryBtn,
   SecondaryBtn,
-} from "../../containers/buttons";
+} from "./../../containers/buttons";
+
 import { history } from "../../helper/history";
-import LoginFrame from "./loginframe";
+
 
 import logo from "./../../../images/logo.png";
 

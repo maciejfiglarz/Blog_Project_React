@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 const PostHeader = (props) => {
   const { post } = props;
   const { user } = post;
-  const { username } = user;
+  // const { username } = user;
 
   return (
     <section className="post-header">
-      {username}
+      {/* {username} */}
       <img
         style={{ maxWidth: "10px" }}
         src="https://cdn4.iconfinder.com/data/icons/emoji-2-5/64/_scared_emoticon_emoji-512.png"
