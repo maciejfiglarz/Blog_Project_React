@@ -80,7 +80,7 @@ exports.get_link_data = async (req, res, next) => {
         .replace("http://", "")
         .replace("https://", "")
         .split(/[/?#]/);
-      const siteName = urlParts[0];
+      const siteName = urlParts[0].replace('www.','');;
 
       res.status(200).json({
         success: true,

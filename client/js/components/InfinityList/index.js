@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Post from "../Post";
-import axios from "axios";
-import { serverUrl } from "../../constants/types";
 import postActions from "../../store/post/action";
 
 const InfiniteList = (props) => {
@@ -63,7 +61,6 @@ const InfiniteList = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log("state123", state);
   const { posts } = state;
   return { posts };
 };

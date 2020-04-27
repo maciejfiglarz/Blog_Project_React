@@ -5,6 +5,7 @@ class PostService {
     return  postModel
       .find({})
       // .select("createdAt _id title description")
+      .populate('user')
       .limit(perPage)
       .skip(perPage * page)
       .sort({

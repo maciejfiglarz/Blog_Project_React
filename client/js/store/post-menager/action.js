@@ -22,22 +22,25 @@ const createPost = (params) => {
 
     if (type == "post") {
       validation = postMenagerServices.validationPost(post);
-    } else if (type == "link") {
+    } else if (type == "graphic") {
+      validation = postMenagerServices.validationGraphic(post);
+    } else if (type == "link"){
+      validation = postMenagerServices.validationLink(post);
     }
 
     console.log("validation_action", validation, validation.isValid);
     
     if (validation.isValid) {
-      post = { ...post, type: "post" };
       const result = await postMenagerServices.insertPost({
         post,
         user,
       });
       const { data } = result;
       const { success, postId } = data;
-
+      console.log('successPost',success);
       if (success) {
         // history.push(`/post/${postId}`);
+        console.log("post dodany");
       } else {
         console.log("coś poszło nie tak");
       }

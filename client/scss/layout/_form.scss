@@ -3,6 +3,23 @@
     margin-bottom: 10px;
   }
   &__text {
+    &-counter {
+      position:absolute;
+      right:0;
+      top:3px;
+      transform: translateY(-100%);
+      background: $color-basic-light;
+      padding:3px 3px 2px 3px;
+      border-radius: 3px;
+      border: 1px solid $color-border;
+      border-bottom: 0;
+      min-width: 50px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    &-wrap {
+      position: relative;
+    }
     &-regular {
       background: $color-basic-light;
       border-radius: 4px;
@@ -13,7 +30,7 @@
       width: 100%;
       border: 1px solid $color-border;
       @include placeholder();
-      margin-bottom: 15px;
+      margin: 0 0 28px 0;
       overflow: hidden;
     }
   }

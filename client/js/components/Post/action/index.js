@@ -7,7 +7,7 @@ import  userActions  from "../../../actions/user_action";
 import PostVote from "./vote";
 
 const PostAction = (props) => {
-  const post = props.post;
+  const {post} = props;
   return (
     <section id={`post-${post.id}`} className="post-action">
      

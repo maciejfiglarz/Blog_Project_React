@@ -8,9 +8,19 @@
   }
 
   &-content {
-    width:100%;
-    text-align: center;
+    width: 100%;
+    // text-align: center;
     &__link {
+      position: relative;
+      &-sitename {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 3px 5px;
+        font-size: 0.9rem;
+        border-top-left-radius: 2px;
+        background: $color-basic-dark;
+      }
       &-photo {
         width: 100%;
         min-height: 200px;

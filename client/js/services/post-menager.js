@@ -3,7 +3,7 @@ import API from "../helper/api";
 
 const insertPost = async (params) => {
   const { user } = params;
-  
+
   const config = {
     headers: {
       headers: { Authorization: "Bearer " + user.token },
@@ -55,17 +55,43 @@ const validationPost = (params) => {
 
   return { isValid: Object.keys(errors).length == 0 ? true : false, errors };
 };
+const validationGraphic = (params) => {
+  const { title, photo, isTitleTop, titleTop } = params;
+  let errors = {};
+
+  if (isMinLength(title, 1)) {
+    errors["graphicTitle"] = "Musisz wybrać tytuł";
+  }
+
+  if (isTitleTop) {
+    if (isMinLength(titleTop, 1)) {
+      errors["graphicTitleTop"] =
+        "Jeśli zaznaczyłeś górny tytuł musisz go wpisać";
+    }
+  }
+
+  if (isMinLength(photo, 1)) {
+    errors["graphicPhoto"] = "Musisz wybrać zdjęcie";
+  }
+
+  return { isValid: Object.keys(errors).length == 0 ? true : false, errors };
+};
 
 const validationLink = (params) => {
-  const { linkPhoto, link, linkTitle, linkContent, errors } = params;
+  const { title, content, link, linkPhoto,isCorrectLink } = params;
+  let errors = {};
+
+  if (isCorrectLink) {
+    errors["link"] = "Wybrany link jest nieprawidłowy";
+  }
   if (isMinLength(link, 1)) {
     errors["link"] = "Musisz wybrać link";
   }
-  if (isMinLength(linkTitle, 1)) {
+  if (isMinLength(title, 1)) {
     errors["linkTitle"] = "Musisz wybrać tytuł";
   }
-  if (isMaxLength(linkTitle, 1)) {
-    errors["linkTitle"] = "Wybrany tytuł jest z długi";
+  if (isMaxLength(title, 255)) {
+    errors["linktitle"] = "Wybrany tytuł jest z długi";
   }
   return { isValid: Object.keys(errors).length == 0 ? true : false, errors };
 };
@@ -73,6 +99,7 @@ const validationLink = (params) => {
 const postMenagerServices = {
   validationPost,
   validationLink,
+  validationGraphic,
   getLinkData,
   uploadTemponaryPhoto,
   removeTemponaryPhoto,

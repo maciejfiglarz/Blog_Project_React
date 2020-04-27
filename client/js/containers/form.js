@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "./buttons";
 
 export const InputText = (props) => {
-  const { onChange, className, placeholder, name, type } = props;
-  console.log('className',className);
+  const {
+    onChange,
+    className,
+    placeholder,
+    name,
+    type,
+    maxLength,
+    value,
+  } = props;
+
   return (
-    <input
-      onChange={onChange}
-      className={`input__text-regular  ${className}`}
-      type={type}
-      name={name}
-      placeholder={placeholder}
-    ></input>
+    <div className="input__text-wrap">
+      {maxLength && (
+        <div className="input__text-counter">
+          {value.length} / {maxLength}
+        </div>
+      )}
+      <input
+        onChange={onChange}
+        className={`input__text-regular  ${className}`}
+        type={type}
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        maxLength={maxLength}
+      ></input>
+    </div>
   );
 };
 
@@ -23,7 +40,7 @@ export const InputFile = (props) => {
         type="file"
         name={name}
         id="file"
-        onChange={e => onChange(e)}
+        onChange={(e) => onChange(e)}
         className="inputfile creator-form__photo-file"
       />
       <label className="button-primary" htmlFor="file">

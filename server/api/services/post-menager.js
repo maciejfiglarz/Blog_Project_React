@@ -2,11 +2,19 @@ const PostModel = require("./../models/post");
 const FileService = require("./../services/file");
 const mongoose = require("mongoose");
 
-
 class PostMenagerService {
   async insertPost(params) {
     const { post, user } = params;
-    const { title, content, type, youtube, photo, link, linkPhoto } = post;
+    const {
+      title,
+      content,
+      type,
+      youtube,
+      photo,
+      link,
+      linkPhoto,
+      linkSiteName,
+    } = post;
 
     const newPost = new PostModel({
       _id: new mongoose.Types.ObjectId(),
@@ -17,6 +25,7 @@ class PostMenagerService {
       photo,
       link,
       linkPhoto,
+      linkSiteName,
       user: user.id,
     });
     if (photo) {

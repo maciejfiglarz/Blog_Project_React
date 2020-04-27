@@ -1,7 +1,7 @@
 .creator {
   color: $color-text;
   margin-bottom: 30px;
-  padding: 10px;
+  padding: 5px;
   background-color: $color-basic-middle;
   border-radius: $border-radius;
   position: relative;
@@ -19,13 +19,14 @@
   &-graphic {
     &__workspace {
       &-photo {
-        background: $color-border;
+        background: $color-basic-dark;
         width: 100%;
         min-height: 70px;
         display: flex;
         justify-content: center;
         align-items: center;
         position: relative;
+        padding:0;
         img {
           padding: 0;
           margin:0;
@@ -33,9 +34,17 @@
       }
       &-title {
         background: $color-basic-dark;
-        font-size:2rem;
+        font-size:1.3rem;
+        line-height: 1.4rem;
         text-align: center;
-        padding:5px;
+        padding:10px 5px 10px 5px;
+      }
+      &-description {
+        background: $color-basic-dark;
+        font-size:1.1rem;
+        line-height: 1.2rem;
+        text-align: center;
+        padding: 0 5px 10px 5px;
       }
       &-wrap {
         display: none;
@@ -45,11 +54,11 @@
       }
       &-footer {
         position: absolute;
-        bottom:10px;
-        right:10px;
+        bottom:5px;
+        right:5px;
         display: flex;
         justify-content: flex-end;
-        padding: 0 0 10px 0;
+        // padding: 0 0 10px 0;
         width: 100%;
         i {
           padding:5px;

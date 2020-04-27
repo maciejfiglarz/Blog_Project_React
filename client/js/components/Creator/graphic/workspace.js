@@ -8,18 +8,16 @@ import { Message } from "../../../containers/message";
 import { Loader } from "../../../containers/loader";
 import PropTypes from "prop-types";
 
-const CreatorWorkspace = (props) => {
+const CreatorWorkspace = ({
+  title,
+  titleTop,
+  isTitleTop,
+  content,
+  photo,
+  setPhoto,
+  alert,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
-
-  const {
-    title,
-    titleTop,
-    isTitleTop,
-    content,
-    photo,
-    setPhoto,
-    alert,
-  } = props;
 
   const handleInputFile = async (e) => {
     setIsLoading(true);
@@ -60,12 +58,12 @@ const CreatorWorkspace = (props) => {
 
           {photo && (
             <React.Fragment>
-              <div className="creator-graphic__workspace-uploaded">
+              {/* <div className="creator-graphic__workspace-uploaded"> */}
                 <img src={uploadsUrl + "/post-temponary/" + photo} />
                 <div className="creator-graphic__workspace-footer">
                   <i onClick={remove} className="fas fa-trash-alt"></i>
                 </div>
-              </div>
+              {/* </div> */}
             </React.Fragment>
           )}
         </div>

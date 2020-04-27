@@ -8,18 +8,17 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import postMenagerActions from "../../../store/post-menager/action";
 
-const CreatorGraphic = (props) => {
+const CreatorGraphic = ({alert, createPost, user}) => {
   const [photo, setPhoto] = useState("");
   const [title, setTitle] = useState("");
   const [titleTop, setTitleTop] = useState("");
   const [content, setContent] = useState("");
   const [isTitleTop, setIsTitleTop] = useState(false);
-  const { alert } = props;
 
   const handleSubmit = (event) => {
     event.preventDefault();
     createPost({
-      post: { title, content, photo, isPhotoActive, type: "graphic" },
+      post: { title, titleTop, content, isTitleTop, photo, type: "graphic" },
       user,
     });
   };
@@ -28,15 +27,6 @@ const CreatorGraphic = (props) => {
   return (
     <div className="creator-graphic">
       <form className="creator-form" onSubmit={handleSubmit}>
-        <Workspace
-          photo={photo}
-          setPhoto={setPhoto}
-          title={title}
-          titleTop={titleTop}
-          content={content}
-          isTitleTop={isTitleTop}
-        />
-        {/* {alert.message && <Message alert={alert} field={"graphicME"} />} */}
         <div className="creator-graphic__form">
           {alert.message && <Message alert={alert} field={"graphicTitle"} />}
           <InputText
@@ -51,7 +41,7 @@ const CreatorGraphic = (props) => {
             onChange={onChangesIsTitleTop}
             label={"Dodaj górny tytuł"}
           />
-
+          {alert.message && <Message alert={alert} field={"graphicTitleTop"} />}
           <InputText
             onChange={(e) => setTitleTop(e.target.value)}
             name="title"
@@ -70,6 +60,21 @@ const CreatorGraphic = (props) => {
             placeholder={"Opis"}
           />
         </div>
+  
+        <Workspace
+          photo={photo}
+          setPhoto={setPhoto}
+          title={title}
+          titleTop={titleTop}
+          content={content}
+          isTitleTop={isTitleTop}
+        />
+        <br />
+        <PrimaryBtn
+          extraClass="creator-form__button"
+          text="Dodaj"
+          handleSubmit={handleSubmit}
+        />
       </form>
     </div>
   );
@@ -87,7 +92,6 @@ const mapStateToProps = (state) => {
 
 const actionCreators = {
   createPost: postMenagerActions.createPost,
-  loading: postMenagerActions.loading,
 };
 
 export default connect(mapStateToProps, actionCreators)(CreatorGraphic);

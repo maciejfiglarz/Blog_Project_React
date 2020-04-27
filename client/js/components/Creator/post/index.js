@@ -10,8 +10,7 @@ import postMenagerActions from "../../../store/post-menager/action";
 import { connect } from "react-redux";
 import { PrimaryBtn } from "../../../containers/buttons";
 
-const CreatorPost = (props) => {
-  const { alert, createPost, user } = props;
+const CreatorPost = ({alert, createPost, user}) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [photo, setPhoto] = useState("");

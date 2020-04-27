@@ -11,6 +11,7 @@ const CreatorPhotoUploader = (props) => {
   const { alert, photo, setPhoto, isPhotoActive } = props;
 
   const handleInputFile = async (e) => {
+
     setIsLoading(true);
     const file = e.target.files[0];
     const formData = new FormData();
@@ -19,7 +20,7 @@ const CreatorPhotoUploader = (props) => {
     const result = await postMenagerServices.uploadTemponaryPhoto(formData);
     const { data } = result;
     const { fileName } = data;
-
+    
     setPhoto(fileName);
     setIsLoading(false);
   };
@@ -39,9 +40,7 @@ const CreatorPhotoUploader = (props) => {
 
       <div className="creator-form__photo">
         {isLoading && <Loader />}
-        {!isLoading && !photo && (
-          <InputFile name={"postFile"} onChange={handleInputFile} />
-        )}
+        {!isLoading && !photo && <InputFile name={"postFile"} onChange={handleInputFile} />}
 
         {photo && (
           <React.Fragment>

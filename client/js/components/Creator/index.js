@@ -44,7 +44,7 @@ const Creator = (props) => {
         <div className="creator-switcher__content-wrap">
           <div
             data-name="post"
-            className="creator-switcher__content creator-switcher__content--active"
+            className="creator-switcher__content "
           >
             <CreatorPost />
           </div>
@@ -54,7 +54,7 @@ const Creator = (props) => {
           <div data-name="youtube" className="creator-switcher__content">
             <CreatorYoutube setYoutube={setYoutube} youtube={youtube} />
           </div>
-          <div data-name="link" className="creator-switcher__content">
+          <div data-name="link" className="creator-switcher__content creator-switcher__content--active">
             <CreatorLink
               link={link}
               setLink={setLink}
