@@ -1,32 +1,32 @@
 import React from "react";
 import { history } from "../../helper/history";
-import userActions from "../../actions/user_action";
+import  userActions  from "./../../store/user/action";
 import { connect } from "react-redux";
 import logo from "./../../../images/logo.png";
+import PropTypes from "prop-types";
 
-const Menu = (props) => {
+const Menu = ({ setIsMenu, isMenu, user, logout }) => {
   const onClickLogin = () => {
     hideMenu();
-    history.push("zaloguj-sie");
+    history.push("/zaloguj-sie");
   };
   const onClickRegister = () => {
     hideMenu();
-    history.push("zaloz-konto");
+    history.push("/zaloz-konto");
   };
   const hideMenu = () => {
-    props.setIsMenu(false);
+    setIsMenu(false);
   };
-  const logout = () => {
-    props.logout();
+  const onClicklogout = () => {
+    setIsMenu(false);
+    logout();
     window.location.reload();
   };
 
-  const isLogged = props.user.isLogged;
-  console.log('props.user',props.user);
+  const isLogged = user.isLogged;
+
   return (
-    <nav
-      className={`header-menu ${props.isMenu ? "header-menu--visible" : ""}`}
-    >
+    <nav className={`header-menu ${isMenu ? "header-menu--visible" : ""}`}>
       <div onClick={hideMenu} className="header-menu__close">
         <i className="fas fa-times"></i>
       </div>
@@ -37,38 +37,45 @@ const Menu = (props) => {
 
       <ul className="header-menu__list">
         {isLogged && (
-          <React.Fragment>
-            <li onClick={logout} className="header-menu__item">
-              <i className="fas fa-sign-out-alt "></i> {props.user.username}
+          <>
+            <li onClick={onClicklogout} className="header-menu__item">
+              <i className="fas fa-sign-out-alt "></i> {user.username}
               <i className="fas fa-caret-down header-menu__item-dropicon"></i>
             </li>
-          </React.Fragment>
+          </>
         )}
         {!isLogged && (
-          <React.Fragment>
+          <>
             <li onClick={onClickLogin} className="header-menu__item">
               <i className="fas fa-sign-in-alt"></i> Zaloguj się
             </li>
             <li onClick={onClickRegister} className="header-menu__item">
               <i className="fas fa-user-plus"></i> Załóż konto
             </li>
-          </React.Fragment>
+          </>
         )}
         {isLogged && (
-          <React.Fragment>
+          <>
             <li onClick={logout} className="header-menu__item">
               <i className="fas fa-sign-out-alt"></i> Wyloguj
             </li>
-          </React.Fragment>
+          </>
         )}
       </ul>
     </nav>
   );
 };
 
+Menu.propTypes = {
+  logout: PropTypes.func,
+  user: PropTypes.object,
+  isMenu: PropTypes.bool,
+  setIsMenu: PropTypes.func,
+};
+
 const mapStateToProps = (state) => {
   const { user } = state;
-  return {user};
+  return { user };
 };
 
 const actionCreators = {

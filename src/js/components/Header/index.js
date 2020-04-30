@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "../../actions/user_action";
-
-import userActions from "../../actions/user_action";
-
+import PropTypes from "prop-types";
 import Menu from "./menu";
 
 import {
@@ -16,10 +13,9 @@ import {
 
 import { history } from "../../helper/history";
 
-
 import logo from "./../../../images/logo.png";
 
-const Header = (props) => {
+const Header = ({ user }) => {
   const [isMenu, setIsMenu] = useState(false);
 
   const onClickMenu = () => {
@@ -27,13 +23,12 @@ const Header = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <header className="header">
         <div className="header-container container-full">
           <div className="header-logo">
             <img src={logo} />
           </div>
-
 
           <div onClick={onClickMenu} className="header-menu__init">
             <i className="fas fa-bars"></i>
@@ -55,22 +50,22 @@ const Header = (props) => {
         </div> */}
         </div>
       </header>
-      <Menu
-        isMenu={isMenu}
-        setIsMenu={setIsMenu}
-        authentication={props.authentication}
-      />
-    </React.Fragment>
+      <Menu isMenu={isMenu} setIsMenu={setIsMenu}/>
+    </>
   );
 };
+
+Menu.propTypes = {
+  logout: PropTypes.func,
+  user: PropTypes.object,
+  isMenu: PropTypes.bool,
+  setIsMenu: PropTypes.func,
+};
+
 const mapStateToProps = (state) => {
-  console.log("state", state);
-  const { authentication } = state;
-  return { authentication };
+  const { user } = state;
+  return { user };
 };
 
-const actionCreators = {
-  logout: userActions.logout,
-};
 
-export default connect(mapStateToProps, actionCreators)(Header);
+export default connect(mapStateToProps)(Header);
