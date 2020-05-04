@@ -11,9 +11,10 @@ import PostHeader from "./header";
 import PostAction from "./action";
 
 import Comment from "../Comment";
+import {Link} from "react-router-dom";
 
-const Post = (props) => {
-  const post = props.post;
+const Post = ({post}) => {
+   console.log(post);
   let loader = "";
   // if (loading) {
   //   loader = <Loader extraClass={"post__loader"} />;
@@ -21,21 +22,21 @@ const Post = (props) => {
 
   return (
     <article className="post">
-      <PostHeader post={post} /> {post._id} id
+      <PostHeader post={post} />
       <section className="post-content">
         {post.type == "youtube" && <ContentYoutube post={post} />}
         {post.type == "photo" && <ContentPhoto post={post} />}
         {post.type == "link" && <ContentLink post={post} />}
-
-        <h1 className="post__title">{post.title}</h1>
-        <p className="post__description">
-          {post.content}
-          {/* {post._id} {post.createdAt} {post.type}
+        <Link to={`/post/${post._id}`}>
+          <h1 className="post__title">{post.title}</h1>
+          <p className="post__description">
+            {post.content}
+            {/* {post._id} {post.createdAt} {post.type}
         {post.description} {post.title} {post.type} */}
-        </p>
+          </p>
+        </Link>
       </section>
       <PostAction post={post} />
-      {post && <Comment post={post} />}
     </article>
   );
 };

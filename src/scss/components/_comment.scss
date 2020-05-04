@@ -1,12 +1,14 @@
 .comment {
   padding: 10px;
+  background-color: $color-basic-middle;
   &-creator {
     display: flex;
 
     &__avatar {
-      border-radius: 50%;
-      max-width: 30px;
-      margin-right: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 5px;
+      margin-right:10px;
     }
     &__content {
       margin-bottom:5px !important;

@@ -43,11 +43,11 @@ const CreatorPhotoUploader = (props) => {
         {!isLoading && !photo && <InputFile name={"postFile"} onChange={handleInputFile} />}
 
         {photo && (
-          <React.Fragment>
+          <>
             <div className="creator-form__photo-uploaded">
               <img src={uploadsUrl + "/post-temponary/" + photo} />
             </div>
-          </React.Fragment>
+          </>
         )}
       </div>
 

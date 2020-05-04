@@ -9,11 +9,8 @@ const error = (message) => {
 };
 
 const clear = () => {
-  console.log('clear-reducer');
   return { type: alertConstants.CLEAR };
 };
-
-
 
 export const alertActions = {
   success,

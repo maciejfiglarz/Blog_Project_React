@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 const userSessionSchema = new mongoose.Schema({
-  userId: {
-    type: String,
-    default: -1
-  },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   timestamp: {
     type: Date,
     default: Date.now()

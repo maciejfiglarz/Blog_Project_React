@@ -1,8 +1,7 @@
 import voteService from "../../services/vote_service";
-import  userConstants  from "./constants";
+import userConstants from "./constants";
 
 const setInitialData = (user) => {
-
   return async (dispatch) => {
     const result = await voteService.prepareVotesForUserTest(user);
     console.log("result", result);
@@ -10,7 +9,6 @@ const setInitialData = (user) => {
       .prepareVotesForUser(user)
       .then((result) => {
         const { data } = result;
-        console.log("dataxx", data);
         dispatch({
           type: userConstants.FETCH_USER_VOTES,
           payload: data,

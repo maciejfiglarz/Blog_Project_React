@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "../../actions/user_action";
+import commentActions from "./../../store/comment/action";
 
 import { serverUrl } from "../../constants/types";
 
@@ -10,34 +10,37 @@ import CommentCreator from "./creator";
 import CommentItem from "./item";
 
 const Comment = (props) => {
-  const [data, setData] = useState([]);
+  const [comments, setComments] = useState([]);
   const [loadMore, setLoadMore] = useState(true);
   const [page, setPage] = useState(1);
-  const postId =  props.post._id;
+  const postId = props.post._id;
 
   useEffect(() => {
-
     getData(loadMore);
     setLoadMore(false);
   }, [loadMore]);
 
   const getData = (load) => {
-    
-    if (load) {
-      axios
-        .get(`${serverUrl}/comment/pagination/page-${page}/post-${postId}`)
-        .then((res) => {
-          setData([...data, ...res.data]);
-        });
-    }
+    // if (load) {
+    //   axios
+    //     .get(`${serverUrl}/comment/pagination/page-${page}/post-${postId}`)
+    //     .then((res) => {
+    //       setData([...data, ...res.data]);
+    //     });
+    // }
   };
 
   return (
     <div className="comment">
-       <CommentCreator post={props.post} data={data} setData={setData} setLoadMore={setLoadMore} />
-      {data && (
+      <CommentCreator
+        post={props.post}
+        comments={comments}
+        setComments={setComments}
+        setLoadMore={setLoadMore}
+      />
+      {comments && (
         <div id="list">
-          {data.map((comment) => (
+          {comments.map((comment) => (
             <CommentItem key={comment._id} comment={comment} />
           ))}
         </div>

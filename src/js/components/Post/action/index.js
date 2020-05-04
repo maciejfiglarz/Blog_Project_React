@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import voteService from "../../../services/vote_service";
 import { connect } from "react-redux";
 
-import  userActions  from "../../../actions/user_action";
+import  userActions  from "./../../../store/user/action";
 
 import PostVote from "./vote";
 
@@ -33,8 +33,8 @@ const PostAction = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const { authentication } = state;
-  return { authentication };
+  const { user } = state;
+  return { user };
 };
 
 const actionCreators = {

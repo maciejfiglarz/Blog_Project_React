@@ -1,20 +1,30 @@
-import React, { useEffect } from "react";
-import Post from '../Post';
-import { useFetch } from "../../hooks/useFetch";
-import { domainUrl } from "../../constants/types";
+import React, { useEffect, useState } from "react";
 
-const Single = props => {
-    // let { id } = useParams();
-    let id = props.match.params.id;
-    console.log('id',id);
-    // const { data, loading } = useFetch(`${domainUrl}posts/${id}`);
-    // console.log('post',data,`${domainUrl}posts/${id}`,loading);
-    return (
-        <div className="container">
-            {/* {data ? <Post key={id} post={data}/>:''} */}
-        </div>
-    );
+import Comment from "./../Comment";
+import Post from "./../Post";
+import postServices from "../../services/post";
 
-}
+const Single = (props) => {
+  let id = props.match.params.id;
+  const [post, setPost] = useState("");
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      const { data } = await postServices.fetchOneById({ postId: id });
+      const { post, success } = data;
+      if (success) {
+        setPost(post);
+      }
+    };
+    fetchPost();
+  }, []);
+  console.log("post", post);
+  return (
+    <div className="container">
+      {post ? <Post key={id} post={post} /> : ""}
+      {post && <Comment post={post} />}
+    </div>
+  );
+};
 
 export default Single;

@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
-
+const configStorage = require("./../config/configStorage");
 const UserController = require("../controllers/user");
 
-
-// router.get("/destroy",UserController.destroy_all);
+const uploader = configStorage("/uploads");
 
 router.post("/register", UserController.register);
 
@@ -12,8 +11,9 @@ router.post("/login", UserController.login);
 
 router.get("/", UserController.fetch_all);
 
+router.post("/fetch-by-id", UserController.fetch_by_id);
 
-
+router.post("/update-avatar", UserController.update_avatar);
 
 
 

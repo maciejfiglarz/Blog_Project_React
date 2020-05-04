@@ -16,8 +16,8 @@ exports.insert_post = async (req, res, next) => {
   console.log("reqInsertPost", body);
   const postMenagerService = new PostMenagerService();
   const result = await postMenagerService.insertPost(body);
-  const { success, postId } = result;
-  res.status(200).json({ success, postId });
+  const { post } = result;
+  res.status(200).json({ success, post });
 };
 
 exports.remove_photo_temponary = async (req, res, next) => {

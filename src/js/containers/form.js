@@ -11,7 +11,7 @@ export const InputText = (props) => {
     maxLength,
     value,
   } = props;
-
+  const currentType = type ? type : "text";
   return (
     <div className="input__text-wrap">
       {maxLength && (
@@ -22,7 +22,7 @@ export const InputText = (props) => {
       <input
         onChange={onChange}
         className={`input__text-regular  ${className}`}
-        type={type}
+        type={currentType}
         name={name}
         value={value}
         placeholder={placeholder}
@@ -54,7 +54,7 @@ export const TextArea = (props) => {
   const style = {
     height: props.height,
   };
-  const { onChange, name, className, placeholder } = props;
+  const { onChange, name, className, placeholder,maxLength } = props;
   const handleKeyDown = (e) => {
     e.target.style.height = "inherit";
     e.target.style.height = `${e.target.scrollHeight}px`;
@@ -66,8 +66,9 @@ export const TextArea = (props) => {
         onChange={onChange}
         name={name}
         onKeyDown={handleKeyDown}
-        className={"input__text-regular creator-form__textarea" + className}
+        className={`input__text-regular ${className}`}
         placeholder={placeholder}
+        maxLength={maxLength}
       />
     </div>
   );

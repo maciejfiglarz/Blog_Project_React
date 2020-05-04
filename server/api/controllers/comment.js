@@ -18,6 +18,31 @@ exports.create_comment = async (req, res, next) => {
   });
 };
 
+exports.fetch_comments = async (req, res, next) => {
+  // const {postId} = req.body;
+  console.log('comment',req.body);
+  
+  res.status(200).json({ });
+  // console.log('pagination',postId);
+  // // const post = await Post.findById(postId).then((post) => post);
+
+  // const perPage = 5;
+  // const page = Math.max(0, req.params.page);
+  // // console.log("page", page);
+  // await Comment.find({ 'post': postId })
+  //   // .select("createdAt _id title description")
+  //   .limit(perPage)
+  //   // .skip(perPage * page)
+  //   .sort({
+  //     _id: "desc",
+  //   })
+  //   // .sort("-createdAt")
+  //   .exec((err, results) => {
+  //     // console.log("results", results);
+  //     res.status(201).json(results);
+  //   });
+};
+
 exports.pagination_comment = async (req, res, next) => {
   const postId = req.params.postId;
   console.log('pagination',postId);

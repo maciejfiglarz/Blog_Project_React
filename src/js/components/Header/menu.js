@@ -1,9 +1,10 @@
 import React from "react";
 import { history } from "../../helper/history";
-import  userActions  from "./../../store/user/action";
+import userActions from "./../../store/user/action";
 import { connect } from "react-redux";
 import logo from "./../../../images/logo.png";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 
 const Menu = ({ setIsMenu, isMenu, user, logout }) => {
   const onClickLogin = () => {
@@ -37,12 +38,12 @@ const Menu = ({ setIsMenu, isMenu, user, logout }) => {
 
       <ul className="header-menu__list">
         {isLogged && (
-          <>
-            <li onClick={onClicklogout} className="header-menu__item">
+          <Link to={`/profile/${user.id}`}>
+            <li className="header-menu__item">
               <i className="fas fa-sign-out-alt "></i> {user.username}
               <i className="fas fa-caret-down header-menu__item-dropicon"></i>
             </li>
-          </>
+          </Link>
         )}
         {!isLogged && (
           <>

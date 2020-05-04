@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import voteService from "../../../services/vote_service";
 import { connect } from "react-redux";
 
-import { userActions } from "../../../actions/user_action";
+import  userActions  from "./../../../store/user/action";
+
 
 const PostVote = (props) => {
   const post = props.post;
@@ -14,18 +15,21 @@ const PostVote = (props) => {
   const votes = props.user.votes;
 
   const setDefaultVote = () => {
-    if (isLogged) {
-      let voteKey = Object.keys(votes).filter((key) => {
-        return key == post._id;
-      });
-      if (voteKey.length > 0) {
-        const type = votes[voteKey];
-        setType(type);
-        type == "up"
-          ? setDefaultVoteNumber((prev) => prev - 1)
-          : setDefaultVoteNumber((prev) => prev + 1);
-      }
-    }
+    // if (isLogged) {
+    //   let voteKeys = Object.keys(votes);
+    //   if (voteKeys.length > 0) {
+    //     let voteKey = voteKeys.filter((key) => {
+    //       return key == post._id;
+    //     });
+    //     if (voteKey.length > 0) {
+    //       const type = votes[voteKey];
+    //       setType(type);
+    //       type == "up"
+    //         ? setDefaultVoteNumber((prev) => prev - 1)
+    //         : setDefaultVoteNumber((prev) => prev + 1);
+    //     }
+    //   }
+    // }
   };
 
   useEffect(() => {
@@ -121,7 +125,7 @@ const mapStateToProps = (state) => {
 };
 
 const actionCreators = {
-//   removeVote: userActions.removeVote,
+  //   removeVote: userActions.removeVote,
 };
 
 export default connect(mapStateToProps, actionCreators)(PostVote);

@@ -14,13 +14,18 @@ if (userLocal) {
 export default (state = initialState, action) => {
   switch (action.type) {
     case userConstants.LOGIN_SUCCESS:
-      return { isLogged: true, ...action.user };
+      return { isLogged: true, ...action.payload };
     case userConstants.LOGIN_FAILURE:
       return { loggedIn: false, user: {} };
     case userConstants.FETCH_USER_VOTES:
       return {
         ...state,
         votes: action.payload,
+      };
+    case userConstants.UPDATE_USER_AVATAR:
+      return {
+        ...state,
+        avatar: action.payload,
       };
     case userConstants.LOGIN_LOGOUT:
       return {

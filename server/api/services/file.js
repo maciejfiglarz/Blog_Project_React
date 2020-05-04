@@ -13,11 +13,11 @@ class FileService {
   }
   remove(path) {
     fs.unlink(path, (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      console.log("succes");
+      // if (err) {
+      //   console.error(err);
+      //   return;
+      // }
+      // console.log("succes");
     });
   }
   saveTemponaryImageInDB(fileName) {

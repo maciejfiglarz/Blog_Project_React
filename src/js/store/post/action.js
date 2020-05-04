@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router";
 
 import postConstants from "./constants";
-import postServices from "../../services/post_services";
+import postServices from "../../services/post";
 import postMenagerServices from "../../services/post-menager";
 
 import alertActions from "../alert/action";
@@ -16,22 +16,19 @@ const loading = (bool) => {
   };
 };
 
-
-const pagination = (page) => {
-  return (dispatch) => {
-    console.log("constants", postConstants);
+const pagination = (page, params = {}) => {
+  return async (dispatch) => {
     dispatch(loading(true));
-    postServices.pagination({ page }).then((result) => {
-      dispatch(loading(false));
-      const { data } = result;
-      console.log("dataxxx", data);
-      // if (data.length > 0) {
-      dispatch({
-        type: postConstants.POSTS_FETCH_SUCCESS,
-        payload: data,
-      });
-      // }
+    const result = await postServices.pagination({ page, params });
+    const { data } = result;
+
+    // if (data.length > 0) {
+    dispatch({
+      type: postConstants.POSTS_FETCH_SUCCESS,
+      payload: data,
     });
+    // }
+    dispatch(loading(false));
   };
 };
 

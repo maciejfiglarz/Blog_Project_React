@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Menu from "./menu";
-
+import {Link} from "react-router-dom";
 import {
   RegisterBtn,
   LoginBtn,
@@ -26,9 +26,9 @@ const Header = ({ user }) => {
     <>
       <header className="header">
         <div className="header-container container-full">
-          <div className="header-logo">
+         <Link to=""> <div className="header-logo">
             <img src={logo} />
-          </div>
+          </div></Link>
 
           <div onClick={onClickMenu} className="header-menu__init">
             <i className="fas fa-bars"></i>

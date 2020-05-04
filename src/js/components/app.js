@@ -39,7 +39,7 @@ const App = (props) => {
           <Switch>
             <Route exact path="/" component={Index} />
             {/* <PrivateRoute exact strict path="/profil/:id" component={Profile} /> */}
-            <Route exact strict path="/profil" component={Profile} />
+            <Route exact strict path="/profile/:id" component={Profile} />
             <Route exact path="/zaloguj-sie" component={Login} />
             <Route exact path="/zaloz-konto" component={Register} />
             <Route exact strict path="/post/:id" component={Single} />

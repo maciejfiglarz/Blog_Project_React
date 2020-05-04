@@ -1,4 +1,0 @@
-export const postConstants = {
-  POSTS_FETCH_SUCCES: "POSTS_FETCH_SUCCES",
-  POSTS_ARE_LOADING: "POSTS_ARE_LOADING",
-};

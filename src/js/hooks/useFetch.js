@@ -1,12 +1,12 @@
 
 import { useEffect, useState } from "react";
-
+import API from "./../helper/api";
 export const useFetch = url => {
     const [state, setState] = useState({ data: [], loading: true });
   
     useEffect(() => {
       setState(state => ({ data: state.data, loading: true }));
-      fetch(url)
+      API.post(url)
         .then(resp => resp.json())
         .then(resp => {
           setState({ data: resp, loading: false });

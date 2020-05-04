@@ -1,7 +1,11 @@
 const postModel = require("./../models/post");
 
 class PostService {
-  async pagination(page, perPage, sort = null) {
+  
+  async pagination(page, perPage, params = null) {
+    if(params){
+      console.log('params',params);
+    }
     return  postModel
       .find({})
       // .select("createdAt _id title description")
@@ -14,8 +18,6 @@ class PostService {
       // .sort("-createdAt")
       .exec()
       .then((result) => {
-        // res.status(201).json(results);
-        console.log("pagination", result);
         return result;
       });
   }

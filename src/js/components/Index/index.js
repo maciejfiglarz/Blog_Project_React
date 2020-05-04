@@ -2,34 +2,44 @@ import React, { useEffect, useState, useCallback } from "react";
 import Post from "../Post";
 import { connect } from "react-redux";
 import Creator from "../Creator";
-import { useFetch, useFetchIndex } from "../../hooks/useFetch";
+
 import InfinityList from "../InfinityList";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import postActions from "../../store/post/action";
+import PropTypes from "prop-types";
 
-const Index = props => {
-  const [page, setPage] = useState(1);
-  // const { data, loading } = useFetchIndex(`http://localhost:3000/posts?_page=${page}&_limit=3_sort=id&_order=desc`);
-  const [url, setUrl] = useState(
-    `http://localhost:3000/posts?_page=${page}&_limit=3_sort=id&_order=desc`
-  );
-  const [state, setState] = useState([]);
+const Index = ({ pagination, user, alert, posts }) => {
 
-  
+
   return (
     <div className="container">
       <div className="creator-redirect">
         <Link to="/dodaj">Creator</Link>
       </div>
       {/* <Creator /> */}
-      <InfinityList />
+      <InfinityList
+        posts={posts}
+        pagination={pagination}
+  
+      />
     </div>
   );
 };
 
-
-
-const mapStateToProps = state => {
-  return { user: state.user };
+Index.propTypes = {
+  posts: PropTypes.object,
+  user: PropTypes.object,
+  pagination: PropTypes.func,
+  alert: PropTypes.object,
 };
 
-export default connect(mapStateToProps)(Index);
+const mapStateToProps = (state) => {
+  const { user, posts } = state;
+  return { user, posts };
+};
+
+const actionCreators = {
+  pagination: postActions.pagination,
+};
+
+export default connect(mapStateToProps, actionCreators)(Index);

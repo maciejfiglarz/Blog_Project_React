@@ -4,14 +4,13 @@ import { connect } from "react-redux";
 import Post from "../Post";
 import postActions from "../../store/post/action";
 
-const InfiniteList = (props) => {
+const InfiniteList = ({ posts, pagination }) => {
   const [loadMore, setLoadMore] = useState(true);
   const [page, setPage] = useState(0);
-  const posts = props.posts;
   // const data = posts.data;
   // const isLoading = posts.isLoading;
 
-  console.log("propsPost", posts);
+  console.log("propsPost", posts, pagination);
 
   useEffect(() => {
     getData(loadMore);
@@ -37,14 +36,14 @@ const InfiniteList = (props) => {
       //   props.setState([...props.state, ...res.data]);
       // });`
       console.log("odpalone", page);
-      props.pagination(page);
+      pagination(page);
     }
   };
 
   return (
     <ul id="list">
       {posts && (
-        <React.Fragment>
+        <>
           {!posts.isLoading &&
             Object.keys(posts.data).length > 0 &&
             Object.keys(posts.data).map((key) => (
@@ -54,19 +53,10 @@ const InfiniteList = (props) => {
                 {/* </Link> */}
               </div>
             ))}
-        </React.Fragment>
+        </>
       )}
     </ul>
   );
 };
 
-const mapStateToProps = (state) => {
-  const { posts } = state;
-  return { posts };
-};
-
-const actionCreators = {
-  pagination: postActions.pagination,
-};
-
-export default connect(mapStateToProps, actionCreators)(InfiniteList);
+export default InfiniteList;

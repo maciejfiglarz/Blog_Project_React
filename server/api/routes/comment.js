@@ -3,7 +3,10 @@ const router = express.Router();
 
 const CommentController = require("../controllers/comment");
 
-router.post("/", CommentController.create_comment);
+router.post("/create", CommentController.create_comment);
+
+
+router.post("/fetch-comments", CommentController.fetch_comments);
 
 router.get(
   "/pagination/page-:page/post-:postId",
