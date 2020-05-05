@@ -12,6 +12,7 @@
     }
     &__content {
       margin-bottom:5px !important;
+      min-height:120px;
       &-wrap {
         width: calc(100% - 40px);
       }

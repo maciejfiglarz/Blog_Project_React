@@ -4,25 +4,25 @@ const Post = require("../models/post");
 const Comment = require("../models/comment");
 
 exports.create_comment = async (req, res, next) => {
-  const content = req.body.content;
-  const postId = req.body.post;
+  const { body } = req;
+  const { content, postId } = body;
 
   await Post.findById(postId).then((post) => {
     const comment = new Comment({
       _id: mongoose.Types.ObjectId(),
       content: content,
-      post: postId,
+      post: mongoose.Types.ObjectId(postId),
     });
     comment.save();
-    res.status(201).json({ result: "ok" ,comment: comment });
+    res.status(201).json({ success: true, comment: comment });
   });
 };
 
 exports.fetch_comments = async (req, res, next) => {
   // const {postId} = req.body;
-  console.log('comment',req.body);
-  
-  res.status(200).json({ });
+  console.log("comment", req.body);
+
+  res.status(200).json({});
   // console.log('pagination',postId);
   // // const post = await Post.findById(postId).then((post) => post);
 
@@ -45,13 +45,13 @@ exports.fetch_comments = async (req, res, next) => {
 
 exports.pagination_comment = async (req, res, next) => {
   const postId = req.params.postId;
-  console.log('pagination',postId);
+  console.log("pagination", postId);
   // const post = await Post.findById(postId).then((post) => post);
 
   const perPage = 5;
   const page = Math.max(0, req.params.page);
   // console.log("page", page);
-  await Comment.find({ 'post': postId })
+  await Comment.find({ post: postId })
     // .select("createdAt _id title description")
     .limit(perPage)
     // .skip(perPage * page)
@@ -65,32 +65,30 @@ exports.pagination_comment = async (req, res, next) => {
     });
 };
 
-
 exports.comment_delete = (req, res, next) => {
   const id = req.params.commentId;
   Comment.remove({ _id: id })
     .exec()
-    .then(result => {
+    .then((result) => {
       res.status(200).json({
         message: "Comment deleted",
         request: {
           type: "POST",
           url: `${global.baseUrl}/comment/`,
-          body: { title: "String", content: "Number" }
-        }
+          body: { title: "String", content: "Number" },
+        },
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json({
-        error: err
+        error: err,
       });
     });
 };
 
-
 exports.destroy_all = (req, res, next) => {
-  Comment.deleteMany({}, function(err) {
+  Comment.deleteMany({}, function (err) {
     if (err) {
       console.log(err);
     } else {
@@ -100,7 +98,7 @@ exports.destroy_all = (req, res, next) => {
 };
 
 exports.destroy_all = (req, res, next) => {
-  Post.deleteMany({}, function(err) {
+  Post.deleteMany({}, function (err) {
     if (err) {
       console.log(err);
     } else {
@@ -113,20 +111,20 @@ exports.fetch_all = (req, res, next) => {
   Comment.find()
     // .select("title content _id")
     .exec()
-    .then(docs => {
+    .then((docs) => {
       const response = {
         count: docs.length,
-        comments: docs.map(doc => {
+        comments: docs.map((doc) => {
           return {
             post: doc.post,
             content: doc.content,
             _id: doc._id,
             request: {
               type: "GET",
-              url: `${global.baseUrl}/comment/${doc._id}`
-            }
+              url: `${global.baseUrl}/comment/${doc._id}`,
+            },
           };
-        })
+        }),
       };
       //   if (docs.length >= 0) {
       res.status(200).json(response);
@@ -136,10 +134,10 @@ exports.fetch_all = (req, res, next) => {
       //       });
       //   }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json({
-        error: err
+        error: err,
       });
     });
 };
