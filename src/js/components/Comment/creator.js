@@ -18,29 +18,31 @@ const CommentCreator = ({
   user,
   createComment,
   fetchComments,
+  extraClass,
+  parentCommentId = null,
 }) => {
   const [content, setContent] = useState("");
   const [commentPage, setCommentPage] = useState(0);
   const [isPicker, setIsPicker] = useState(false);
-
+  const isLogged = user.isLogged;
   const postId = post._id;
+  console.log("parentComment", parentCommentId);
   const addEmoji = (e) => {
-    console.log(e);
     let sym = e.unified.split("-");
     let codesArray = [];
-
     sym.forEach((el) => codesArray.push("0x" + el));
-    //console.log(codesArray)  // ["0x1f3f3", "0xfe0f"]
     let emojiPic = String.fromCodePoint(...codesArray); //("0x1f3f3", "0xfe0f")
-    console.log("....", content, emojiPic);
-    setContent(content + emojiPic);
+
+    setContent(`${content}${emojiPic}`);
     setIsPicker(false);
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("comment", content, user, postId);
-    createComment({ content, user, postId });
+    createComment({ content, user, postId, parentCommentId });
+    setContent("");
   };
+
   useEffect(() => {
     const fetchCommentsForPost = async () => {
       const result = await fetchComments({ postId, commentPage });
@@ -58,14 +60,13 @@ const CommentCreator = ({
     };
   };
 
-  // const onChangeContent = (e) => {
-  //   console.log("test", e.target.innerText);
-  //   setContent(e.target.innerText);
-  // };
   const text = useRef("");
 
-  const handleChange = (evt) => {
-    setContent(evt.target.value);
+  const handleChange = (e) => {
+    let string = e.target.value;
+    string = string.replace(/<\/?[^>]+(>|$)/g, "");
+    string = string.replace("&nbsp;", " ");
+    setContent(string);
   };
 
   const handleBlur = () => {
@@ -77,54 +78,22 @@ const CommentCreator = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="comment-creator">
-      {/* <Emoji emoji=':mask:' size={12} /> */}
+    <form
+      onSubmit={handleSubmit}
+      className={`comment-creator ${
+        parentCommentId ? "comment-creator--response" : ""
+      } `}
+    >
       <div
         className="comment-creator__avatar"
-        style={avatarStyle(user.avatar)}
+        style={avatarStyle(isLogged ? user.avatar : "")}
       ></div>
       <div className="comment-creator__content-wrap">
-        {/* <input
-          type="text"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Type a message here then hit ENTER"
-        /> */}
-
-        {/* <div contentEditable={true}>
-          Looks good to me
-          <span
-            contentEditable={true}
-            dangerouslySetInnerHTML={{
-              __html: Emoji({
-                html: true,
-                set: "apple",
-                emoji: "+1",
-                size: 12,
-              }),
-            }}
-          ></span> fesfesfesfsef sefsefsef es
-        </div> */}
-        {/* <div
-          className="comment-creator__content input__text-regular"
-          onInput={onChangeContent}
-          contentEditable={true}
-          suppressContentEditableWarning={true}
-        >
-          {content}
-        </div> */}
-
-        {/* <TextArea
-          onChange={(e) => setContent(e.target.value)}
-          name="content"
-          value={content}
-          className="comment-creator__content"
-          placeholder="Napisz komentarz..."
-        /> */}
         <ContentEditable
           html={content}
           onBlur={handleBlur}
           onChange={handleChange}
+          placeholder={"Napisz komentarz"}
           className="comment-creator__content input__text-regular"
         />
         <div className="comment-creator__action">
