@@ -1,0 +1,26 @@
+.footer {
+    background: url('./../../images/footer_bg.png');
+    min-height:50px;
+    margin-top: 50px;
+    &__container {
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height:50px;
+    }
+    &__logo {
+        img{
+            max-width:110px;
+            margin-top:3px;
+        }
+    }
+
+    &__menu {
+        display: flex;
+        &-item{
+            color:white;
+            padding:3px;
+            color: $color-secondary-dark;
+        }
+    }
+}

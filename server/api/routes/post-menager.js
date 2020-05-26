@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const PostMenagerController = require("../controllers/post-menager");
 
-router.get("/create-graphic", PostMenagerController.create_graphic);
 
 router.post("/insert-post", PostMenagerController.insert_post);
 

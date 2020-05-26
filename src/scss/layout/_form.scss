@@ -3,15 +3,28 @@
     margin-bottom: 10px;
   }
   &__text {
+    &--primary {
+      color: $color-primary !important;
+    }
+    &--title {
+      font-size: 1.7rem !important;
+      font-weight: 700;
+      min-height: 120px !important;
+    }
+    &--content {
+      font-size: 1.4rem !important;
+      font-weight: 700;
+      min-height: 200px !important;
+    }
     &-counter {
-      position:absolute;
-      right:0;
-      top:3px;
+      position: absolute;
+      right: 0;
+      top: 3px;
       transform: translateY(-100%);
-      background: $color-basic-light;
-      padding:3px 3px 2px 3px;
+      background: $color-form-background;
+      padding: 3px 3px 2px 3px;
       border-radius: 3px;
-      border: 1px solid $color-border;
+      border: 1px solid $color-form-border;
       border-bottom: 0;
       min-width: 50px;
       text-align: center;
@@ -21,16 +34,16 @@
       position: relative;
     }
     &-regular {
-      background: $color-basic-light;
+      background: $color-form-background;
       border-radius: 4px;
-      padding: 6px;
+      padding: 8px;
       font-size: 1.4rem;
       color: $color-text;
       border: 0;
       width: 100%;
-      border: 1px solid $color-border;
+      border: 1px solid $color-form-border;
       @include placeholder();
-      margin: 0 0 28px 0;
+      margin: 0 0 18px 0;
       overflow: hidden;
     }
   }
@@ -58,7 +71,7 @@
       vertical-align: text-top;
       width: 17px;
       height: 17px;
-      background: $color-basic-light;
+      background: $color-form-background;
     }
 
     &:hover + label:before {
@@ -104,7 +117,7 @@
   margin: 0 auto;
   display: block;
   border-radius: $border-radius;
-  padding: 1px;
+  padding: 4px;
   font-size: 1.2rem;
   &-wrap {
     display: flex;
@@ -134,6 +147,12 @@
   // color: white;
   // background-color: black;
   display: block;
+}
+
+[contenteditable="true"]:empty:before {
+  content: attr(placeholder);
+  display: block;
+  color: #aaa;
 }
 
 // .inputfile:focus + label,

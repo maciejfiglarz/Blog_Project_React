@@ -1,6 +1,5 @@
 import commentConstants from "./constants";
 import commentServices from "../../services/comment";
-import Axios from "axios";
 
 const creatorLoading = (bool) => {
   return {
@@ -21,29 +20,30 @@ const createComment = (params) => {
 
     const result = await commentServices.createComment(params);
     const { data } = result;
-
-    // if (data.length > 0) {
+    const { comment } = data;
     dispatch({
       type: commentConstants.CREATE_COMMENT,
-      payload: data,
+      payload: comment,
     });
-    // }
     dispatch(creatorLoading(false));
   };
 };
 
+const fetchComments = (params) => {
+  const { page } = params;
 
-
-const fetchComments = (postId) => {
   return async (dispatch) => {
     dispatch(loading(true));
 
-    const result = await commentServices.createComment(postId);
-    const { data } = result;
-
+    const { data } = await commentServices.fetchComments(params);
+    const { mainComments, responseComments } = data;
     dispatch({
       type: commentConstants.COMMENTS_LOADED,
-      payload: data,
+      payload: {
+        newMainComments: mainComments,
+        newResponseComments: responseComments,
+        page,
+      },
     });
 
     dispatch(loading(false));

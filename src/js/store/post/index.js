@@ -13,7 +13,6 @@ export default (state = initialState, action) => {
       for (const key in payload) {
         newState.data[payload[key]._id] = payload[key];
       }
-      console.log("newState", newState);
       return newState;
   }
   return state;

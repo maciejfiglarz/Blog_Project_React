@@ -2,11 +2,16 @@ import React from "react";
 import { history } from "../../helper/history";
 import userActions from "./../../store/user/action";
 import { connect } from "react-redux";
-import logo from "./../../../images/logo.png";
+import logo from "./../../../images/logo_lolipop_mobile.png";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import { uploadsUrl } from "./../../constants/types";
+import emptyAvatar from "./../../../images/empty_avatar.jpeg";
+import createAction from "./../../../images/create_action.png";
 
 const Menu = ({ setIsMenu, isMenu, user, logout }) => {
+  const { avatar, id } = user;
   const onClickLogin = () => {
     hideMenu();
     history.push("/zaloguj-sie");
@@ -25,7 +30,14 @@ const Menu = ({ setIsMenu, isMenu, user, logout }) => {
   };
 
   const isLogged = user.isLogged;
-
+  const avatarStyle = (photo) => {
+    const imageUrl = photo ? `${uploadsUrl}/avatar/${photo}` : emptyAvatar;
+    return {
+      backgroundImage: `url('${imageUrl}')`,
+      backgroundSize: "cover",
+      backgroundPosition: "center center",
+    };
+  };
   return (
     <nav className={`header-menu ${isMenu ? "header-menu--visible" : ""}`}>
       <div onClick={hideMenu} className="header-menu__close">
@@ -38,13 +50,24 @@ const Menu = ({ setIsMenu, isMenu, user, logout }) => {
 
       <ul className="header-menu__list">
         {isLogged && (
-          <Link to={`/profile/${user.id}`}>
+          <Link onClick={hideMenu} to={`/profile/${user.id}`}>
             <li className="header-menu__item">
-              <i className="fas fa-sign-out-alt "></i> {user.username}
-              <i className="fas fa-caret-down header-menu__item-dropicon"></i>
+              <div className="header-menu__flex">
+                <div
+                  className="header-menu__avatar"
+                  style={avatarStyle(user.avatar)}
+                ></div>
+                {user.username}
+              </div>
+              {/* <i className="fas fa-caret-down header-menu__item-dropicon"></i> */}
             </li>
           </Link>
         )}
+        <Link onClick={hideMenu} to={`/dodaj`}>
+          <li className="header-menu__item">
+            <i class="fas fa-plus-circle"></i> Dodaj
+          </li>
+        </Link>
         {!isLogged && (
           <>
             <li onClick={onClickLogin} className="header-menu__item">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { PrimaryBtn } from "../../containers/buttons";
-import emptyAvatar from "./../../../images/empty-avatar.jpeg";
+import emptyAvatar from "./../../../images/empty_avatar.jpeg";
 import PropTypes from "prop-types";
 import { uploadsUrl } from "./../../constants/types";
 import commentActions from "./../../store/comment/action";
@@ -22,11 +22,11 @@ const CommentCreator = ({
   parentCommentId = null,
 }) => {
   const [content, setContent] = useState("");
-  const [commentPage, setCommentPage] = useState(0);
+  // const [commentPage, setCommentPage] = useState(0);
   const [isPicker, setIsPicker] = useState(false);
   const isLogged = user.isLogged;
   const postId = post._id;
-  console.log("parentComment", parentCommentId);
+
   const addEmoji = (e) => {
     let sym = e.unified.split("-");
     let codesArray = [];
@@ -43,13 +43,13 @@ const CommentCreator = ({
     setContent("");
   };
 
-  useEffect(() => {
-    const fetchCommentsForPost = async () => {
-      const result = await fetchComments({ postId, commentPage });
-      console.log("commentResult", result);
-    };
-    fetchCommentsForPost();
-  }, [commentPage]);
+  // useEffect(() => {
+  //   const fetchCommentsForPost = async () => {
+  //     const result = await fetchComments({ postId, commentPage });
+  //     console.log("commentResult", result);
+  //   };
+  //   fetchCommentsForPost();
+  // }, [commentPage]);
 
   const avatarStyle = (photo) => {
     const imageUrl = photo ? `${uploadsUrl}/avatar/${photo}` : emptyAvatar;
@@ -59,8 +59,6 @@ const CommentCreator = ({
       backgroundPosition: "center center",
     };
   };
-
-  const text = useRef("");
 
   const handleChange = (e) => {
     let string = e.target.value;

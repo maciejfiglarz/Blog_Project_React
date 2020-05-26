@@ -12,6 +12,7 @@ import CreatorGraphic from "./graphic/index";
 import CreatorYoutube from "./youtube";
 import CreatorLink from "./link";
 import PropTypes from "prop-types";
+import logo from "./../../../images/creator_logo.png";
 
 const Creator = (props) => {
   const [postId, setPostId] = useState();
@@ -32,15 +33,16 @@ const Creator = (props) => {
   }
 
   const { alert, isLoading } = props;
-  console.log("loading", isLoading);
+ 
   return (
     <div className="container">
       <section className="creator">
         {isLoading && <LoaderCover />}
-        <h1 className="creator-title">Dodaj {type}</h1>
+      <div className="creator__logo">
+        <img className="creator__logo-img" src={logo}/>
+      </div>
 
         <CreatorMenu setType={setType} />
-
         <div className="creator-switcher__content-wrap">
           <div
             data-name="post"
@@ -48,13 +50,13 @@ const Creator = (props) => {
           >
             <CreatorPost />
           </div>
-          <div data-name="photo" className="creator-switcher__content">
+          <div data-name="photo" className="creator-switcher__content creator-switcher__content--active">
             <CreatorGraphic />
           </div>
           <div data-name="youtube" className="creator-switcher__content">
             <CreatorYoutube setYoutube={setYoutube} youtube={youtube} />
           </div>
-          <div data-name="link" className="creator-switcher__content creator-switcher__content--active">
+          <div data-name="link" className="creator-switcher__content">
             <CreatorLink
               link={link}
               setLink={setLink}

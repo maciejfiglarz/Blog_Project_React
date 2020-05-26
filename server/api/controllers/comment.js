@@ -1,46 +1,61 @@
 const mongoose = require("mongoose");
 
 const Post = require("../models/post");
-const Comment = require("../models/comment");
+const UserModel = require("../models/user");
+const commentModel = require("../models/comment");
+const CommentService = require("./../services/comment");
+
+exports.total_pages = async (req, res, next) => {
+  const { params } = req;
+  const { postId } = params;
+
+  let countedTotalPages = await commentModel.countDocuments({ post: postId });
+  countedTotalPages = Math.ceil(countedTotalPages / 15 - 2);
+  res.status(201).json({ countedTotalPages });
+};
 
 exports.create_comment = async (req, res, next) => {
   const { body } = req;
-  const { content, postId } = body;
 
-  await Post.findById(postId).then((post) => {
-    const comment = new Comment({
-      _id: mongoose.Types.ObjectId(),
-      content: content,
-      post: mongoose.Types.ObjectId(postId),
-    });
-    comment.save();
-    res.status(201).json({ success: true, comment: comment });
-  });
+  const commentService = new CommentService();
+  const comment = await commentService.createComment(body);
+  res.status(201).json({ success: true, comment });
+  //   res.status(201).json({ success: true, comment });
+  // } else {
+  //   res.status(201).json({ success: false });
+  // }
+
+  // const { content, postId, user,parentCommentId } = body;
+  // const { id } = user;
+  // const postResult = await Post.findById(postId);
+  // const userResult = await UserModel.findById(id);
+
+  // if (postResult && userResult) {
+  //   const comment = new commentModel({
+  //     _id: mongoose.Types.ObjectId(),
+  //     content: content,
+  //     post: mongoose.Types.ObjectId(postId),
+  //     user: mongoose.Types.ObjectId(id),
+  //   });
+  //   await comment.save();
+  //   // await comment.populate("user");
+  //   await comment.populate("user").execPopulate();
+  //   delete comment["password"];
+  //   res.status(201).json({ success: true, comment });
+  // } else {
+  //   res.status(201).json({ success: false });
+  // }
 };
 
 exports.fetch_comments = async (req, res, next) => {
   // const {postId} = req.body;
-  console.log("comment", req.body);
 
-  res.status(200).json({});
-  // console.log('pagination',postId);
-  // // const post = await Post.findById(postId).then((post) => post);
-
-  // const perPage = 5;
-  // const page = Math.max(0, req.params.page);
-  // // console.log("page", page);
-  // await Comment.find({ 'post': postId })
-  //   // .select("createdAt _id title description")
-  //   .limit(perPage)
-  //   // .skip(perPage * page)
-  //   .sort({
-  //     _id: "desc",
-  //   })
-  //   // .sort("-createdAt")
-  //   .exec((err, results) => {
-  //     // console.log("results", results);
-  //     res.status(201).json(results);
-  //   });
+  const { body } = req;
+  const { page, postId } = body;
+  const commentService = new CommentService();
+  const comments = await commentService.fetchComments({ page, postId });
+  console.log("comments", comments);
+  res.status(200).json(comments);
 };
 
 exports.pagination_comment = async (req, res, next) => {
@@ -48,10 +63,11 @@ exports.pagination_comment = async (req, res, next) => {
   console.log("pagination", postId);
   // const post = await Post.findById(postId).then((post) => post);
 
-  const perPage = 5;
+  const perPage = 15;
   const page = Math.max(0, req.params.page);
   // console.log("page", page);
-  await Comment.find({ post: postId })
+  await commentModel
+    .find({ post: postId })
     // .select("createdAt _id title description")
     .limit(perPage)
     // .skip(perPage * page)
@@ -67,7 +83,8 @@ exports.pagination_comment = async (req, res, next) => {
 
 exports.comment_delete = (req, res, next) => {
   const id = req.params.commentId;
-  Comment.remove({ _id: id })
+  commentModel
+    .remove({ _id: id })
     .exec()
     .then((result) => {
       res.status(200).json({
@@ -88,17 +105,7 @@ exports.comment_delete = (req, res, next) => {
 };
 
 exports.destroy_all = (req, res, next) => {
-  Comment.deleteMany({}, function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.end("success");
-    }
-  });
-};
-
-exports.destroy_all = (req, res, next) => {
-  Post.deleteMany({}, function (err) {
+  commentModel.deleteMany({}, function (err) {
     if (err) {
       console.log(err);
     } else {
@@ -108,7 +115,8 @@ exports.destroy_all = (req, res, next) => {
 };
 
 exports.fetch_all = (req, res, next) => {
-  Comment.find()
+  commentModel
+    .find()
     // .select("title content _id")
     .exec()
     .then((docs) => {

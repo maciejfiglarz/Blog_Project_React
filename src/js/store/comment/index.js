@@ -1,17 +1,46 @@
 import commentConstants from "./constants";
 
 let initialState = {
-  data: {},
+  mainComments: [],
+  responseComments: [],
   isLoading: false,
+};
+
+const createComment = (state, action) => {
+  const { payload } = action;
+  return {
+    ...state,
+    mainComments: [payload, ...state.comments],
+  };
+};
+
+const loadComments = (state, action) => {
+  const { payload } = action;
+  const { newMainComments, newResponseComments, page } = payload;
+
+  let newState = Object.assign({}, state);
+  const { mainComments, responseComments } = newState;
+
+  if (page > 0) {
+    return {
+      ...newState,
+      mainComments: [...mainComments, ...newMainComments],
+      responseComments: [...responseComments, ...newResponseComments],
+    };
+  }
+  return {
+    ...newState,
+    mainComments: newMainComments,
+    responseComments: newResponseComments,
+  };
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case commentConstants.CREATE_COMMENT:
-      return state;
+      return createComment(state, action);
     case commentConstants.COMMENTS_LOADED:
-      // return { ...state, data:{}...action.payload };
-      return state;
+      return loadComments(state, action);
   }
   return state;
 };

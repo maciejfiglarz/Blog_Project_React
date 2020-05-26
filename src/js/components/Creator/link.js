@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { PrimaryBtn } from "../../containers/buttons";
-import { InputText } from "./../../containers/form";
+import { CreatePostBtn } from "../../containers/buttons";
+import { InputText, TextArea, Checkbox } from "./../../containers/form";
 import { Loader } from "../../containers/loader";
 import { useDispatch } from "react-redux";
 
@@ -28,6 +28,8 @@ const CreatorLink = (props) => {
   const [siteDescription, setSiteDescription] = useState("");
   const [sitePhoto, setSitePhoto] = useState("");
 
+  const [isAcceptRules, setIsAcceptRules] = useState(false);
+
   const stylePhoto = {
     backgroundImage: `url(${sitePhoto})`,
     backgroundRepeat: "no-repeat",
@@ -38,7 +40,7 @@ const CreatorLink = (props) => {
   const onChange = (e) => {
     const url = e.target.value;
     setLink(url);
-
+    setLoading(true);
     setTimeout(() => {
       loadData(url);
     }, 1000);
@@ -53,7 +55,7 @@ const CreatorLink = (props) => {
         isCorrentLink: checkIsCorrentLink(),
         link,
         linkPhoto: sitePhoto,
-        linkSiteName:siteName,
+        linkSiteName: siteName,
         type: "link",
       },
       user,
@@ -65,19 +67,19 @@ const CreatorLink = (props) => {
   };
 
   const loadData = async (url) => {
-    setLoading(true);
     dispatch(alertActions.clear());
 
     if (url.length > 0) {
       const result = await postMenagerServices.getLinkData(url);
+      let error = {};
       const { data } = result;
       const { success, params } = data;
-
+      console.log("linkData", data);
       if (success) {
         setData(params);
       } else {
         clearData();
-        dispatch(alertActions.error({ wrongLink: "Błędy link" }));
+        dispatch(alertActions.error({ link: "Błędy link" }));
       }
     } else {
       dispatch(alertActions.error({ wrongLink: "Musisz wkleić link" }));
@@ -98,7 +100,7 @@ const CreatorLink = (props) => {
     setSiteDescription("");
     setSiteName("");
   };
-  console.log("isCorrect", checkIsCorrentLink(), siteName && siteTitle && sitePhoto);
+
   return (
     <form className="creator-form" onSubmit={handleSubmit}>
       {isLoading && <Loader />}
@@ -112,52 +114,43 @@ const CreatorLink = (props) => {
         </div>
       )}
 
-      {/* {alert.message && <Message alert={alert} field={"link"} />}
-      <input
-        onChange={onChange}
-        value={link}
-        className="input__text-regular creator-form__input"
-        name="link"
-        placeholder="Link do strony"
-      /> */}
-      {alert.message && <Message alert={alert} field={"link"} />}
+      {alert.message && <Message alert={alert} field="link" />}
       <InputText
         onChange={onChange}
         name="link"
         value={link}
-        className={"creator-form__input"}
-        placeholder={"Link"}
+        className="creator-form__input"
+        placeholder="Link www"
       />
 
-      {alert.message && <Message alert={alert} field={"linkTitle"} />}
-      {/* <input
-        onChange={(e) => setLinkTitle(e.target.value)}
-        value={linkTitle}
-        className="input__text-regular creator-form__input"
-        name="linkTitle"
-        placeholder="Tytuł"
-      /> */}
-      <InputText
+      {alert.message && <Message alert={alert} field="linkTitle" />}
+      <TextArea
         onChange={(e) => setTitle(e.target.value)}
-        name="title"
+        name="linkTitle"
         value={title}
-        className={"creator-form__input"}
+        className="creator-form__input input__text--title"
         placeholder="Tytuł"
         maxLength="255"
       />
 
-      <input
+      <TextArea
         onChange={(e) => setContent(e.target.value)}
+        name="content"
         value={content}
-        className="input__text-regular creator-form__input"
-        name="contante"
+        className="creator-form__input"
         placeholder="Opis"
+        maxLength="500"
       />
-      <PrimaryBtn
-        extraClass="creator-form__button"
-        text="Dodaj"
-        handleSubmit={handleSubmit}
-      />
+      {alert.message && <Message alert={alert} field="graphicIsAcceptRules" />}
+      <div className="creator-form__accept">
+        <Checkbox
+          name="graphicIsAccept"
+          onChange={(e) => setIsAcceptRules(!isAcceptRules)}
+          label="Akceptuję regulamin serwisu Szlauf.pl"
+        />
+      </div>
+
+      <CreatePostBtn handleSubmit={handleSubmit} />
     </form>
   );
 };

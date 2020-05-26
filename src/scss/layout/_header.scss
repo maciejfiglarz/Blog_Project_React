@@ -1,16 +1,27 @@
 .header {
   width: 100%;
-  background: $color-basic-middle;
+  // background: $color-background-dark;
+  background: url("./../../images/login_panel_bg.png");
   margin-bottom: 20px;
-  border-radius: $border-radius;
-  padding: 8px 0;
+  // padding: 8px 0;
   position: fixed;
   z-index: 999;
+  height: 50px;
+  &-logo {
+    position: absolute;
+    left: 5px;
+    top: 3px;
+    img {
+      max-width: 120px;
+    }
+  }
 
   &-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100%;
+    position:relative;
   }
   &-menu {
     position: fixed;
@@ -19,24 +30,34 @@
     width: 100%;
     height: 100%;
     min-height: 100%;
-    background: $color-basic-middle;
+    background: $color-background-dark;
     display: none;
     padding: 20px;
     &--visible {
       display: block;
+    }
+    &__flex{
+      display:flex;
+      align-items: center;
     }
     &__close {
       position: absolute;
       right: 20px;
       top: 20px;
       i {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
       }
+    }
+    &__avatar {
+      width: 25px;
+      height: 25px;
+      border-radius: 5px;
+      margin-right:8px;
     }
     &__logo {
       text-align: center;
       img {
-        max-width: 30px;
+        max-width: 140px;
       }
     }
     &__user {
@@ -46,11 +67,12 @@
     }
 
     &__init {
-      font-size: 1.8rem;
-      cursor: pointer;
+      img {
+        width: 30px;
+      }
     }
     &__list {
-      margin-top: 20px;
+      // margin-top: 20px;
     }
 
     &__item {
@@ -73,17 +95,6 @@
         transform: translateY(-50%);
         transition: all 0.3s;
       }
-    }
-  }
-  &-logo {
-    position: relative;
-    img {
-      max-width: 30px;
-      // margin: 0;
-      // position: absolute;
-      // top: 50%;
-      // -ms-transform: translateY(-50%);
-      // transform: translateY(-50%);
     }
   }
 }

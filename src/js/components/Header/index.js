@@ -13,7 +13,8 @@ import {
 
 import { history } from "../../helper/history";
 
-import logo from "./../../../images/logo.png";
+import logo from "./../../../images/logo_lolipop_mobile.png";
+import menuMobile from "./../../../images/menu_mobile.png";
 
 const Header = ({ user }) => {
   const [isMenu, setIsMenu] = useState(false);
@@ -26,12 +27,13 @@ const Header = ({ user }) => {
     <>
       <header className="header">
         <div className="header-container container-full">
+
          <Link to=""> <div className="header-logo">
             <img src={logo} />
           </div></Link>
 
           <div onClick={onClickMenu} className="header-menu__init">
-            <i className="fas fa-bars"></i>
+           <img src={menuMobile} />
           </div>
 
           {/* <div className="header-label">

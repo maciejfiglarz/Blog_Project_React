@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Post from "../Post";
 import { connect } from "react-redux";
-import Creator from "../Creator";
+import CreatorRedirect from "./../Creator/redirect";
 
 import InfinityList from "../InfinityList";
 import { Link } from "react-router-dom";
@@ -9,19 +9,10 @@ import postActions from "../../store/post/action";
 import PropTypes from "prop-types";
 
 const Index = ({ pagination, user, alert, posts }) => {
-
-
   return (
     <div className="container">
-      <div className="creator-redirect">
-        <Link to="/dodaj">Creator</Link>
-      </div>
-      {/* <Creator /> */}
-      <InfinityList
-        posts={posts}
-        pagination={pagination}
-  
-      />
+      <CreatorRedirect />
+      <InfinityList posts={posts} pagination={pagination} />
     </div>
   );
 };

@@ -27,6 +27,10 @@ const updateAvatar = async (data, user) => {
   return API.post(`/user/update-avatar`, data, config);
 };
 
+const getAvatar = (user) => {
+
+}
+
 const userServices = {
   login,
   logout,

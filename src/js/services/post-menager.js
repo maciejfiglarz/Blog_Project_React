@@ -35,7 +35,7 @@ const uploadTemponaryPhoto = async (data) => {
 };
 
 const validationPost = (params) => {
-  const { title, content, photo, isPhotoActive } = params;
+  const { title, content, photo, isPhotoActive,isAcceptRules } = params;
   let errors = {};
 
   if (isMinLength(title, 1)) {
@@ -52,11 +52,15 @@ const validationPost = (params) => {
   if (isMinLength(content, 0)) {
     errors["postContent"] = "Musisz dołączyć opis";
   }
+  if (!isAcceptRules) {
+    errors["postIsAcceptRules"] = "Musisz zakceptować regulamin";
+  }
+
 
   return { isValid: Object.keys(errors).length == 0 ? true : false, errors };
 };
 const validationGraphic = (params) => {
-  const { title, photo, isTitleTop, titleTop } = params;
+  const { title, photo, isTitleTop, titleTop,isAcceptRules } = params;
   let errors = {};
 
   if (isMinLength(title, 1)) {
@@ -72,6 +76,10 @@ const validationGraphic = (params) => {
 
   if (isMinLength(photo, 1)) {
     errors["graphicPhoto"] = "Musisz wybrać zdjęcie";
+  }
+  console.log('isAccept',isAcceptRules);
+  if (!isAcceptRules) {
+    errors["graphicIsAcceptRules"] = "Musisz zakceptować regulamin";
   }
 
   return { isValid: Object.keys(errors).length == 0 ? true : false, errors };

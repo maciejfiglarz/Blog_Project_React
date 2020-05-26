@@ -8,12 +8,11 @@ import CommentItem from "./item";
 import PropTypes from "prop-types";
 
 const Comment = ({ post, fetchComments, comment }) => {
-  const [loadMore, setLoadMore] = useState(true);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [isShowMore, setIsShowMore] = useState(false);
   const postId = post._id;
-  const { comments } = comment;
+  const { mainComments, responseComments } = comment;
 
   useEffect(() => {
     const countComments = async () => {
@@ -23,47 +22,56 @@ const Comment = ({ post, fetchComments, comment }) => {
       if (countedTotalPages > 0) setIsShowMore(true);
     };
     countComments();
+    fetchComments({ page, postId });
   }, []);
 
-  useEffect(() => {
-    console.log('loadone');
-    getData(loadMore);
-    setLoadMore(false);
-  }, [loadMore]);
-
-  const getData = (load) => {
-    if (load) {
-      fetchComments({ page, postId });
-    }
-  };
-  
-  const onClickMore = () => {
-    console.log('yyy');
-    setPage((page) => {
-      const increasedPage = page + 1;
-      setLoadMore(true);
-      console.log(page, totalPages);
+  const getData = () => {
+    setPage((prev) => {
+      const increasedPage = prev + 1;
+      fetchComments({ page: increasedPage, postId });
       if (page >= totalPages) {
         setIsShowMore(false);
       }
-      console.log("xxxxxxxx", increasedPage);
       return increasedPage;
     });
+  };
+
+  const onClickMore = () => {
+    getData();
   };
 
   return (
     <div className="comment">
       <CommentCreator post={post} />
-      {comments && (
-        <div id="list">
-          {Object.keys(comments).map((key) => (
-            <CommentItem post={post} key={key} comment={comments[key]} />
-          ))}
+      {mainComments && (
+        <div className="comment-item__list">
+          {Object.keys(mainComments).map((key) => {
+            const responseCommentsArray =
+              mainComments[key]._id in responseComments
+                ? responseComments[mainComments[key]._id]
+                : [];
+            console.log("resss", responseCommentsArray);
+            return (
+              <>
+                {mainComments[key]._id}
+                <CommentItem
+                  post={post}
+                  key={key}
+                  comment={mainComments[key]}
+                />
+                {responseCommentsArray.map((com) => (
+                  <div className="comment-item__list--response">
+                    <CommentItem post={post} key={key} comment={com} />
+                  </div>
+                ))}
+              </>
+            );
+          })}
         </div>
       )}
       {isShowMore && (
         <div onClick={onClickMore} className="comment-more">
-          Pokaż więcej...
+          Pokaż więcej... page {page}
         </div>
       )}
     </div>

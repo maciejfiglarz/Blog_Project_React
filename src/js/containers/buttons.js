@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import createPost from "./../../images/create_action.png";
 
 const PrimaryBtn = (props) => (
   <button
@@ -25,10 +26,35 @@ const SecondaryBtn = (props) => {
   );
 };
 
+const ActionBtn = ({ icon, text, onClick }) => {
+  const icons = {
+    comment: "fas fa-comment",
+  };
+
+  return (
+    <button className="button-action" onClick={onClick}>
+      {icon && <i className={icons[icon]}></i>}
+      {text}
+    </button>
+  );
+};
+
 const LoginBtn = (props) => (
   <button className="button-primary button-login" onClick={props.onClick}>
     {props.text}
   </button>
+);
+
+const CreatePostBtn = (props) => (
+  <div className="button-create__post-wrap">
+    <button
+      type="submit"
+      className="button-create__post"
+      onClick={props.onClick}
+    >
+      <img src={createPost} />
+    </button>
+  </div>
 );
 
 const RegisterBtn = (props) => (
@@ -37,4 +63,11 @@ const RegisterBtn = (props) => (
   </button>
 );
 
-export { PrimaryBtn, SecondaryBtn, LoginBtn, RegisterBtn };
+export {
+  PrimaryBtn,
+  SecondaryBtn,
+  LoginBtn,
+  RegisterBtn,
+  CreatePostBtn,
+  ActionBtn,
+};

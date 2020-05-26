@@ -48,9 +48,11 @@ const InfiniteList = ({ posts, pagination }) => {
             Object.keys(posts.data).length > 0 &&
             Object.keys(posts.data).map((key) => (
               <div>
-                {/* <Link to={`/status/${posts[key]._id}`}> */}
-                <Post key={posts.data[key]._id} post={posts.data[key]} />
-                {/* </Link> */}
+                <Post
+                  key={posts.data[key]._id}
+                  post={posts.data[key]}
+                  isSingle={false}
+                />
               </div>
             ))}
         </>

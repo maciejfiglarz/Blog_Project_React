@@ -15,15 +15,19 @@ class PostService {
       .sort({
         _id: "desc",
       })
-      // .sort("-createdAt")
+      // .sort("-createdAt")koleg
       .exec()
       .then((result) => {
+
         return result;
       });
   }
   
   async findOneById(id) {
-    return postModel.findById(id);
+    const post = await postModel.findById(id).populate('user');
+    delete post.user.password;
+    console.log('fetched',post['user']);
+    return post; 
   }
   async updateVote(params) {
     const { type, postId } = params;

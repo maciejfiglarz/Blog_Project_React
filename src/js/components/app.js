@@ -43,7 +43,7 @@ const App = (props) => {
             <Route exact path="/zaloguj-sie" component={Login} />
             <Route exact path="/zaloz-konto" component={Register} />
             <Route exact strict path="/post/:id" component={Single} />
-            <Route exact strict path="/dodaj" component={Creator} />
+            <PrivateRoute  exact strict path="/dodaj" component={Creator} />
           </Switch>
         </div>
         <Footer />

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PrimaryBtn } from "../../../containers/buttons";
+import { CreatePostBtn } from "../../../containers/buttons";
 import { uploadsUrl } from "../../../constants/types";
 import { InputText, Checkbox, TextArea } from "../../../containers/form";
 import { Message } from "../../../containers/message";
@@ -8,59 +8,75 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import postMenagerActions from "../../../store/post-menager/action";
 
-const CreatorGraphic = ({alert, createPost, user}) => {
+const CreatorGraphic = ({ alert, createPost, user }) => {
   const [photo, setPhoto] = useState("");
   const [title, setTitle] = useState("");
   const [titleTop, setTitleTop] = useState("");
-  const [content, setContent] = useState("");
   const [isTitleTop, setIsTitleTop] = useState(false);
+  const [content, setContent] = useState("");
+  const [titleColor, setTitleColor] = useState("#ffb23e");
+  const [isAcceptRules, setIsAcceptRules] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     createPost({
-      post: { title, titleTop, content, isTitleTop, photo, type: "graphic" },
+      post: {
+        title,
+        titleTop,
+        content,
+        isTitleTop,
+        photo,
+        type: "graphic",
+        titleColor,
+        isAcceptRules,
+      },
       user,
     });
   };
 
-  const onChangesIsTitleTop = () => setIsTitleTop(!isTitleTop);
   return (
     <div className="creator-graphic">
       <form className="creator-form" onSubmit={handleSubmit}>
         <div className="creator-graphic__form">
+          <Checkbox
+            name="isTitleTop"
+            onChange={e =>  setIsTitleTop(!isTitleTop)}
+            label="Dodaj górny tytuł"
+            className=""
+          />
+          {alert.message && <Message alert={alert} field={"graphicTitleTop"} />}
+          <TextArea
+            onChange={(e) => setTitleTop(e.target.value)}
+            name="titleTop"
+            value={titleTop}
+            color={titleColor}
+            className={`creator-form__input input__text--title ${
+              isTitleTop ? "" : "display-none"
+            }`}
+            placeholder="Górny tytuł"
+            maxLength={255}
+          />
           {alert.message && <Message alert={alert} field={"graphicTitle"} />}
-          <InputText
+          <TextArea
             onChange={(e) => setTitle(e.target.value)}
             name="title"
             value={title}
-            className={"creator-form__input"}
-            placeholder={"Tytuł"}
-          />
-          <Checkbox
-            name={"isTitleTop"}
-            onChange={onChangesIsTitleTop}
-            label={"Dodaj górny tytuł"}
-          />
-          {alert.message && <Message alert={alert} field={"graphicTitleTop"} />}
-          <InputText
-            onChange={(e) => setTitleTop(e.target.value)}
-            name="title"
-            value={title}
-            className={`creator-form__input ${
-              isTitleTop ? "" : "display-none"
-            }`}
-            placeholder={"Górny tytuł"}
+            className="creator-form__input input__text--title"
+            placeholder="Tytuł"
+            maxLength={255}
+            color={titleColor}
           />
 
           <TextArea
             onChange={(e) => setContent(e.target.value)}
             name="content"
             value={content}
-            className={"creator-form__input"}
-            placeholder={"Opis"}
+            className="creator-form__input input__text--content"
+            placeholder="Opis"
+            maxLength={500}
           />
         </div>
-  
+
         <Workspace
           photo={photo}
           setPhoto={setPhoto}
@@ -68,13 +84,18 @@ const CreatorGraphic = ({alert, createPost, user}) => {
           titleTop={titleTop}
           content={content}
           isTitleTop={isTitleTop}
+          color={titleColor}
+          setColor={setTitleColor}
         />
-        <br />
-        <PrimaryBtn
-          extraClass="creator-form__button"
-          text="Dodaj"
-          handleSubmit={handleSubmit}
-        />
+        {alert.message && <Message alert={alert} field="graphicIsAcceptRules" />}
+        <div className="creator-form__accept">
+          <Checkbox
+            name="graphicIsAccept"
+            onChange={e => setIsAcceptRules(!isAcceptRules)}
+            label="Akceptuję regulamin serwisu Szlauf.pl"
+          />
+        </div>
+        <CreatePostBtn handleSubmit={handleSubmit} />
       </form>
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import commentActions from "./../../store/comment/action";
-import emptyAvatar from "./../../../images/empty-avatar.jpeg";
+import emptyAvatar from "./../../../images/empty_avatar.jpeg";
 import { uploadsUrl } from "./../../constants/types";
 import { Link } from "react-router-dom";
 import { ShowTimeAgo } from "./../../helper/datetime";
@@ -10,9 +10,8 @@ import CommentVote from "./vote";
 import CommentCreator from "./creator";
 
 const CommentItem = ({ comment, userLogged, post }) => {
-  const { user, content, createdAt } = comment;
+  const { user, content, createdAt, parentCommentId } = comment;
   const { avatar, username, _id } = user;
-
 
   const avatarStyle = (photo) => {
     const imageUrl = photo ? `${uploadsUrl}/avatar/${photo}` : emptyAvatar;
@@ -48,7 +47,11 @@ const CommentItem = ({ comment, userLogged, post }) => {
           </div>
         </div>
       </div>
-      <CommentCreator post={post} parentCommentId={comment._id} />
+      {!parentCommentId && (
+        <CommentCreator post={post} parentCommentId={comment._id} />
+      )}
+     parentCommentId {parentCommentId} xxx
+
     </div>
   );
 };

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { uploadsUrl } from "./../../constants/types";
-import emptyAvatar from "./../../../images/empty-avatar.jpeg";
+import emptyAvatar from "./../../../images/empty_avatar.jpeg";
 import userActions from "./../../store/user/action";
 import { InputFile } from "./../../containers/form";
 

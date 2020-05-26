@@ -1,14 +1,12 @@
 import React from "react";
 
-const Message = (props) => {
-  let alert = props.alert;
-  let message = alert.message;
-  let field = props.field;
+const Message = ({ alert, field }) => {
+  let { message,type } = alert;
   message = field ? message[field] : message;
   return (
     <div className="message-wrap">
       {message && (
-        <div className={`message message-${alert.type}`}>{message}</div>
+        <div className={`message message-${type}`}>{message}</div>
       )}
     </div>
   );

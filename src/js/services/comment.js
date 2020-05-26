@@ -1,17 +1,27 @@
 import API from "./../helper/api";
 
 const createComment = async (params) => {
-  return API.post(`/comment/create`, params);
+  const { user } = params;
+  const config = {
+    headers: {
+      Authorization: "Bearer " + user.token,
+    },
+  };
+  return API.post(`/comment/create`, params, config);
 };
 
 const fetchComments = async (params) => {
   return API.post(`/comment/fetch-comments`, params);
 };
 
-const commentServices = {
-  createComment,
-  fetchComments
+const getTotalPages = async (postId) => {
+  return API.get(`/comment/total-pages/${postId}`);
 };
 
+const commentServices = {
+  createComment,
+  fetchComments,
+  getTotalPages,
+};
 
 export default commentServices;

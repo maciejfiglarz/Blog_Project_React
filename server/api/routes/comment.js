@@ -5,8 +5,9 @@ const CommentController = require("../controllers/comment");
 
 router.post("/create", CommentController.create_comment);
 
-
 router.post("/fetch-comments", CommentController.fetch_comments);
+
+router.get("/total-pages/:postId", CommentController.total_pages);
 
 router.get(
   "/pagination/page-:page/post-:postId",

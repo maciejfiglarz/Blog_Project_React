@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import Comment from "./../Comment";
 import Post from "./../Post";
+
 import postServices from "../../services/post";
+
 
 const Single = (props) => {
   let id = props.match.params.id;
@@ -18,11 +19,10 @@ const Single = (props) => {
     };
     fetchPost();
   }, []);
-  console.log("post", post);
+
   return (
     <div className="container">
-      {post ? <Post key={id} post={post} /> : ""}
-      {post && <Comment post={post} />}
+      {post ? <Post key={id} post={post} isSingle={true} /> : ""}
     </div>
   );
 };

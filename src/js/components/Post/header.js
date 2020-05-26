@@ -1,33 +1,50 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import emptyAvatar from "./../../../images/empty_avatar.jpeg";
+import { uploadsUrl } from "./../../constants/types";
+import { ShowTimeAgo } from "./../../helper/datetime";
 
-const PostHeader = (props) => {
-  const { post } = props;
-  const { user } = post;
-  const { username, _id } = user;
+const PostHeader = ({ post }) => {
+  const { user, createdAt } = post;
+  const { username, _id, avatar } = user;
+  const avatarStyle = (photo) => {
+    const imageUrl = photo ? `${uploadsUrl}/avatar/${photo}` : emptyAvatar;
+    return {
+      backgroundImage: `url('${imageUrl}')`,
+      backgroundSize: "cover",
+      backgroundPosition: "center center",
+    };
+  };
 
-  console.log("user", user);
   return (
     <section className="post-header">
       {user && (
-        <>
-          <Link to={`/profile/${_id}`}>
-            {username}
-            <img
-              style={{ maxWidth: "10px" }}
-              src="https://cdn4.iconfinder.com/data/icons/emoji-2-5/64/_scared_emoticon_emoji-512.png"
-            />
-          </Link>
-        </>
+        <Link className="post-header__user" to={`/profile/${_id}`}>
+          <div
+            className="post-header__user-avatar"
+            style={avatarStyle(avatar)}
+          ></div>
+          <h5 className="post-header__user-username">{username}</h5>
+        </Link>
       )}
+      <div className="post-header__date">
+        <ShowTimeAgo date={createdAt} />
+      </div>
     </section>
   );
 };
 
 PostHeader.propTypes = {
   post: PropTypes.object,
+  user: PropTypes.object,
 };
 
-export default PostHeader;
+const mapStateToProps = (state) => {
+  const { user } = state;
+  return { user };
+};
+
+export default connect(mapStateToProps)(PostHeader);

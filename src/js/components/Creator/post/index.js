@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 
 import { Message } from "../../../containers/message";
-import { Checkbox, InputText } from "../../../containers/form";
+import { Checkbox, InputText, TextArea } from "../../../containers/form";
 import CKEditor from "../../../hooks/useCKEditor";
 
 import CreatorPhotoUploader from "./photo-uploader";
 import PropTypes from "prop-types";
 import postMenagerActions from "../../../store/post-menager/action";
 import { connect } from "react-redux";
-import { PrimaryBtn } from "../../../containers/buttons";
+import { CreatePostBtn } from "../../../containers/buttons";
 
-const CreatorPost = ({alert, createPost, user}) => {
+const CreatorPost = ({ alert, createPost, user }) => {
   const [title, setTitle] = useState("");
+  const [isAcceptRules, setIsAcceptRules] = useState("");
   const [content, setContent] = useState("");
   const [photo, setPhoto] = useState("");
   const [isPhotoActive, setIsPhotoActive] = useState(false);
@@ -20,7 +21,14 @@ const CreatorPost = ({alert, createPost, user}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     createPost({
-      post: { title, content, photo, isPhotoActive, type: "post" },
+      post: {
+        title,
+        content,
+        photo,
+        isPhotoActive,
+        type: "post",
+        isAcceptRules,
+      },
       user,
     });
   };
@@ -28,12 +36,12 @@ const CreatorPost = ({alert, createPost, user}) => {
   return (
     <form className="creator-form" onSubmit={handleSubmit}>
       <Checkbox
-        name={"isPhotoActive"}
+        name="isPhotoActive"
         onChange={onChangePhotoActive}
-        label={"Dodaj miniaturkę"}
+        label="Dodaj miniaturkę"
       />
 
-      {alert.message && <Message alert={alert} field={"postPhoto"} />}
+      {alert.message && <Message alert={alert} field="postPhoto" />}
       <CreatorPhotoUploader
         alert={alert}
         setPhoto={setPhoto}
@@ -41,24 +49,30 @@ const CreatorPost = ({alert, createPost, user}) => {
         isPhotoActive={isPhotoActive}
       />
 
-      {alert.message && <Message alert={alert} field={"postTitle"} />}
-      <InputText
+      {alert.message && <Message alert={alert} field="postTitle" />}
+      <TextArea
         onChange={(e) => setTitle(e.target.value)}
-        name="content"
+        name="title"
         value={title}
-        className={"creator-form__input"}
-        placeholder={"Tytuł"}
+        className="creator-form__input input__text--primary input__text--title"
+        placeholder="Tytuł"
+        maxLength={255}
       />
 
-      {alert.message && <Message alert={alert} field={"postContent"} />}
-      <div className="input__text-regular">
+      {alert.message && <Message alert={alert} field="postContent" />}
+      <div className="creator-form__ckeditor">
         <CKEditor setContent={setContent} content={content} />
       </div>
-      <PrimaryBtn
-        extraClass="creator-form__button"
-        text="Dodaj"
-        handleSubmit={handleSubmit}
-      />
+
+      {alert.message && <Message alert={alert} field="postIsAcceptRules" />}
+      <div className="creator-form__accept">
+        <Checkbox
+          name="postIsAccept"
+          onChange={(e) => setIsAcceptRules(!isAcceptRules)}
+          label="Akceptuję regulamin serwisu Szlauf.pl"
+        />
+      </div>
+      <CreatePostBtn handleSubmit={handleSubmit} />
     </form>
   );
 };

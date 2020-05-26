@@ -1,4 +1,14 @@
 .button {
+  &-create {
+    &__post {
+      background: none;
+      margin: 0 auto;
+      border: 0;
+      &-wrap {
+        display: flex;
+      }
+    }
+  }
   &-primary {
     border-radius: $border-radius;
     color: $color-text;
@@ -10,7 +20,7 @@
   &-secondary {
     border-radius: $border-radius;
     background: $color-text;
-    color: $color-basic-dark;
+    color: $color-background;
     padding: 8px 16px;
 
     border: 1px solid $color-text;
@@ -18,6 +28,14 @@
       padding: 3px 7px;
       font-size: 1.1rem;
     }
+  }
+  &-action {
+    border-radius: $border-radius;
+    color: $color-text;
+    border: 1px solid $color-background-bright;
+    padding: 3px 7px;
+    font-size: 1.5rem;
+    background: $color-background-bright;
   }
   &-login {
     padding: 5px 11px;

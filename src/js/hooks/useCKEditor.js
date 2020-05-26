@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "@ckeditor/ckeditor5-build-classic/build/translations/pl";
+import "./../../css/ckeditor.css";
 
 const editorConfiguration = {
   toolbar: [

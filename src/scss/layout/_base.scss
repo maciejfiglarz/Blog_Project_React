@@ -3,16 +3,19 @@ html {
 }
 
 body {
-  background-color: $color-basic-dark;
+  // background-color: $color-basic-dark;
+  background: url('./../../images/background.png');
   font-family: "Hind", sans-serif;
   color: $color-text;
 }
 
 .content {
   padding-top: 80px;
+  position: relative;
+  min-height: 100vh;
 }
 .container {
-  width: 95%;
+  width: 98%;
   max-width: $width-max;
   margin: 0 auto;
 }
@@ -20,12 +23,13 @@ body {
   width: 95%;
   max-width: $width-max-small;
   margin: 0 auto;
-  background: $color-basic-dark;
+  background: $color-background;
   border-radius: 5px;
 }
 
 .container-full {
   width: 95%;
+  max-width: 1200px;
   margin: 0 auto;
 }
 

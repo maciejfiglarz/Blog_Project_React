@@ -11,6 +11,7 @@ export const InputText = (props) => {
     maxLength,
     value,
   } = props;
+
   const currentType = type ? type : "text";
   return (
     <div className="input__text-wrap">
@@ -39,36 +40,60 @@ export const InputFile = (props) => {
       <input
         type="file"
         name={name}
-        id="file"
+        id={`file-${name}`}
         onChange={(e) => onChange(e)}
         className="inputfile creator-form__photo-file"
       />
-      <label className="button-primary" htmlFor="file">
+      <label className="button-primary" htmlFor={`file-${name}`}>
         Wybierz zdjęcie
       </label>
     </div>
   );
 };
 
-export const TextArea = (props) => {
+export const TextArea = ({
+  onChange,
+  name,
+  className,
+  placeholder,
+  maxLength,
+  height,
+  value,
+  color
+}) => {
+  const [isFocus, setIsFocus] = useState(false);
   const style = {
-    height: props.height,
+    height,
+    color,
   };
-  const { onChange, name, className, placeholder,maxLength } = props;
+  console.log('style',style);
   const handleKeyDown = (e) => {
     e.target.style.height = "inherit";
     e.target.style.height = `${e.target.scrollHeight}px`;
   };
+  const handleOnFocus = (e) => {
+    setIsFocus(!isFocus);
+  };
+  const handleOnBlur = (e) => {
+    setIsFocus(!isFocus);
+  };
   return (
-    <div className="textarea-default-wrap">
+    <div className="input__text-wrap">
+      {maxLength && isFocus && (
+        <div className="input__text-counter">
+          {value.length} / {maxLength}
+        </div>
+      )}
       <textarea
-        style={style}
         onChange={onChange}
         name={name}
+        style={style}
         onKeyDown={handleKeyDown}
         className={`input__text-regular ${className}`}
         placeholder={placeholder}
         maxLength={maxLength}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
       />
     </div>
   );
@@ -88,60 +113,18 @@ export const Select = (props) => {
   );
 };
 
-export const Checkbox = (props) => {
-  const { onChange, name, className, label } = props;
+export const Checkbox = ({ onChange, name, className, label }) => {
+  console.log("xxx ", onChange, name, className, label);
   return (
-    <React.Fragment>
-      <div className="input-checkbox__wrap">
-        <input
-          className="input-checkbox"
-          type="checkbox"
-          name={name}
-          id={name}
-          onChange={onChange}
-        />
-        <label htmlFor={name}>{label}</label>
-      </div>
-    </React.Fragment>
+    <div className="input-checkbox__wrap">
+      <input
+        className={`input-checkbox ${className}`}
+        type="checkbox"
+        name={name}
+        id={`checkbox-${name}`}
+        onChange={onChange}
+      />
+      <label htmlFor={`checkbox-${name}`}>{label}</label>
+    </div>
   );
 };
-
-/* <div>
-<input
-  type="file"
-  name="file"
-  id="file"
-  onChange={onChange}
-  className="inputfile creator-form__photo-file"
-/>
-<label className="button-primary" htmlFor="file">
-  Wybierz zdjęcie
-</label>
-</div> */
-
-/* <div>
-<label className="file-container">
-  <input
-    onChange={onChange}
-    type="file"
-    placeholder={placeholder}
-    className="inputfile creator-form__photo-file"
-  ></input>
-</label>
-</div> */
-// }
-
-// export const Checkbox = (props) => {
-//     const {onChange, name, className, placeholder} = props;
-//     return (
-//         <div>
-//             <input
-//                 type="checkbox"
-//                 name={name}
-//                 onChange={onChange}
-//                 id={name}
-//                 className="checkbox-default-input"/>
-//             <label htmlFor={name} className="checkbox-default">{placeholder}</label>
-//         </div>
-//     )
-// }

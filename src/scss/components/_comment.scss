@@ -1,18 +1,37 @@
 .comment {
   padding: 10px;
   background-color: $color-basic-middle;
+
+  &-facebook {
+    background-color: $color-background;
+  }
+
   &-creator {
     display: flex;
+    position: relative;
+    &--response {
+      margin-left: 40px;
+      .comment-creator__avatar {
+        width: 25px;
+        height: 25px;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+      .comment-creator__content {
+        margin-bottom: 5px !important;
+        min-height: 40px;
+      }
+    }
 
     &__avatar {
       width: 40px;
       height: 40px;
       border-radius: 5px;
-      margin-right:10px;
+      margin-right: 10px;
     }
     &__content {
-      margin-bottom:5px !important;
-      min-height:120px;
+      margin-bottom: 5px !important;
+      min-height: 90px;
       &-wrap {
         width: calc(100% - 40px);
       }
@@ -22,6 +41,55 @@
       justify-content: space-between;
       align-items: center;
     }
-    
+  }
+
+  &-item {
+    display: flex;
+    margin-bottom: 10px;
+
+    &__header {
+      &-date {
+        color: $color-basic-middle;
+      }
+    }
+
+    &__list {
+      &--response {
+        margin-left:40px;
+      }
+    }
+    &__avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    &__content {
+      font-size: 1.4rem;
+      padding: 5px 0;
+    }
+
+    &__vote {
+      display: flex;
+      align-items: center;
+      &-score {
+        padding: 5px;
+      }
+      &-icon {
+        padding: 5px;
+      }
+    }
+    &__comment {
+      margin-left: 5px;
+      i {
+        margin-right: 5px;
+      }
+    }
+    &__action {
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
+    }
   }
 }

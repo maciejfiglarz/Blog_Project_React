@@ -16,8 +16,9 @@ exports.insert_post = async (req, res, next) => {
   console.log("reqInsertPost", body);
   const postMenagerService = new PostMenagerService();
   const result = await postMenagerService.insertPost(body);
-  const { post } = result;
-  res.status(200).json({ success, post });
+  const { postId,success } = result;
+  console.log('post',postId);
+  res.status(200).json({ success, postId });
 };
 
 exports.remove_photo_temponary = async (req, res, next) => {
@@ -100,25 +101,3 @@ exports.get_link_data = async (req, res, next) => {
     });
 };
 
-exports.create_graphic = (req, res, next) => {
-  // let document = domino.createDocument()
-  // let template = document.createElement("template");
-  // template.innerHTML = "<canvas>Test</canvas>";
-
-  // var fragment = template.content;
-
-  // console.log(fragment,fragment.outerHTML);
-
-  // domtoimage
-  //   .toPng(fragment)
-  //   .then(function (dataUrl) {
-  //     // var img = new Image();
-  //     // img.src = dataUrl;
-  //     // console.log('dataUrl',dataUrl);
-  //     // // document.appendChild(img);
-  //   })
-  //   .catch(function (error) {
-  //     console.error("oops, something went wrong!", error);
-  //   });
-  res.status(201).json({ status: "OK" });
-};

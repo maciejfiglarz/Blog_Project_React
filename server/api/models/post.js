@@ -11,6 +11,7 @@ const postSchema = mongoose.Schema({
   linkPhoto: String,
   linkSiteName: String,
   youtube: String,
+  graphicId: String,
   voteNumber: { type: Number, default: 0 },
   isActive: { type: Boolean, default: true },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },

@@ -16,6 +16,8 @@ const CreatorWorkspace = ({
   photo,
   setPhoto,
   alert,
+  color,
+  setColor,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,12 +26,11 @@ const CreatorWorkspace = ({
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("photo", file);
-    console.log("odpalone");
 
     const result = await postMenagerServices.uploadTemponaryPhoto(formData);
     const { data } = result;
     const { fileName } = data;
-    console.log("fileName", fileName);
+
     setPhoto(fileName);
     setIsLoading(false);
   };
@@ -39,36 +40,58 @@ const CreatorWorkspace = ({
     postMenagerServices.removeTemponaryPhoto(photo);
   };
 
-  console.log("photo", isLoading, photo);
+  const handleColor = (e) => {
+    const newColor = e.target.dataset.color;
+    setColor(newColor);
+  };
 
+  const colorsArray = ["#ffb23e", "#00D000", "#F02000", "#0090F0", "#FF8CFC"];
+const styleTitle = {
+  color,
+}
   return (
     <div className="creator-graphic">
-      <div className="creator-grahic__workspace-wrap">
-        {alert.message && <Message alert={alert} field={"graphicPhoto"} />}
+      <div className="creator-graphic__workspace-wrap">
+        <div className="creator-graphic__workspace-options">
+          {colorsArray.map((el) => {
+            return (
+              <div
+                data-color={el}
+                onClick={handleColor}
+                style={{ backgroundColor: el }}
+                className={`creator-graphic__workspace-color ${
+                  color == el
+                    ? "creator-graphic__workspace-color--active"
+                    : ""
+                }`}
+              ></div>
+            );
+          })}
+        </div>
+
+        {alert.message && <Message alert={alert} field="graphicPhoto" />}
         {isTitleTop && (
-          <div className="creator-graphic__workspace-title creator-graphic__workspace-title--top">
+          <div style={styleTitle} className="creator-graphic__workspace-title creator-graphic__workspace-title--top">
             {titleTop}
           </div>
         )}
         <div className="creator-graphic__workspace-photo">
           {isLoading && <Loader />}
           {!isLoading && !photo && (
-            <InputFile name={"graphicFile"} onChange={handleInputFile} />
+            <InputFile name="graphicFile" onChange={handleInputFile} />
           )}
 
           {photo && (
-            <React.Fragment>
-              {/* <div className="creator-graphic__workspace-uploaded"> */}
-                <img src={uploadsUrl + "/post-temponary/" + photo} />
-                <div className="creator-graphic__workspace-footer">
-                  <i onClick={remove} className="fas fa-trash-alt"></i>
-                </div>
-              {/* </div> */}
-            </React.Fragment>
+            <>
+              <img src={uploadsUrl + "/post-temponary/" + photo} />
+              <div className="creator-graphic__workspace-footer">
+                <i onClick={remove} className="fas fa-trash-alt"></i>
+              </div>
+            </>
           )}
         </div>
         {title && (
-          <div className="creator-graphic__workspace-title">{title}</div>
+          <div style={styleTitle} className="creator-graphic__workspace-title">{title}</div>
         )}
         {content && (
           <div className="creator-graphic__workspace-description">
