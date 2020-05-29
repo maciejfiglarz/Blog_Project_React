@@ -32,6 +32,7 @@ const pagination = (page, params = {}) => {
   };
 };
 
+
 const postActions = {
   pagination,
 };

@@ -16,6 +16,8 @@ import Login from "./Users/login";
 import Register from "./Users/register";
 import Footer from "./Footer";
 
+import AdminPost from "./Admin/Post";
+
 import { PrivateRoute } from "./PrivateRoute";
 
 import userThunks from "../store/user/thunks";
@@ -32,24 +34,25 @@ const App = (props) => {
   return (
     // <BrowserRouter>
     <div id="App">
-    <Router history={history}>
-      <GlobalState>
-        <Header />
-        <div className="content">
-          <Switch>
-            <Route exact path="/" component={Index} />
-            {/* <PrivateRoute exact strict path="/profil/:id" component={Profile} /> */}
-            <Route exact strict path="/profile/:id" component={Profile} />
-            <Route exact path="/zaloguj-sie" component={Login} />
-            <Route exact path="/zaloz-konto" component={Register} />
-            <Route exact strict path="/post/:id" component={Single} />
-            <PrivateRoute  exact strict path="/dodaj" component={Creator} />
-          </Switch>
-        </div>
-        <Footer />
-      </GlobalState>
-      {/* </BrowserRouter> */}
-    </Router>
+      <Router history={history}>
+        <GlobalState>
+          <Header />
+          <div className="content">
+            <Switch>
+              <Route exact path="/" component={Index} />
+              {/* <PrivateRoute exact strict path="/profil/:id" component={Profile} /> */}
+              <Route exact strict path="/profile/:id" component={Profile} />
+              <Route exact path="/zaloguj-sie" component={Login} />
+              <Route exact path="/zaloz-konto" component={Register} />
+              <Route exact strict path="/post/:id" component={Single} />
+              <PrivateRoute exact strict path="/dodaj" component={Creator} />
+              <Route exact path="/admin/post" component={AdminPost} />
+            </Switch>
+          </div>
+          <Footer />
+        </GlobalState>
+        {/* </BrowserRouter> */}
+      </Router>
     </div>
   );
 };

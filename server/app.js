@@ -21,9 +21,15 @@ const userRouter = require("./api/routes/user");
 const voteRouter = require("./api/routes/vote");
 const postMenagerRouter = require("./api/routes/post-menager");
 
+
+const adminPostRouter = require("./admin/routes/post");
+
 const morgan = require("morgan");
 
 var app = express();
+
+var Twig = require("twig");
+
 
 global.baseUrl = "http://localhost:5000";
 
@@ -47,7 +53,12 @@ app.use(bodyParser.json());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
+app.set("view engine", "twig");
+
+app.set("twig options", {
+  allow_async: false, // Allow asynchronous compiling
+  strict_variables: false
+});
 
 app.use(logger("dev"));
 app.use(cors());
@@ -64,10 +75,14 @@ app.use("/user", userRouter);
 app.use("/vote", voteRouter);
 app.use("/post-menager", postMenagerRouter);
 
+app.use("/admin/post", adminPostRouter);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
+
+
 process.env.NODE_TLS_REJECT_UNAUTHORIZED='0';
 // error handler
 app.use(function (err, req, res, next) {

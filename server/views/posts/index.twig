@@ -1,0 +1,17 @@
+{% extends '../base.site.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+
+{% endblock %}
+{% block body %}
+	Message of the moment:
+	<b>{{ message }}</b>
+	{% for value in posts %}
+		{{value.title}}
+	{% endfor %}
+
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+
+{% endblock %}

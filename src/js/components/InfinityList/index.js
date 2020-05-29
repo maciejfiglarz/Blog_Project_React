@@ -42,6 +42,7 @@ const InfiniteList = ({ posts, pagination }) => {
 
   return (
     <ul id="list">
+
       {posts && (
         <>
           {!posts.isLoading &&
@@ -57,6 +58,7 @@ const InfiniteList = ({ posts, pagination }) => {
             ))}
         </>
       )}
+      
     </ul>
   );
 };
