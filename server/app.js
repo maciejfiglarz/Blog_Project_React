@@ -23,6 +23,7 @@ const postMenagerRouter = require("./api/routes/post-menager");
 
 
 const adminPostRouter = require("./admin/routes/post");
+const adminIndexRouter = require("./admin/routes/index");
 
 const morgan = require("morgan");
 
@@ -51,6 +52,19 @@ app.use(
 );
 app.use(bodyParser.json());
 
+
+var gulp = require('gulp');
+var bs = require('browser-sync').create(); // create a browser sync instance.
+
+gulp.task('browser-sync', function() {
+    bs.init({
+        server: {
+            baseDir: "./"
+        },
+        proxy: "localhost:5000" 
+    });
+});
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "twig");
@@ -76,6 +90,7 @@ app.use("/vote", voteRouter);
 app.use("/post-menager", postMenagerRouter);
 
 app.use("/admin/post", adminPostRouter);
+app.use("/admin", adminIndexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

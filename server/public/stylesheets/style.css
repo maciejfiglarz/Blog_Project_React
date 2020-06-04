@@ -1,3 +1,40 @@
 body {
-  background:red;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  color: black;
+}
+
+.header {
+  background: black;
+  width: 100%;
+  color: white;
+}
+.header a {
+  color: white;
+}
+
+.header__menu {
+  display: flex;
+  list-style-type: none;
+}
+.header__menu-item {
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+}
+
+.post {
+  margin-bottom: 40px;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.post__wrap {
+  margin: 0 auto;
+  width: 900px;
+}
+
+.post__info {
+margin-bottom:10px;
 }

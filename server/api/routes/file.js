@@ -24,6 +24,15 @@ router.get("/post/:fileName", async (req, res) => {
   );
 });
 
+router.get("/graphic/:fileName", async (req, res) => {
+  const fileName = req.params.fileName;
+  
+  await res.sendFile(
+    path.join(__dirname, `../../public/uploads/graphic/${fileName}`)
+  );
+});
+
+
 
 
 router.get("/avatar/:fileName", async (req, res) => {

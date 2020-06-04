@@ -3,9 +3,29 @@
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" te href="/stylesheets/style.css">
+		<link rel="stylesheet" te href="/stylesheets/ckeditor.css">
+		<link rel="stylesheet" te href="/stylesheets/form.css">
 	</head>
 	<body>
-		<header>header</header>
+		<header class="header">
+			<ul class="header__menu">
+				<li>
+					<a class="header__menu-item" href="/admin/post/1">
+						Posty
+					</a>
+				</li>
+				<li>
+					<a class="header__menu-item">
+						Użytkownicy
+					</a>
+				</li>
+				<li>
+					<a class="header__menu-item">
+						Komentarze
+					</a>
+				</li>
+			</ul>
+		</header>
 		{% block body %}{% endblock %}
 		{% block javascripts %}
 			<script>
@@ -15,6 +35,7 @@ fjs = d.getElementsByTagName(s)[0],
 t = window.twttr || {};
 if (d.getElementById(id)) 
 return t;
+
 
 
 js = d.createElement(s);

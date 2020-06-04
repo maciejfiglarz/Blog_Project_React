@@ -4,14 +4,78 @@
 
 {% endblock %}
 {% block body %}
-	Message of the moment:
-	<b>{{ message }}</b>
-	{% for value in posts %}
-		{{value.title}}
-	{% endfor %}
+	<div class="post__wrap">
+		{% for post in posts %}
+			<div class="post">
+				<div class="post__info">
+					{{post.type}}
 
-{% endblock %}
-{% block javascripts %}
-	{{ parent() }}
+					{{post.user.username}}
 
-{% endblock %}
+					({{post._id}})
+				</div>
+				<form action="/admin/post/update" method="post">
+					<input type="hidden" name="postId" value="{{post._id}}">
+					<input type="hidden" name="page" value="{{page}}">
+
+					{% if post.photo %}
+						{% if post.type == 'graphic' %}
+							<img src="/file/post/{{post.photo}}"/>
+						{% else %}
+							<img src="/file/graphic/{{post.photo}}"/>
+						{% endif %}
+
+					{% endif %}
+
+
+					<div class="form__row">
+						<label for="title">Tytuł:
+						</label>
+						<textarea class="form__text" name="title">{{post.title}}</textarea>
+					</div>
+					<div class="form__row">
+						<label>
+							Content:
+						</label>
+						<textarea class="form__text editor" name="content">{{post.content}}</textarea>
+					</div>
+
+					<div class="form__row">
+						<label>
+							Poczekalnia:
+						</label>
+						<input type="checkbox" name="isWaitingRoom" {{post.isWaitingRoom ? 'checked':''}}>
+
+					</div>
+
+					<div class="form__row">
+						<label>
+							Aktywny
+						</label>
+						<input type="checkbox" name="isDeleted" {{post.isActive ? 'checked':''}}>
+
+					</div>
+					<input type="submit" value="Zmień">
+				</form>
+			</div>
+		{% endfor %}
+		y
+	{% endblock %}
+	{% block javascripts %}
+		{{ parent() }}
+		<script src="https://cdn.ckeditor.com/ckeditor5/19.1.1/classic/ckeditor.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', (event) => {
+const editors = document.querySelectorAll('.editor');
+console.log('.editor', editors, document);
+editors.forEach(editor => {
+ClassicEditor.create(editor).then(editor => {
+console.log(editor);
+}).catch(error => {
+console.error(error);
+});
+});
+
+});
+		</script>
+	{% endblock %}

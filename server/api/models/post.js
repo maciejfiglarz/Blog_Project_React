@@ -14,6 +14,7 @@ const postSchema = mongoose.Schema({
   graphicId: String,
   voteNumber: { type: Number, default: 0 },
   isActive: { type: Boolean, default: true },
+  isWaitingRoom: { type: Boolean, default: true },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   createdAt: {
     type: Date,
