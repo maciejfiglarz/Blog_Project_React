@@ -67,7 +67,7 @@ class UserService {
     email = email.toLowerCase();
     let user = await this.findOneByEmail(email);
     console.log("user", user, userModel);
-    if (password && user.length > 0) {
+    if (password && user) {
       user = user[0];
       if (!user.validPassword(password)) {
         errors["loginError"] = "Podany email lub hasło są nieprawidłowe";

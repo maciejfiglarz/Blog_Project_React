@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Menu from "./menu";
-import {Link} from "react-router-dom";
+
+import { Link } from "react-router-dom";
 import {
   RegisterBtn,
   LoginBtn,
@@ -11,14 +10,16 @@ import {
   SecondaryBtn,
 } from "./../../containers/buttons";
 
-import { history } from "../../helper/history";
 
-import logo from "./../../../images/logo_lolipop_mobile.png";
+import logo from "./../../../images/logo_mobile.png";
 import menuMobile from "./../../../images/menu_mobile.png";
+import MenuResponsive from "./menu/responsive";
 
-const Header = ({ user }) => {
+import HeaderLabel from "./label";
+
+const Header = ({ user, logout }) => {
   const [isMenu, setIsMenu] = useState(false);
-
+  const { isLogged, username } = user;
   const onClickMenu = () => {
     setIsMenu(!isMenu);
   };
@@ -26,38 +27,25 @@ const Header = ({ user }) => {
   return (
     <>
       <header className="header">
-        <div className="header-container container-full">
-
-         <Link to=""> <div className="header-logo">
-            <img src={logo} />
-          </div></Link>
-
+        <div className="header-container container--full">
+          <Link to="/">
+            <div className="header-logo">
+              <img src={logo} />
+            </div>
+          </Link>
+          <HeaderLabel />
           <div onClick={onClickMenu} className="header-menu__init">
-           <img src={menuMobile} />
+            <img src={menuMobile} />
           </div>
-
-          {/* <div className="header-label">
-          {props.authentication.loggedIn && (
-            <div>
-              {props.authentication.user.username}
-             
-            </div>
-          )}
-          {!props.authentication.loggedIn && (
-            <div>
-              <LoginBtn onClick={onClickLogin} text={"Zaloguj się"} />
-              <RegisterBtn onClick={onClickLogin} text={"Załóż konto"}/>
-            </div>
-          )}
-        </div> */}
         </div>
       </header>
-      <Menu isMenu={isMenu} setIsMenu={setIsMenu}/>
+      <MenuResponsive isMenu={isMenu} setIsMenu={setIsMenu} />
     </>
+    
   );
 };
 
-Menu.propTypes = {
+Header.propTypes = {
   logout: PropTypes.func,
   user: PropTypes.object,
   isMenu: PropTypes.bool,
@@ -68,6 +56,5 @@ const mapStateToProps = (state) => {
   const { user } = state;
   return { user };
 };
-
 
 export default connect(mapStateToProps)(Header);

@@ -9,8 +9,8 @@ const updateAvatar = (params, user) => {
   return async (dispatch) => {
     const { data } = await userServices.updateAvatar(params, user);
     const { fileName } = data;
-    console.log('fileName',fileName);
-    if(fileName){
+    console.log("fileName", fileName);
+    if (fileName) {
       dispatch({
         type: userConstants.UPDATE_USER_AVATAR,
         payload: fileName,
@@ -40,6 +40,7 @@ const register = (params) => {
 const login = (params) => {
   return async (dispatch) => {
     const result = await userServices.login(params);
+    const { type } = params;
     const { data } = result;
     const { loggedUser, success, errors } = data;
     console.log("loggedUser", data);
@@ -54,7 +55,11 @@ const login = (params) => {
       dispatch({
         type: userConstants.LOGIN_FAILURE,
       });
-      dispatch(alertActions.error(errors));
+      if (type == "header") {
+        return errors;
+      } else {
+        dispatch(alertActions.error(errors));
+      }
     }
   };
 };

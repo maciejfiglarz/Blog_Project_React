@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {domainUrl} from "./../constants/types";
 
 const useFacebookComment = ({ postId }) => {
   useEffect(() => {
@@ -16,12 +17,14 @@ const useFacebookComment = ({ postId }) => {
  
   }, []);
 
+  const prepareUrl = `${domainUrl}/post/${postId}`
+
   return (
     <div className="comment-facebook">
       <div id="fb-root"></div>
       <div
         className="fb-comments"
-        data-href={`http://www.example.com`}
+        data-href={prepareUrl}
         data-colorscheme="dark"
         data-width="100%"
         data-numposts="2"

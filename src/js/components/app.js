@@ -9,6 +9,7 @@ import GlobalState from "../context/global-context";
 
 import "../../scss/main.scss";
 import Header from "./Header";
+import HeaderDesktop from "./HeaderDesktop";
 import Index from "./Index";
 import Single from "./Single";
 import Profile from "./Profile";
@@ -16,12 +17,16 @@ import Login from "./Users/login";
 import Register from "./Users/register";
 import Footer from "./Footer";
 
+import WaitingRoom from "./WaitingRoom";
+
 import AdminPost from "./Admin/Post";
 
 import { PrivateRoute } from "./PrivateRoute";
 
 import userThunks from "../store/user/thunks";
 import Creator from "./Creator";
+
+
 
 const App = (props) => {
   useEffect(() => {
@@ -37,9 +42,11 @@ const App = (props) => {
       <Router history={history}>
         <GlobalState>
           <Header />
+          <HeaderDesktop />
           <div className="content">
             <Switch>
               <Route exact path="/" component={Index} />
+              <Route exact path="/poczekalnia" component={WaitingRoom} />
               {/* <PrivateRoute exact strict path="/profil/:id" component={Profile} /> */}
               <Route exact strict path="/profile/:id" component={Profile} />
               <Route exact path="/zaloguj-sie" component={Login} />

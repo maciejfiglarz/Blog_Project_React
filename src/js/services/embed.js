@@ -4,7 +4,7 @@ import { TwitterTweetEmbed } from "react-twitter-embed";
 
 const prepareNodeList = (content) => {
   let preparedContent = [];
-  if (content.length > 0) {
+  if (content && content.length > 0) {
     let contentHTML = document.createElement("div");
     contentHTML.innerHTML = content;
     // preparedContent = prepareEmbed(contentHTML);

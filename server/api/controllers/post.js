@@ -17,29 +17,7 @@ exports.fetch_one_by_id = async (req, res, next) => {
   const post = await postService.findOneById(postId);
   const success = post ? true : false;
   res.status(200).json({ success, post });
-  // Post.findById(id)
-  //   // .select("title content _id")
-  //   .exec()
-  //   .then((doc) => {
-  //     if (doc) {
-  //       res.status(200).json({
-  //         post: doc,
-  //         request: {
-  //           type: "GET",
-  //           url: `${global.baseUrl}/post/${doc._id}`,
-  //         },
-  //       });
-  //     } else {
-  //       res
-  //         .status(404)
-  //         .json({ message: "No valid entry found for provided ID" });
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //     res.status(500).json({ error: err });
-  //   });
-};
+}
 
 exports.pagination = async (req, res, next) => {
   const perPage = 5;

@@ -36,7 +36,7 @@ exports.fetch_all = async (req, res, next) => {
   const { page } = params;
 
   const posts = await postService.pagination(page, perPage, params);
-console.log(posts);
+
   res.render("posts/index.twig", {
     posts,
     page,

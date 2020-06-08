@@ -19,13 +19,16 @@ const createPost = (params) => {
     let { post, user } = params;
     const { type } = post;
     let validation = null;
-
+    console.log('type',type);
     if (type == "post") {
       validation = postMenagerServices.validationPost(post);
     } else if (type == "graphic") {
       validation = postMenagerServices.validationGraphic(post);
     } else if (type == "link"){
       validation = postMenagerServices.validationLink(post);
+    }
+    else if (type == "youtube"){
+      validation = postMenagerServices.validationYoutube(post);
     }
 
     console.log("validation_action", validation, validation.isValid);

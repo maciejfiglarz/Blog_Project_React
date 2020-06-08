@@ -1,16 +1,16 @@
 import React from "react";
-import { history } from "../../helper/history";
-import userActions from "./../../store/user/action";
+import { history } from "./../../../helper/history";
+import userActions from "./../../../store/user/action";
 import { connect } from "react-redux";
-import logo from "./../../../images/logo_lolipop_mobile.png";
+import logo from "./../../../../images/logo_mobile.png";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import { uploadsUrl } from "./../../constants/types";
-import emptyAvatar from "./../../../images/empty_avatar.jpeg";
-import createAction from "./../../../images/create_action.png";
+import { uploadsUrl } from "./../../../constants/types";
+import emptyAvatar from "./../../../../images/empty_avatar.jpeg";
+import createAction from "./../../../../images/create_action.png";
 
-const Menu = ({ setIsMenu, isMenu, user, logout }) => {
+const MenuResponsive = ({ setIsMenu, isMenu, user, logout }) => {
   const { avatar, id } = user;
   const onClickLogin = () => {
     hideMenu();
@@ -65,7 +65,17 @@ const Menu = ({ setIsMenu, isMenu, user, logout }) => {
         )}
         <Link onClick={hideMenu} to={`/dodaj`}>
           <li className="header-menu__item">
-            <i class="fas fa-plus-circle"></i> Dodaj
+            <i className="fas fa-plus-circle"></i> Dodaj
+          </li>
+        </Link>
+        <Link onClick={hideMenu} to={`/`}>
+          <li className="header-menu__item">
+            <i className="fas fa-list-alt"></i> Główna
+          </li>
+        </Link>
+        <Link onClick={hideMenu} to={`/poczekalnia`}>
+          <li className="header-menu__item">
+            <i className="far fa-list-alt"></i> Poczekalnia
           </li>
         </Link>
         {!isLogged && (
@@ -90,7 +100,7 @@ const Menu = ({ setIsMenu, isMenu, user, logout }) => {
   );
 };
 
-Menu.propTypes = {
+MenuResponsive.propTypes = {
   logout: PropTypes.func,
   user: PropTypes.object,
   isMenu: PropTypes.bool,
@@ -106,4 +116,4 @@ const actionCreators = {
   logout: userActions.logout,
 };
 
-export default connect(mapStateToProps, actionCreators)(Menu);
+export default connect(mapStateToProps, actionCreators)(MenuResponsive);

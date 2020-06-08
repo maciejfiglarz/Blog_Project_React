@@ -26,6 +26,7 @@ const pagination = (page, params = {}) => {
     dispatch({
       type: postConstants.POSTS_FETCH_SUCCESS,
       payload: data,
+      page,
     });
     // }
     dispatch(loading(false));

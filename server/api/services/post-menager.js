@@ -8,7 +8,7 @@ const fs = require("fs");
 class PostMenagerService {
   async generateGraphic(params) {
     const { photo, title, titleTop, content, titleColor } = params;
-    const urlGenerator = "https://127.0.0.1:8000/szlauf-generator";
+    const urlGenerator = "https://127.0.0.1:8000/szlauf-generator/szlauf-generator";
 
     const { data } = await axios.post(urlGenerator, {
       photo,

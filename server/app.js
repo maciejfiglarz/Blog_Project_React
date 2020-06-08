@@ -24,6 +24,7 @@ const postMenagerRouter = require("./api/routes/post-menager");
 
 const adminPostRouter = require("./admin/routes/post");
 const adminIndexRouter = require("./admin/routes/index");
+const adminUserRouter = require("./admin/routes/user");
 
 const morgan = require("morgan");
 
@@ -90,6 +91,7 @@ app.use("/vote", voteRouter);
 app.use("/post-menager", postMenagerRouter);
 
 app.use("/admin/post", adminPostRouter);
+app.use("/admin/user", adminUserRouter);
 app.use("/admin", adminIndexRouter);
 
 // catch 404 and forward to error handler

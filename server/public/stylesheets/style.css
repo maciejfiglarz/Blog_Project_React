@@ -38,3 +38,8 @@ body {
 .post__info {
 margin-bottom:10px;
 }
+.user {
+  margin-bottom: 40px;
+  border: 1px solid black;
+  padding: 10px;
+}

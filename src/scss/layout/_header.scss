@@ -1,12 +1,16 @@
 .header {
   width: 100%;
   // background: $color-background-dark;
-  background: url("./../../images/login_panel_bg.png");
+  background: url("./../../images/green_gradient.png");
   margin-bottom: 20px;
   // padding: 8px 0;
   position: fixed;
   z-index: 999;
   height: 50px;
+
+  @include desktop(){
+    display:none;
+  }
   &-logo {
     position: absolute;
     left: 5px;
@@ -21,7 +25,68 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    position:relative;
+    position: relative;
+  }
+
+  &-label {
+    display: none;
+    @include desktop() {
+      display: flex;
+    }
+    &__user {
+      display: flex;
+      align-items: center;
+      background: $color-secondary;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      position: relative;
+      cursor: pointer;
+      &:hover {
+        background: $color-primary;
+        .header-label__dropdown {
+          display: block;
+        }
+      }
+      &-avatar {
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+        margin-right: 4px;
+
+      }
+      &-username {
+        margin-right: 4px;
+      }
+    }
+    &__dropdown {
+      position: absolute;
+      right: 0;
+      width: 150px;
+      bottom: -53px;
+      background: $color-primary;
+      display: none;
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+      &-item {
+        padding: 5px 10px;
+        display: block;
+        &:hover {
+          background: $color-primary-hover;
+        }
+      }
+    }
+  }
+  &-navigation {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    &__item{
+      padding: 5px 10px;
+    }
   }
   &-menu {
     position: fixed;
@@ -36,8 +101,8 @@
     &--visible {
       display: block;
     }
-    &__flex{
-      display:flex;
+    &__flex {
+      display: flex;
       align-items: center;
     }
     &__close {
@@ -52,7 +117,7 @@
       width: 25px;
       height: 25px;
       border-radius: 5px;
-      margin-right:8px;
+      margin-right: 8px;
     }
     &__logo {
       text-align: center;
@@ -69,6 +134,9 @@
     &__init {
       img {
         width: 30px;
+      }
+      @include desktop() {
+        display: none;
       }
     }
     &__list {

@@ -1,0 +1,33 @@
+{% extends '../base.site.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+
+{% endblock %}
+{% block body %}
+	<div class="post__wrap">
+		{% for user in users %}
+			<form action="/admin/user/update" method="post">
+				<input type="hidden" name="userId" value="{{user._id}}">
+				<input type="hidden" name="page" value="{{page}}">
+				<div class="user">
+					<div>Id:
+						{{user._id}}</div>
+					<div>Username:
+						{{user.username}}</div>
+					<div>Email:
+						{{user.email}}</div>
+					<div>IsBan:
+						<input type="checkbox" name="isBan" {{user.isBan ? 'checked':''}}></div>
+					<div>IsActive:
+						<input type="checkbox" name="isActive" {{user.isActive ? 'checked':''}}></div>
+					<input type="submit" value="Zmień">
+				</div>
+
+			</form>
+		{% endfor %}
+		y
+	{% endblock %}
+	{% block javascripts %}
+		{{ parent() }}
+
+	{% endblock %}

@@ -37,6 +37,7 @@ const Creator = (props) => {
   return (
     <div className="container">
       <section className="creator">
+
         {isLoading && <LoaderCover />}
       <div className="creator__logo">
         <img className="creator__logo-img" src={logo}/>

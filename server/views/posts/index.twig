@@ -20,25 +20,27 @@
 
 					{% if post.photo %}
 						{% if post.type == 'graphic' %}
-							<img src="/file/post/{{post.photo}}"/>
+							<img src="/file/graphic/{{post.graphicId}}.jpg"/>
 						{% else %}
-							<img src="/file/graphic/{{post.photo}}"/>
+							<img src="/file/post/{{post.photo}}"/>
 						{% endif %}
 
 					{% endif %}
 
+					{% if post.type == 'post' or post.type == 'link' or post.youtube == 'link' %}
+						<div class="form__row">
+							<label for="title">Tytuł:
+							</label>
+							<textarea class="form__text" name="title">{{post.title}}</textarea>
+						</div>
+						<div class="form__row">
+							<label>
+								Content:
+							</label>
+							<textarea class="form__text editor" name="content">{{post.content}}</textarea>
+						</div>
 
-					<div class="form__row">
-						<label for="title">Tytuł:
-						</label>
-						<textarea class="form__text" name="title">{{post.title}}</textarea>
-					</div>
-					<div class="form__row">
-						<label>
-							Content:
-						</label>
-						<textarea class="form__text editor" name="content">{{post.content}}</textarea>
-					</div>
+					{% endif %}
 
 					<div class="form__row">
 						<label>
@@ -52,7 +54,7 @@
 						<label>
 							Aktywny
 						</label>
-						<input type="checkbox" name="isDeleted" {{post.isActive ? 'checked':''}}>
+						<input type="checkbox" name="isActive" {{post.isActive ? 'checked':''}}>
 
 					</div>
 					<input type="submit" value="Zmień">

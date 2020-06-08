@@ -8,16 +8,17 @@ import { Link } from "react-router-dom";
 import postActions from "../../store/post/action";
 import PropTypes from "prop-types";
 
-const Index = ({ pagination, user, alert, posts }) => {
+const WaitingRoom = ({ pagination, user, alert, posts }) => {
+
   return (
     <div className="container">
       <CreatorRedirect />
-      <InfinityList posts={posts} pagination={pagination} type="index"/>
+      <InfinityList posts={posts} pagination={pagination} type="waitingRoom" />
     </div>
   );
 };
 
-Index.propTypes = {
+WaitingRoom.propTypes = {
   posts: PropTypes.object,
   user: PropTypes.object,
   pagination: PropTypes.func,
@@ -33,4 +34,4 @@ const actionCreators = {
   pagination: postActions.pagination,
 };
 
-export default connect(mapStateToProps, actionCreators)(Index);
+export default connect(mapStateToProps, actionCreators)(WaitingRoom);

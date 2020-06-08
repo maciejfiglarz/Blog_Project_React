@@ -1,5 +1,5 @@
 @mixin desktop() {
-    @media (max-width: #{$width-tablet}) and  (min-width: #{$width-desktop}) {
+    @media  (min-width: #{$width-desktop}) {
         @content;
     }
 }

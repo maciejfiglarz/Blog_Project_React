@@ -85,6 +85,26 @@ const validationGraphic = (params) => {
   return { isValid: Object.keys(errors).length == 0 ? true : false, errors };
 };
 
+const validationYoutube = (params) => {
+  const { title, youtube,isAcceptRules } = params;
+  let errors = {};
+
+  if (isMinLength(title, 1)) {
+    errors["youtubeTitle"] = "Musisz wybrać tytuł";
+  }
+
+  if (isMinLength(youtube, 1)) {
+    errors["youtubeLink"] = "Musisz wkleić poprawny link";
+  }
+
+  if (!isAcceptRules) {
+    errors["youtubeIsAcceptRules"] = "Musisz zakceptować regulamin";
+  }
+
+  return { isValid: Object.keys(errors).length == 0 ? true : false, errors };
+};
+
+
 const validationLink = (params) => {
   const { title, content, link, linkPhoto,isCorrectLink } = params;
   let errors = {};
@@ -107,6 +127,7 @@ const validationLink = (params) => {
 const postMenagerServices = {
   validationPost,
   validationLink,
+  validationYoutube,
   validationGraphic,
   getLinkData,
   uploadTemponaryPhoto,

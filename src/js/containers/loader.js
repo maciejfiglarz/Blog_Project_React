@@ -1,27 +1,28 @@
 import React from "react";
+import loader from "./../../images/loader.png";
 
-export const Loader = (props) => {
-  let classNames = "loader ";
-  if (props.extraClass) {
-    classNames += props.extraClass;
-  }
+
+export const Loader = ({extraClass}) => {
   return (
-    <div className={classNames}>
-      <div className="lds-ring">
+    <div className={`loader__wrap ${extraClass}`}>
+      {/* <div className="lds-ring">
         <div></div>
         <div></div>
         <div></div>
         <div></div>
-      </div>
+      </div> */}
+      <img className={`loader-lollipop`} src={loader} />
     </div>
   );
 };
 
 export const LoaderCover = (props) => {
   return (
-    <div className="loader__wrap">
-      <div className="loader__cover"></div>
-      <Loader extraClass={"loader--center"} />
+    <div className="loader__wrap loader__wrap--cover">
+      <div className="loader__cover">
+        <img className="loader-lollipop" src={loader} />
+      </div>
+      {/* <Loader extraClass={"loader--center"} /> */}
     </div>
   );
 };

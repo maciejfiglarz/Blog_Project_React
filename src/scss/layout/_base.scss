@@ -4,7 +4,7 @@ html {
 
 body {
   // background-color: $color-basic-dark;
-  background: url('./../../images/background.png');
+  background: url("./../../images/background.png");
   font-family: "Hind", sans-serif;
   color: $color-text;
 }
@@ -13,11 +13,19 @@ body {
   padding-top: 80px;
   position: relative;
   min-height: 100vh;
+  @include desktop (){
+    padding-top: 20px;
+  }
 }
 .container {
   width: 98%;
   max-width: $width-max;
   margin: 0 auto;
+  &--full {
+    width: 95%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
 }
 .container-small {
   width: 95%;
@@ -27,17 +35,11 @@ body {
   border-radius: 5px;
 }
 
-.container-full {
-  width: 95%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 a {
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   &:hover {
-    color: white;
+    color: $color-primary;
   }
 }
 
@@ -60,5 +62,5 @@ a {
   }
 }
 .display-none {
-  display:none;
+  display: none;
 }

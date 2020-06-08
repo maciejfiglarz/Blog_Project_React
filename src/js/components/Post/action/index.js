@@ -4,15 +4,18 @@ import { connect } from "react-redux";
 import { ActionBtn } from "./../../../containers/buttons";
 import userActions from "./../../../store/user/action";
 import shareFB from "./../../../../images/fb_share.png";
-
+import { domainUrl } from "./../../../constants/types";
 import PostVote from "./vote";
 import PostShare from "./share";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { FacebookProvider, CommentsCount } from "react-facebook";
+
 const PostAction = ({ post, isSingle }) => {
   const { _id, title } = post;
-
+  const getUrl = () => {
+    return `${domainUrl}/post/${_id}`;
+  };
   return (
     <section id={`post-${_id}`} className="post-action">
       <div className="post-action__section">
@@ -38,7 +41,7 @@ const PostAction = ({ post, isSingle }) => {
             {/* <ActionBtn text="" icon="comment" /> */}
             <i className="fas fa-comment"></i>
             <FacebookProvider appId="123456789">
-              <CommentsCount href="https://www.facebook.com/zuck/posts/10102577175875681" />
+              <CommentsCount href={getUrl()} />
             </FacebookProvider>
           </Link>
         </div>

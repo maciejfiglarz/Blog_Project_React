@@ -16,7 +16,8 @@ const ProfileContent = ({ paginationPost, posts, userId }) => {
         <InfinityList
           posts={posts}
           pagination={paginationPost}
-          params={{ user: userId }}
+          profileParams={{ user: userId }}
+          type="profile" 
         />
       </div>
     </section>

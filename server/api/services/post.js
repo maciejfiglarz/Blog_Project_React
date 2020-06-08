@@ -7,7 +7,7 @@ class PostService {
       console.log('params',params);
     }
     return  postModel
-      .find({})
+      .find(params)
       // .select("createdAt _id title description")
       .populate('user')
       .limit(perPage)

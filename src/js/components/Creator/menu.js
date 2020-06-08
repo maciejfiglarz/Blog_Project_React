@@ -42,14 +42,14 @@ const CreatorMenu = (props) => {
           data-name="photo"
           className="creator-switcher__menu-tab creator-switcher__menu-tab--active"
         >
-          <i className="creator-switcher__menu-icon far fa-image"></i>
-          Zdjęcie
+          <i    data-name="photo" className="creator-switcher__menu-icon far fa-image"></i>
+          Grafika
         </li>
         <li
           data-name="post"
           className="creator-switcher__menu-tab"
         >
-          <i className="creator-switcher__menu-icon fas fa-align-left"></i>
+          <i  data-name="photo" className="creator-switcher__menu-icon fas fa-align-left"></i>
           Post
         </li> 
         <li
@@ -57,16 +57,16 @@ const CreatorMenu = (props) => {
           data-name="youtube"
           className="creator-switcher__menu-tab"
         >
-          <i className="creator-switcher__menu-icon fab fa-youtube"></i>
+          <i     data-name="youtube" className="creator-switcher__menu-icon fab fa-youtube"></i>
           Youtube
         </li>
-        <li
+        {/* <li
           onClick={handleClick}
           data-name="link"
           className="creator-switcher__menu-tab"
         >
           <i className="creator-switcher__menu-icon fas fa-link"></i> Link
-        </li>
+        </li> */}
       </ul>
     </div>
   );

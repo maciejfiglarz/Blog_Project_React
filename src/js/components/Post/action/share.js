@@ -22,7 +22,6 @@ const PostShare = ({ postId, title }) => {
     );
   };
 
-
   return (
     <div className="post-action__share-wrap">
       <div
