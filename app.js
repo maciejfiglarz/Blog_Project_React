@@ -28,6 +28,22 @@ var app = express();
 var Twig = require("twig");
 process.env.NODE_ENV = "production";
 
+if (process.env.NODE_ENV === "production") {
+  mongoose.connect(
+    "mongodb://mo1267_szlauf:Cb5VIv9lol4AEq30YJIJ@91.185.188.163:27017/mo1267_szlauf",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  );
+  console.log('mongoose',mongoose.connection.readyState);
+} else {
+  mongoose.connect("mongodb://localhost:27017", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+}
+
 global.baseUrl = "http://localhost:5000";
 
 app.set(morgan("dev"));
@@ -92,16 +108,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-  });
-  
-  mongoose.connect("mongodb://localhost:27017", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-} else {
-  mongoose.connect("mongodb://localhost:27017", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
   });
 }
 

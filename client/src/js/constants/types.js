@@ -1,6 +1,6 @@
 
-export const domainUrl = 'http://localhost:3000';
-export const serverUrl = 'http://localhost:5000';
+export const domainUrl = '';
+export const serverUrl = '';
 
 export const uploadsUrl = serverUrl +'/uploads';
 
