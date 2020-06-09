@@ -44,7 +44,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-global.baseUrl = "http://localhost:5000";
+// global.baseUrl = "http://localhost:5000";
 
 app.set(morgan("dev"));
 
