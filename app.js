@@ -25,8 +25,7 @@ const morgan = require("morgan");
 
 var app = express();
 
-var Twig = require("twig");
-// process.env.NODE_ENV = "production";
+process.env.NODE_ENV = "production";
 
 if (process.env.NODE_ENV === "production") {
   mongoose.connect(
@@ -54,9 +53,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-// mongoose.Promise = global.Promise;
 
-//support parsing of application/x-www-form-urlencoded post data
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -64,17 +61,6 @@ app.use(
 );
 app.use(bodyParser.json());
 
-var gulp = require("gulp");
-var bs = require("browser-sync").create(); // create a browser sync instance.
-
-gulp.task("browser-sync", function () {
-  bs.init({
-    server: {
-      baseDir: "./",
-    },
-    proxy: "localhost:5000",
-  });
-});
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

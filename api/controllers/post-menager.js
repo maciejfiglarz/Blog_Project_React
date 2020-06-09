@@ -13,7 +13,7 @@ const path = require("path");
 
 exports.insert_post = async (req, res, next) => {
   const { body } = req;
-  console.log("reqInsertPost", body);
+
   const postMenagerService = new PostMenagerService();
   const result = await postMenagerService.insertPost(body);
   const { postId,success } = result;

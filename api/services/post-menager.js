@@ -8,7 +8,7 @@ const fs = require("fs");
 class PostMenagerService {
   async generateGraphic(params) {
     const { photo, title, titleTop, content, titleColor } = params;
-    const urlGenerator = "https://127.0.0.1:8000/szlauf-generator/szlauf-generator";
+    const urlGenerator = "http://ssosii.kylos.pl/generatorszlauf/generator/szlauf-generator";
 
     const { data } = await axios.post(urlGenerator, {
       photo,
@@ -19,7 +19,7 @@ class PostMenagerService {
     });
     const { success, graphicId } = data;
     if (success) {
-      const urlFile = `https://127.0.0.1:8000/szlauf-image/${graphicId}`;
+      const urlFile = `http://ssosii.kylos.pl/generatorszlauf/generator/szlauf-image/${graphicId}`;
       const destination = `./public/uploads/graphic/${graphicId}.jpg`;
       var file = fs.createWriteStream(destination);
       var request = http
