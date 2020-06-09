@@ -26,7 +26,7 @@ const morgan = require("morgan");
 var app = express();
 
 var Twig = require("twig");
-process.env.NODE_ENV = "production";
+// process.env.NODE_ENV = "production";
 
 if (process.env.NODE_ENV === "production") {
   mongoose.connect(
