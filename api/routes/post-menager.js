@@ -3,7 +3,7 @@ const router = express.Router();
 const PostMenagerController = require("../controllers/post-menager");
 
 
-router.get("/insert-post", PostMenagerController.insert_post);
+router.post("/insert-post", PostMenagerController.insert_post);
 
 router.post("/get-link-data", PostMenagerController.get_link_data);
 

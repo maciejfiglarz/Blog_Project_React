@@ -9,6 +9,8 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 
 const mongoose = require("mongoose");
+const prod = require("./config/prod");
+// const keys = require('./config/keys');
 
 const postRouter = require("./api/routes/post");
 const fileRouter = require("./api/routes/file");
@@ -24,24 +26,44 @@ const adminUserRouter = require("./admin/routes/user");
 const morgan = require("morgan");
 
 var app = express();
+console.log("keys", prod);
+// process.env.NODE_ENV = "production";
 
-process.env.NODE_ENV = "production";
+// const mongoConnection = mode => {
+//   return mongoose
+//     .connect(
+//       `mongodb://${mode.database}:${
+//         mode.databasePassword
+//       }@mongo46.mydevil.net:27017/${mode.database}`
+//     )
+//     .then(() => console.log('Connected to mongoDB...'))
+//     .catch(err => console.log(new Error('Colud not connect to mongoDB', err)));
+// };
 
-if (process.env.NODE_ENV === "production") {
-  mongoose.connect(
+// mongoConnection(prod);
+
+// if (process.env.NODE_ENV === "production") {
+mongoose
+  .connect(
     "mongodb://mo1267_szlauf:Cb5VIv9lol4AEq30YJIJ@91.185.188.163:27017/mo1267_szlauf",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }
-  );
-  console.log('mongoose',mongoose.connection.readyState);
-} else {
-  mongoose.connect("mongodb://localhost:27017", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-}
+  )
+  .then(() => console.log("Connected to mongoDB..."))
+  .catch((err) => console.log(new Error("Colud not connect to mongoDB", err)));
+// } else {
+//   mongoose
+//     .connect("mongodb://localhost:27017", {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//     })
+//     .then(() => console.log("Connected to mongoDB..."))
+//     .catch((err) =>
+//       console.log(new Error("Colud not connect to mongoDB", err))
+//     );
+// }
 
 // global.baseUrl = "http://localhost:5000";
 
@@ -53,14 +75,12 @@ app.use(function (req, res, next) {
   next();
 });
 
-
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 );
 app.use(bodyParser.json());
-
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

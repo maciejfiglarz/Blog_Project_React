@@ -5,7 +5,7 @@ const multer = require("multer");
 const path = require("path");
 
 exports.update_avatar = async (req, res, next) => {
-  const token = req.headers.authorization.split(" ")[1]; 
+  const token = req.headers.authorization.split(" ")[1];
   let fileName = "";
   const storage = multer.diskStorage({
     destination: "./public/uploads/avatar",
@@ -23,7 +23,7 @@ exports.update_avatar = async (req, res, next) => {
 
   await upload(req, res, (err) => {
     const userService = new UserService();
-    userService.updateAvatarByToken(fileName,token);
+    userService.updateAvatarByToken(fileName, token);
     res.status(200).json({ fileName });
   });
 };
@@ -70,7 +70,7 @@ exports.register = async (req, res, next) => {
   const validation = await userService.isValidRegister(body);
   const { isValid, errors } = validation;
   let { user } = validation;
-
+  console.log("userRegister", user,isValid, errors);
   if (isValid) {
     if (!user) {
       user = await userService.insertUser(body);

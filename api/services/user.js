@@ -85,7 +85,7 @@ class UserService {
 
   async isValidRegister(params) {
     const { username, password, passwordConfirmation, email } = params;
-
+    console.log('params',params);
     let errors = {};
     if (!username) {
       errors["registerUsername"] = "Musisz wybrać nazwę użytkownika";
