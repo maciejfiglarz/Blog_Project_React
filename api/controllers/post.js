@@ -17,7 +17,7 @@ exports.fetch_one_by_id = async (req, res, next) => {
   const post = await postService.findOneById(postId);
   const success = post ? true : false;
   res.status(200).json({ success, post });
-};
+}
 
 exports.pagination = async (req, res, next) => {
   const perPage = 5;
@@ -25,10 +25,7 @@ exports.pagination = async (req, res, next) => {
   const { page, params } = body;
 
   const postService = new PostService();
-  const result = await postService
-    .pagination(page, perPage, params)
-    .then((res) => res)
-    .catch((err) => );
+  const result = await postService.pagination(page, perPage, params);
   res.status(201).json(result);
 };
 
