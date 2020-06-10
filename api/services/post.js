@@ -20,6 +20,8 @@ class PostService {
       .then((result) => {
 
         return result;
+      }).catch(err=>{
+        if (err) return handleError(err);
       });
   }
   
