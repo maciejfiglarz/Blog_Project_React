@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 
 const mongoose = require("mongoose");
-const prod = require("./config/prod");
+// const prod = require("./config/prod");
 // const keys = require('./config/keys');
 
 const postRouter = require("./api/routes/post");
@@ -26,7 +26,7 @@ const adminUserRouter = require("./admin/routes/user");
 const morgan = require("morgan");
 
 var app = express();
-console.log("keys", prod);
+// console.log("keys", prod);
 process.env.NODE_ENV = "production";
 
 const mongoConnection = mode => {
@@ -107,6 +107,7 @@ app.use("/post-menager", postMenagerRouter);
 app.use("/admin/post", adminPostRouter);
 app.use("/admin/user", adminUserRouter);
 app.use("/admin", adminIndexRouter);
+
 console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("public"));
