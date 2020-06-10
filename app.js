@@ -29,16 +29,27 @@ var app = express();
 // console.log("keys", prod);
 process.env.NODE_ENV = "production";
 
-const mongoConnection = mode => {
-  return mongoose
-    .connect(
-      `mongodb://mo1267_szlauf:Cb5VIv9lol4AEq30YJIJ@mongo46.mydevil.net:27017/mo1267_szlauf`
-    )
-    .then(() => console.log('Connected to mongoDB...'))
-    .catch(err => console.log(new Error('Colud not connect to mongoDB', err)));
-};
+mongoose
+  .connect(
+    "mongodb://mo1267_szlauf:Cb5VIv9lol4AEq30YJIJ@91.185.188.163:27017/mo1267_szlauf",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
+  .then(() => console.log("Connected to mongoDB..."))
+  .catch((err) => console.log(new Error("Colud not connect to mongoDB", err)));
 
-mongoConnection(prod);
+// const mongoConnection = mode => {
+//   return mongoose
+//     .connect(
+//       `mongodb://mo1267_szlauf:Cb5VIv9lol4AEq30YJIJ@mongo46.mydevil.net:27017/mo1267_szlauf`
+//     )
+//     .then(() => console.log('Connected to mongoDB...'))
+//     .catch(err => console.log(new Error('Colud not connect to mongoDB', err)));
+// };
+
+// mongoConnection(prod);
 
 // if (process.env.NODE_ENV === "production") {
 // mongoose
