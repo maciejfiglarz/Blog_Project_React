@@ -27,32 +27,30 @@ const morgan = require("morgan");
 
 var app = express();
 console.log("keys", prod);
-// process.env.NODE_ENV = "production";
+process.env.NODE_ENV = "production";
 
-// const mongoConnection = mode => {
-//   return mongoose
-//     .connect(
-//       `mongodb://${mode.database}:${
-//         mode.databasePassword
-//       }@mongo46.mydevil.net:27017/${mode.database}`
-//     )
-//     .then(() => console.log('Connected to mongoDB...'))
-//     .catch(err => console.log(new Error('Colud not connect to mongoDB', err)));
-// };
+const mongoConnection = mode => {
+  return mongoose
+    .connect(
+      `mongodb://mo1267_szlauf:Cb5VIv9lol4AEq30YJIJ@mongo46.mydevil.net:27017/mo1267_szlauf`
+    )
+    .then(() => console.log('Connected to mongoDB...'))
+    .catch(err => console.log(new Error('Colud not connect to mongoDB', err)));
+};
 
-// mongoConnection(prod);
+mongoConnection(prod);
 
 // if (process.env.NODE_ENV === "production") {
-mongoose
-  .connect(
-    "mongodb://mo1267_szlauf:Cb5VIv9lol4AEq30YJIJ@91.185.188.163:27017/mo1267_szlauf",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
-  .then(() => console.log("Connected to mongoDB..."))
-  .catch((err) => console.log(new Error("Colud not connect to mongoDB", err)));
+// mongoose
+//   .connect(
+//     "mongodb://mo1267_szlauf:Cb5VIv9lol4AEq30YJIJ@91.185.188.163:27017/mo1267_szlauf",
+//     {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//     }
+//   )
+//   .then(() => console.log("Connected to mongoDB..."))
+//   .catch((err) => console.log(new Error("Colud not connect to mongoDB", err)));
 // } else {
 //   mongoose
 //     .connect("mongodb://localhost:27017", {
