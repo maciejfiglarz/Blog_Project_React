@@ -16,13 +16,7 @@ class PostService {
         _id: "desc",
       })
       // .sort("-createdAt")koleg
-      .exec()
-      .then((result) => {
-
-        return result;
-      }).catch(err=>{
-        if (err) return handleError(err);
-      });
+      .exec();
   }
   
   async findOneById(id) {
