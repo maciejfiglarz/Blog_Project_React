@@ -121,9 +121,9 @@ app.use("/admin", adminIndexRouter);
 
 console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("public"));
+  app.use(express.static("client/build"));
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+    res.sendFile(path.join(__dirname, "client","build", "index.html"));
   });
 }
 
