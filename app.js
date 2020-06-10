@@ -120,23 +120,22 @@ app.use("/admin/user", adminUserRouter);
 app.use("/admin", adminIndexRouter);
 
 console.log("process.env.NODE_ENV", process.env.NODE_ENV);
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client","build", "index.html"));
-  });
-}
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, console.log(`Listening on port ${PORT}...`));
-
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-// error handler
+
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client",'build' ,"index.html"));
+  });
+}
+
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
