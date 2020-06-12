@@ -14,6 +14,7 @@ exports.fetch_one_by_id = async (req, res, next) => {
   const { body } = req;
   const { postId } = body;
   const postService = new PostService();
+  console.log('now');
   const post = await postService.findOneById(postId);
   const success = post ? true : false;
   res.status(200).json({ success, post });
@@ -146,3 +147,5 @@ exports.post_delete = (req, res, next) => {
       });
     });
 };
+
+

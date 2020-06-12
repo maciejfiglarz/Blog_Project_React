@@ -27,7 +27,7 @@ const morgan = require("morgan");
 
 var app = express();
 // console.log("keys", prod);
-process.env.NODE_ENV = "production";
+// process.env.NODE_ENV = "production";
 
 mongoose
   .connect(
@@ -133,9 +133,9 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 // error handler
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("public"));
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client",'build' ,"index.html"));
+    res.sendFile(path.join(__dirname, "public" ,"index.html"));
   });
 }
 

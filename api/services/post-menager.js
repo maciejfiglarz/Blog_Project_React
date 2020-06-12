@@ -5,6 +5,7 @@ const axios = require("axios").default;
 const fileGetContents = require("file-get-contents");
 const http = require("https");
 const fs = require("fs");
+
 class PostMenagerService {
   async generateGraphic(params) {
     const { photo, title, titleTop, content, titleColor } = params;
@@ -63,7 +64,7 @@ class PostMenagerService {
         content,
         titleColor,
       });
-      console.log("graphicID", graphicId);
+
     }
 
     const newPost = new PostModel({

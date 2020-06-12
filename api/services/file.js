@@ -17,7 +17,6 @@ class FileService {
       //   console.error(err);
       //   return;
       // }
-      // console.log("succes");
     });
   }
   saveTemponaryImageInDB(fileName) {

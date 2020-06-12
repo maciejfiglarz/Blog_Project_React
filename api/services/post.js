@@ -61,8 +61,13 @@ class PostService {
       .then((result) => {
         console.log("updatevvvvvvvvvvv", result);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        res.status(500).send({
+          error: {
+            message: "Error update vote",
+            reason: error,
+          },
+        });
       });
   }
 }

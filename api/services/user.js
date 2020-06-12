@@ -5,10 +5,35 @@ const ValidationService = require("./validation");
 
 class UserService {
   async findOneById(id) {
-    return userModel.findById(id).select("-password");
+    return userModel
+      .findById(id)
+      .select("-password")
+      .then((doc) => {
+        return doc;
+      })
+      .catch((error) => {
+        res.status(500).send({
+          error: {
+            message: "Error while fetching data from db",
+            reason: error,
+          },
+        });
+      });
   }
   async findOneByEmail(email) {
-    const user = await userModel.find({ email });
+    const user = await userModel
+      .find({ email })
+      .then((doc) => {
+        return doc;
+      })
+      .catch((error) => {
+        res.status(500).send({
+          error: {
+            message: "Error while fetching data from db",
+            reason: error,
+          },
+        });
+      });
     return user.length > 0 ? user : null;
   }
   async findOneByParams(params) {
@@ -20,8 +45,19 @@ class UserService {
     const userSession = await userSessionModel
       .findOne({ _id: token })
       .populate("user")
-      .exec();
-    console.log("userSession", userSession.user);
+      .exec()
+      .then((doc) => {
+        return doc;
+      })
+      .catch((error) => {
+        res.status(500).send({
+          error: {
+            message: "Error while fetching data from db",
+            reason: error,
+          },
+        });
+      });
+
     const { user } = userSession;
     const { avatar } = user;
     if (avatar) {
@@ -43,11 +79,16 @@ class UserService {
     return userSessionModel
       .findOne({ _id: token })
       .exec()
-      .then((result) => {
-        console.log("result.auth", result);
+      .then((doc) => {
+        return doc;
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        res.status(500).send({
+          error: {
+            message: "Error while fetching data from db",
+            reason: error,
+          },
+        });
       });
   }
 
@@ -65,8 +106,19 @@ class UserService {
     }
 
     email = email.toLowerCase();
-    let user = await this.findOneByEmail(email);
-    console.log("user", user, userModel);
+    let user = await this.findOneByEmail(email)
+      .then((doc) => {
+        return doc;
+      })
+      .catch((error) => {
+        res.status(500).send({
+          error: {
+            message: "Error while fetching data from db",
+            reason: error,
+          },
+        });
+      });
+
     if (password && user) {
       user = user[0];
       if (!user.validPassword(password)) {
@@ -85,7 +137,7 @@ class UserService {
 
   async isValidRegister(params) {
     const { username, password, passwordConfirmation, email } = params;
-    console.log('params',params);
+    console.log("params", params);
     let errors = {};
     if (!username) {
       errors["registerUsername"] = "Musisz wybrać nazwę użytkownika";
