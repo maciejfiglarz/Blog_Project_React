@@ -9,9 +9,8 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 
 const mongoose = require("mongoose");
-// const prod = require("./config/prod");
-// const keys = require('./config/keys');
-
+const prod = require("./config/prod");
+console.log("prod", prod);
 const postRouter = require("./api/routes/post");
 const fileRouter = require("./api/routes/file");
 const commentRouter = require("./api/routes/comment");
@@ -26,30 +25,35 @@ const adminUserRouter = require("./admin/routes/user");
 const morgan = require("morgan");
 
 var app = express();
-// console.log("keys", prod);
-// process.env.NODE_ENV = "production";
 
-mongoose
-  .connect(
-    "mongodb://mo1267_szlauf:Cb5VIv9lol4AEq30YJIJ@91.185.188.163:27017/mo1267_szlauf",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
-  .then(() => console.log("Connected to mongoDB..."))
-  .catch((err) => console.log(new Error("Colud not connect to mongoDB", err)));
 
-// const mongoConnection = mode => {
-//   return mongoose
-//     .connect(
-//       `mongodb://mo1267_szlauf:Cb5VIv9lol4AEq30YJIJ@mongo46.mydevil.net:27017/mo1267_szlauf`
-//     )
-//     .then(() => console.log('Connected to mongoDB...'))
-//     .catch(err => console.log(new Error('Colud not connect to mongoDB', err)));
-// };
+// mongoose
+//   .connect(
+//     "mongodb://mo1267_szlauf:Cb5VIv9lol4AEq30YJIJ@91.185.188.163:27017/mo1267_szlauf",
+//     {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//     }
+//   )
+//   .then(() => console.log("Connected to mongoDB..."))
+//   .catch((err) => console.log(new Error("Colud not connect to mongoDB", err)));
 
-// mongoConnection(prod);
+const mongoConnection = (mode) => {
+  return mongoose
+    .connect(
+      `mongodb://${mode.database}:${mode.databasePassword}@mongo46.mydevil.net:27017/${mode.database}`,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    )
+    .then(() => console.log("Connected to mongoDB..."))
+    .catch((err) =>
+      console.log(new Error("Colud not connect to mongoDB", err))
+    );
+};
+
+mongoConnection(prod);
 
 // if (process.env.NODE_ENV === "production") {
 // mongoose
@@ -80,7 +84,10 @@ app.set(morgan("dev"));
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 
@@ -135,7 +142,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("public"));
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "public" ,"index.html"));
+    res.sendFile(path.join(__dirname, "public", "index.html"));
   });
 }
 
