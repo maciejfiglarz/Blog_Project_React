@@ -89,9 +89,13 @@ class PostMenagerService {
         console.log("insert", result);
         return { success: true, postId: result._id };
       })
-      .catch((err) => {
-        console.log("errInsert", err);
-        return { success: false };
+      .catch((error) => {
+        res.status(500).send({
+          error: {
+            message: "Error insert new post",
+            reason: error,
+          },
+        });
       });
   }
 

@@ -37,7 +37,19 @@ class UserService {
     return user.length > 0 ? user : null;
   }
   async findOneByParams(params) {
-    const user = await userModel.find(params);
+    const user = await userModel
+      .find(params)
+      .then((doc) => {
+        return doc;
+      })
+      .catch((error) => {
+        res.status(500).send({
+          error: {
+            message: "Error while fetching user by params to db",
+            reason: error,
+          },
+        });
+      });
     return user.length > 0 ? user : null;
   }
 
@@ -188,7 +200,19 @@ class UserService {
     const userSession = new userSessionModel();
     userSession.user = _id;
 
-    return userSession.save();
+    return userSession
+      .save()
+      .then((doc) => {
+        return doc;
+      })
+      .catch((error) => {
+        res.status(500).send({
+          error: {
+            message: "Error while insert user session to db",
+            reason: error,
+          },
+        });
+      });
   }
 }
 

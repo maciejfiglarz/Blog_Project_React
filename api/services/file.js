@@ -12,11 +12,15 @@ class FileService {
     });
   }
   remove(path) {
-    fs.unlink(path, (err) => {
-      // if (err) {
-      //   console.error(err);
-      //   return;
-      // }
+    fs.unlink(path, (error) => {
+      if (error) {
+        res.status(500).send({
+          error: {
+            message: "Error remove file",
+            reason: error,
+          },
+        });
+      }
     });
   }
   saveTemponaryImageInDB(fileName) {
@@ -24,7 +28,19 @@ class FileService {
       _id: new mongoose.Types.ObjectId(),
       fileName,
     });
-    temponaryPhoto.save();
+    temponaryPhoto
+      .save()
+      .then((doc) => {
+        return doc;
+      })
+      .catch((error) => {
+        res.status(500).send({
+          error: {
+            message: "Error while insert temponary image to db",
+            reason: error,
+          },
+        });
+      });
   }
   async upload(pathDest, req, res) {
     let fileName = "";
@@ -45,7 +61,6 @@ class FileService {
     await uploadFile(req, res, (err) => {
       return fileName;
     });
-  
   }
 }
 
