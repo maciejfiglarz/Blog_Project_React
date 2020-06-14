@@ -26,18 +26,6 @@ const morgan = require("morgan");
 
 var app = express();
 
-
-// mongoose
-//   .connect(
-//     "mongodb://mo1267_szlauf:Cb5VIv9lol4AEq30YJIJ@91.185.188.163:27017/mo1267_szlauf",
-//     {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//     }
-//   )
-//   .then(() => console.log("Connected to mongoDB..."))
-//   .catch((err) => console.log(new Error("Colud not connect to mongoDB", err)));
-
 const mongoConnection = (mode) => {
   return mongoose
     .connect(
@@ -55,30 +43,15 @@ const mongoConnection = (mode) => {
 
 mongoConnection(prod);
 
-// if (process.env.NODE_ENV === "production") {
+//dev
+
 // mongoose
-//   .connect(
-//     "mongodb://mo1267_szlauf:Cb5VIv9lol4AEq30YJIJ@91.185.188.163:27017/mo1267_szlauf",
-//     {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//     }
-//   )
+//   .connect("mongodb://localhost:27017", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
 //   .then(() => console.log("Connected to mongoDB..."))
 //   .catch((err) => console.log(new Error("Colud not connect to mongoDB", err)));
-// } else {
-//   mongoose
-//     .connect("mongodb://localhost:27017", {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//     })
-//     .then(() => console.log("Connected to mongoDB..."))
-//     .catch((err) =>
-//       console.log(new Error("Colud not connect to mongoDB", err))
-//     );
-// }
-
-// global.baseUrl = "http://localhost:5000";
 
 app.set(morgan("dev"));
 
@@ -113,7 +86,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use("/post", postRouter);
 app.use("/file", fileRouter);
@@ -140,9 +114,8 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 // error handler
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("public"));
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+    res.sendFile(path.join(__dirname, "client","build", "index.html"));
   });
 }
 

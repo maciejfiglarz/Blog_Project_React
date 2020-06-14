@@ -10,7 +10,7 @@ const HeaderNavigation = () => (
     <Link to="/poczekalnia" className="header-navigation__item">
       Poczekalnia
     </Link>
-    <Link to="/dodaj-post" className="header-navigation__item">
+    <Link to="/dodaj" className="header-navigation__item">
       <img src={create} />
     </Link>
   </div>

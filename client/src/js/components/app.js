@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import {  BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import {  Router, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -19,7 +19,6 @@ import Footer from "./Footer";
 
 import WaitingRoom from "./WaitingRoom";
 
-import AdminPost from "./Admin/Post";
 
 import { PrivateRoute } from "./PrivateRoute";
 
@@ -53,7 +52,6 @@ const App = (props) => {
               <Route exact path="/zaloz-konto" component={Register} />
               <Route exact strict path="/post/:id" component={Single} />
               <PrivateRoute exact strict path="/dodaj" component={Creator} />
-              <Route exact path="/admin/post" component={AdminPost} />
             </Switch>
           </div>
           <Footer />
